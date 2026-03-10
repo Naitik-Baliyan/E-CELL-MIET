@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus: Talk Show — MIET E-Cell</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header id="main-header">
+    <a href="untitled1.html" class="logo-container">
+      <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
+      <h1>Ecell MIET</h1>
+    </a>
+    <a href="untitled1.html" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">← Back to Home</a>
+  </header>
+
+  <main>
+    <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+      <span class="section-label">Nexus Series</span>
+      <h2>Nexus: Talk Show</h2>
+      <p style="margin: 0 auto;">Where Ideas Meet Innovation</p>
+    </div>
+
+    <div class="content-box reveal">
+      <span class="section-label">Upcoming</span>
+      <h2>Event Schedule</h2>
+      <h3 style="color: var(--primary); margin-bottom: 1rem;">Date: June 20, 2025</h3>
+      <p>Time: 4:00 PM – 7:00 PM</p>
+      <p>Venue: MIET Auditorium</p>
+    </div>
+
+    <div class="content-box reveal">
+      <span class="section-label">Speakers</span>
+      <h2>Special Guests</h2>
+      <p><strong>Riya Malhotra</strong> — Founder, GreenTech Solutions</p>
+      <p><strong>Arjun Mehta</strong> — CEO, InnovateX</p>
+      <p><strong>Dr. Kavita Sharma</strong> — Director, MIET Incubation Center</p>
+    </div>
+
+    <div class="content-box reveal">
+      <span class="section-label">What's in Store</span>
+      <h2>What to Expect</h2>
+      <p>Engaging discussions on innovation, entrepreneurship, and live Q&A sessions. Get inspired, ask questions, and connect with change-makers!</p>
+    </div>
+
+    <div class="content-box reveal">
+      <span class="section-label">Our History</span>
+      <h2>Glimpse of Past Events</h2>
+      
+      <div style="display: grid; gap: 1.5rem; text-align: left; margin-top: 2rem;">
+        <div class="card" style="padding: 1.5rem;">
+          <h3 style="font-size:1.2rem; margin-bottom:0.5rem; color: var(--primary);">Startup Sprint 2024</h3>
+          <p style="margin-bottom:0; font-size:1rem;">24-hour innovation marathon packed with energy, ideas, and mentoring.</p>
+        </div>
+        <div class="card" style="padding: 1.5rem;">
+          <h3 style="font-size:1.2rem; margin-bottom:0.5rem; color: var(--primary);">Idea Ignition 2023</h3>
+          <p style="margin-bottom:0; font-size:1rem;">Idea pitching competition with investors and mentors on panel.</p>
+        </div>
+        <div class="card" style="padding: 1.5rem;">
+          <h3 style="font-size:1.2rem; margin-bottom:0.5rem; color: var(--primary);">BizTalks 2023</h3>
+          <p style="margin-bottom:0; font-size:1rem;">Fireside chats with local entrepreneurs who made it big.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top: 6rem;">
+      <span class="section-label">Gallery</span>
+      <h2>Photo Gallery</h2>
+      <div class="gallery" style="margin-top: 2rem;">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80" alt="Event 1" />
+        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&q=80" alt="Event 2" />
+        <img src="https://images.unsplash.com/photo-1560439514-4e9645039924?w=400&q=80" alt="Event 3" />
+        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80" alt="Event 4" />
+        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=400&q=80" alt="Event 5" />
+        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&q=80" alt="Event 6" />
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-logo">Ecell MIET</span>
+    <p>&copy; 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#e8001d" },
+        shape: { type: "circle" },
+        opacity: { value: 0.1, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#e8001d", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 0.3 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>

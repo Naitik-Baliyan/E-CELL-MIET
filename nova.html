@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Events — E-Cell MIET</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+  <header id="main-header">
+    <a href="untitled1.html" class="logo-container">
+      <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
+      <h1>Ecell MIET</h1>
+    </a>
+    <div style="display: flex; gap: 1rem;">
+      <a class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;" href="#speakers">Speakers</a>
+      <a class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;" href="#register">Register</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="reveal" id="nova">
+      <div class="content-box">
+        <span class="section-label">Featured Event</span>
+        <h2>NOVA: Speaker Session</h2>
+        <p><strong>Recent Talk Show</strong> by E-Cell MIET featuring leading founders and investors — real playbooks for idea validation, execution, and pitching.</p>
+        <p style="color: var(--primary); font-weight: 700;">Date: 18 Oct 2025 &nbsp;•&nbsp; Time: 3:00 PM – 6:30 PM &nbsp;•&nbsp; Venue: MIET Auditorium</p>
+        <div style="margin-top: 2rem;">
+            <a class="btn btn-primary" href="#register">Get Your Seat →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers">
+      <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
+        <span class="section-label">Speakers</span>
+        <h2>Featured Speakers</h2>
+      </div>
+      
+      <div class="gallery">
+        <div class="card reveal" style="padding: 2rem;">
+          <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80" alt="Arjun Mehta" style="height: 300px; width: 100%; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+          <h3>Arjun Mehta</h3>
+          <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">Founder & CEO, NovaLabs</p>
+          <p style="font-size: 1rem;">From dorm room to 10M+ users — frameworks for early growth and product-market fit.</p>
+        </div>
+        <div class="card reveal" style="padding: 2rem;">
+          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80" alt="Rhea Kapoor" style="height: 300px; width: 100%; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+          <h3>Rhea Kapoor</h3>
+          <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">Partner, Catalyst Capital</p>
+          <p style="font-size: 1rem;">How investors evaluate pre-seed startups and identify exceptional founders early.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="register">
+      <div class="content-box">
+        <span class="section-label">Join Us</span>
+        <h2>Register Now</h2>
+        <p>Seats are limited. MIET students get priority access. Bring your idea and passion!</p>
+        <a class="btn btn-primary" href="#">Fill Registration Form →</a>
+        <p style="margin-top:2rem; font-size: 0.9rem;">Queries: <b>ecell@miet.ac.in</b></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-logo">Ecell MIET</span>
+    <p>© <span id="yr"></span> E-Cell MIET • Empowering the next generation of founders.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#e8001d" },
+        shape: { type: "circle" },
+        opacity: { value: 0.1, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#e8001d", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 0.3 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More — MIET E-Cell</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+  <header id="main-header">
+    <a href="untitled1.html" class="logo-container">
+      <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
+      <h1>Ecell MIET</h1>
+    </a>
+    <a href="untitled1.html" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">← Back to Home</a>
+  </header>
+
+  <main>
+    <div class="content-box reveal">
+      <span class="section-label">The Basics</span>
+      <h2>What is Entrepreneurship?</h2>
+      <p>
+        Entrepreneurship is the process of creating, developing, and scaling ideas into impactful ventures. It's about turning ideas into action — whether through startups, social ventures, or innovation within organizations.
+      </p>
+    </div>
+
+    <div class="content-box reveal">
+      <span class="section-label">Our Purpose</span>
+      <h2>The Role of E-Cell</h2>
+      <p>
+        E-Cell at MIET empowers students to think beyond academics and embrace entrepreneurial thinking. We support innovative minds through mentorship, resources, workshops, and networking opportunities.
+      </p>
+    </div>
+
+    <div class="content-box reveal">
+      <span class="section-label">Where We're Headed</span>
+      <h2>Our Vision</h2>
+      <p>
+        To cultivate a thriving entrepreneurial culture at MIET where students actively explore business ideas, learn from real founders, and get hands-on experience in building ventures.
+      </p>
+      <p>
+        Have questions? <a href="mailto:ecell@miet.ac.in">Contact us at ecell@miet.ac.in</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-logo">Ecell MIET</span>
+    <p>&copy; 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#e8001d" },
+        shape: { type: "circle" },
+        opacity: { value: 0.1, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#e8001d", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 0.3 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>

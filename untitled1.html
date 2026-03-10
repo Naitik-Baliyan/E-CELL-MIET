@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIET E-Cell — Build. Launch. Disrupt.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    /* In-page styling for specific hero adjustments */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(232, 0, 29, 0.05), transparent 70%);
+      top: 0; left: -25%;
+      z-index: -1;
+    }
+    
+    /* Stats Grid Customization */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .stat-item {
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.5);
+      border: var(--border-glass);
+      transition: var(--transition);
+    }
+    .stat-item:hover {
+      background: white;
+      box-shadow: var(--shadow-premium);
+    }
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+      font-family: 'Space Grotesk';
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* Fix for local redirects */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+    }
+    .hamburger span {
+        width: 25px;
+        height: 2px;
+        background: var(--text-main);
+        transition: 0.3s;
+    }
+    @media (max-width: 768px) {
+        .hamburger { display: flex; }
+        .stats-grid { grid-template-columns: 1fr; }
+        nav.open {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%; left: 0; width: 100%;
+            background: white;
+            padding: 2rem;
+            box-shadow: var(--shadow-premium);
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+
+  <header id="main-header">
+    <a href="untitled1.html" class="logo-container">
+      <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
+      <h1>Ecell MIET</h1>
+    </a>
+
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+
+    <nav id="main-nav">
+      <a href="#section1">E-Cell</a>
+      <a href="#section2">About</a>
+      <a href="#section3">Talk Show</a>
+      <a href="#section4">Events</a>
+      <a href="#section5">Team</a>
+      <a href="#section6">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-eyebrow reveal">MIET Entrepreneurship Cell</div>
+      <h1 class="reveal">Build. Launch.<br /><span>Disrupt.</span></h1>
+      <p class="hero-sub reveal">Where student ideas become real ventures. Join MIET's most ambitious community of founders, innovators, and changemakers.</p>
+      <div class="hero-cta reveal">
+        <a href="#section4" class="btn btn-primary">Explore Events</a>
+        <a href="#section6" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+
+    <section id="stats">
+      <div class="content-box reveal">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-target="24">0</span>
+            <span class="stat-label">Events Hosted</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="12">0</span>
+            <span class="stat-label">Startups Incubated</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="350">0</span>
+            <span class="stat-label">Active Members</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section1">
+      <div class="content-box reveal">
+        <span class="section-label">Who We Are</span>
+        <h2>Ecell and Entrepreneurship</h2>
+        <p>Discover the connection between entrepreneurship and the role of Ecell in shaping innovative leaders of tomorrow.</p>
+        <a href="learnmore.html" class="btn btn-primary">Learn More</a>
+      </div>
+    </section>
+
+    <section id="section2">
+      <div class="content-box reveal">
+        <span class="section-label">Our Story</span>
+        <h2>Ecell at MIET</h2>
+        <p>Explore the journey, achievements, and people behind MIET's dynamic entrepreneurship cell.</p>
+        <a href="aboutus.html" class="btn btn-primary">About Us</a>
+      </div>
+    </section>
+
+    <section id="section3">
+      <div class="content-box reveal">
+        <span class="section-label">Nexus Series</span>
+        <h2>Nexus: The Talk Show</h2>
+        <p>A series of engaging conversations and podcasts around startups, innovation, and entrepreneurial journeys.</p>
+        <a href="talkshow.html" class="btn btn-primary">Interested in More? Click Here</a>
+      </div>
+    </section>
+
+    <section id="section4">
+      <div class="content-box reveal">
+        <span class="section-label">What's Coming</span>
+        <h2>Scheduled Events</h2>
+        <p>Stay up to date with our upcoming events that bring together ideas, innovation, and execution.</p>
+        <a href="nova.html" class="btn btn-primary">More Events</a>
+      </div>
+    </section>
+
+    <section id="section5">
+      <div class="content-box reveal">
+        <span class="section-label">The People</span>
+        <h2>About Us</h2>
+        <p>MIET E-Cell is dedicated to fostering innovation, entrepreneurial thinking, and startup culture within the student community. With a focus on learning by doing, we create opportunities for students to interact with founders, investors, and mentors to nurture their ideas into impactful ventures.</p>
+        <a href="meet the team.html" class="btn btn-primary">Meet the Team</a>
+      </div>
+    </section>
+
+    <section id="section6">
+      <div class="content-box reveal">
+        <span class="section-label">Say Hello</span>
+        <h2>Contact Us</h2>
+        <p>
+          Email: <a href="mailto:ecell@miet.ac.in">ecell@miet.ac.in</a><br />
+          Instagram: <a href="https://instagram.com/miet_ecell" target="_blank" rel="noopener noreferrer">@ecell__miet</a><br />
+          LinkedIn: <a href="https://linkedin.com/in/miet-ecell" target="_blank" rel="noopener noreferrer">MIET Entrepreneurship Cell</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="footer-logo">Ecell MIET</span>
+    <div class="footer-links">
+      <a href="#section1">E-Cell</a>
+      <a href="talkshow.html">Talk Show</a>
+      <a href="nova.html">Events</a>
+      <a href="meet the team.html">Team</a>
+      <a href="mailto:ecell@miet.ac.in">Contact</a>
+    </div>
+    <p>&copy; 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#e8001d" },
+        shape: { type: "circle" },
+        opacity: { value: 0.1, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: "#e8001d", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { grab: { distance: 140, line_linked: { opacity: 0.3 } }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+
+</html>
