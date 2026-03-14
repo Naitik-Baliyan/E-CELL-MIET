@@ -916,33 +916,38 @@ footer p {
     to   { opacity: 1; transform: scale(1); }
   }
 
-  .hero { padding: 4rem 1rem; min-height: 85vh; }
-  .hero-title { font-size: clamp(3rem,12vw,4.5rem); margin-bottom: 1.5rem; }
-  .hero-line { text-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-  .hero-sub { font-size: 1rem; margin-bottom: 2rem; opacity: 0.9; }
-  
-  .stats-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .stat-item { padding: 2rem 1rem; }
-  .stat-number { font-size: 3rem; }
+  main { padding: 3rem 1.25rem 6rem; }
 
-  .content-box, .card { padding: 2.5rem 1.25rem; border-radius: 18px; }
-  h2 { font-size: 1.8rem; margin-bottom: 1rem; }
-  p { font-size: 1rem; line-height: 1.6; }
+  .hero { padding: 3rem 1rem; min-height: 80vh; }
+  .hero-badge { margin-bottom: 1.5rem; transform: scale(0.9); }
+  .hero-title { font-size: clamp(2.8rem, 12vw, 4.2rem); margin-bottom: 1.2rem; line-height: 1.1; }
+  .hero-line { text-shadow: none; } /* Remove 3D shadows on mobile for clarity */
+  .hero-sub { font-size: 0.95rem; margin-bottom: 2rem; opacity: 0.85; max-width: 90%; }
+  
+  .stats-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .stat-item { padding: 1.5rem 1rem; }
+  .stat-number { font-size: 2.8rem; }
+
+  .content-box, .card { padding: 2rem 1rem; border-radius: 16px; margin-bottom: 1rem; }
+  h2 { font-size: 1.6rem; margin-bottom: 0.8rem; letter-spacing: -0.01em; }
+  p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
 
   .tilt-card { transform: none !important; transition: none !important; }
-  .orb { filter: blur(40px); opacity: 0.4 !important; }
-  .shield-box { padding: 2rem 1rem; }
+  .orb { display: none; } /* Hide blur orbs on mobile for speed */
+  .box-deco { display: none; } /* Remove corner deco for cleaner look */
 
-  section { padding: 3rem 0; }
-  .team-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-  .gallery { grid-template-columns: 1fr; }
+  section { padding: 2.5rem 0; }
+  .contact-item { padding: 1rem; gap: 1rem; }
+  .contact-icon { width: 40px; height: 40px; font-size: 1.2rem; }
 
-  .footer-links { flex-direction: column; gap: 1.25rem; }
+  .footer-links { flex-direction: column; gap: 1rem; }
+  footer { padding: 4rem 1.5rem 3rem; }
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: clamp(2.6rem, 11vw, 4rem); }
-  .logo-container h1 { font-size: 1.1rem; }
-  .logo-mark { width: 40px; height: 40px; }
-  .stat-number { font-size: 3rem; }
+  .hero-title { font-size: clamp(2.4rem, 10vw, 3.2rem); }
+  .logo-container h1 { font-size: 1rem; }
+  .logo-mark { width: 36px; height: 36px; }
+  .hero-cta { flex-direction: column; width: 100%; }
+  .btn { width: 100%; }
 }

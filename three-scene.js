@@ -11,8 +11,15 @@
   const canvas = document.getElementById('three-canvas');
   if (!canvas) return;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const isMobile = window.innerWidth < 768;
+
+  const renderer = new THREE.WebGLRenderer({ 
+    canvas, 
+    antialias: !isMobile, 
+    alpha: true,
+    powerPreference: "high-performance"
+  });
+  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
 
@@ -69,9 +76,6 @@
 
   // Helper: random in range
   const rnd = (min, max) => Math.random() * (max - min) + min;
-
-  // Mobile check for subtlety
-  const isMobile = window.innerWidth < 768;
 
   // Create floating objects
   const shapes = isMobile ? [
