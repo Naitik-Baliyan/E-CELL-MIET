@@ -104,6 +104,44 @@
 }
 [data-theme="dark"] .contact-item span { color: #e8e8e8; }
 
+/* Dark mode text shadow for hero - shift to subtle light shadow or remove */
+[data-theme="dark"] .hero-line {
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark mode scroll indicator visibility */
+[data-theme="dark"] .scroll-indicator {
+  color: rgba(255, 255, 255, 0.4);
+}
+[data-theme="dark"] .scroll-line {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
+}
+
+/* Dark mode badge */
+[data-theme="dark"] .hero-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 59, 59, 0.4);
+  color: #ff6b6b;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode header shadow */
+[data-theme="dark"] header.scrolled {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  background: rgba(10, 10, 10, 0.8) !important;
+}
+
+/* Dark mode card glare adjustment (already in JS but CSS backup) */
+[data-theme="dark"] .card-glare {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%) !important;
+}
+
+[data-theme="dark"] h2 {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+
+
 
 /* ─── Reset ─────────────────────────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
