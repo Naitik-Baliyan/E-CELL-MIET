@@ -40,6 +40,71 @@
   --transition:      cubic-bezier(0.4, 0, 0.2, 1) 0.45s;
 }
 
+/* ─── Dark Mode Variables ───────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --primary:        #ff3b3b;
+  --primary-dim:    #e8001d;
+  --primary-glow:   rgba(255, 59, 59, 0.5);
+  --primary-soft:   rgba(255, 59, 59, 0.12);
+  --accent:         #ff6b6b;
+  --secondary:      #ffffff;
+
+  /* Backgrounds */
+  --bg-main:   #0a0a0a;
+  --bg-card:   rgba(22, 22, 26, 0.82);
+  --bg-glass:  rgba(15, 15, 18, 0.75);
+
+  /* Text */
+  --text-main:  #f0f0f0;
+  --text-muted: #9a9a9a;
+
+  /* Effects */
+  --shadow-soft:    0 8px 40px rgba(0,0,0,0.35);
+  --shadow-premium: 0 24px 80px -12px rgba(0,0,0,0.55),
+                    0 4px 20px rgba(255,59,59,0.12);
+  --border-glass:   1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Dark canvas background */
+[data-theme="dark"] #three-canvas {
+  background: radial-gradient(ellipse at 50% 40%, #1a0505 0%, #0d0d0d 60%, #080808 100%);
+}
+
+/* Dark orbs — more vivid in dark mode */
+[data-theme="dark"] .orb-1 {
+  background: radial-gradient(circle, rgba(232,0,29,0.28), transparent 70%);
+}
+[data-theme="dark"] .orb-2 {
+  background: radial-gradient(circle, rgba(255,80,80,0.18), transparent 70%);
+}
+[data-theme="dark"] .orb-3 {
+  background: radial-gradient(circle, rgba(232,0,29,0.2), transparent 70%);
+}
+
+/* Dark mobile nav overlay */
+[data-theme="dark"] nav.open {
+  background: rgba(10, 10, 10, 0.97) !important;
+}
+[data-theme="dark"] nav.open a {
+  color: #f0f0f0 !important;
+}
+
+/* Dark scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-track { background: #111; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #333; }
+
+/* Dark contact items */
+[data-theme="dark"] .contact-item {
+  background: rgba(30,30,35,0.6);
+  border-color: rgba(255,59,59,0.15);
+}
+[data-theme="dark"] .contact-item:hover {
+  background: rgba(40,40,46,0.9);
+  border-color: rgba(255,59,59,0.4);
+}
+[data-theme="dark"] .contact-item span { color: #e8e8e8; }
+
+
 /* ─── Reset ─────────────────────────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -69,6 +134,55 @@ h1, h2, h3, h4, .font-heading {
   z-index: -2;
   pointer-events: none;
   background: radial-gradient(ellipse at 50% 40%, #fff7f7 0%, #f5f4f0 60%, #eeece8 100%);
+}
+
+/* ─── Theme Toggle Button ───────────────────────────────────────────────── */
+.theme-toggle {
+  background: var(--bg-card);
+  border: var(--border-glass);
+  border-radius: 99px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-soft);
+  flex-shrink: 0;
+  order: 2; /* sits between nav and hamburger */
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.12);
+  box-shadow: 0 0 18px 4px var(--primary-glow);
+  border-color: var(--primary);
+}
+
+.theme-icon {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+  line-height: 1;
+}
+
+/* ─── Typewriter Cursor ──────────────────────────────────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  font-weight: 300;
+  opacity: 1;
+  margin-left: 2px;
+  animation: cursorBlink 0.75s step-end infinite;
+  /* cursor inherits parent gradient, so override to red */
+  -webkit-text-fill-color: var(--primary);
+  color: var(--primary);
+  filter: none;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 /* ─── Ambient Gradient Orbs ─────────────────────────────────────────────── */

@@ -1,5 +1,77 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ─── Dark Mode Toggle ──────────────────────────────────────────────────
+  const toggleBtn  = document.getElementById('theme-toggle');
+  const themeIcon  = toggleBtn ? toggleBtn.querySelector('.theme-icon') : null;
+  const html       = document.documentElement;
+
+  // Apply saved preference immediately (avoids flash on reload)
+  const savedTheme = localStorage.getItem('ecell-theme') || 'light';
+  html.setAttribute('data-theme', savedTheme);
+  if (themeIcon) themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const isDark   = html.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('ecell-theme', newTheme);
+
+      // Animated icon swap
+      if (themeIcon) {
+        themeIcon.style.transform = 'rotate(360deg) scale(0.5)';
+        setTimeout(() => {
+          themeIcon.textContent    = newTheme === 'dark' ? '☀️' : '🌙';
+          themeIcon.style.transform = '';
+        }, 220);
+      }
+    });
+  }
+
+  // ─── Typewriter Effect ─────────────────────────────────────────────────
+  const words    = ['Disrupt.', 'Innovate.', 'Scale.', 'Lead.', 'Dream.', 'Launch.'];
+  const wordEl   = document.getElementById('typewriter-word');
+  let wordIndex  = 0;
+  let charIndex  = 0;
+  let isDeleting = false;
+  let isPaused   = false;
+
+  function typeStep() {
+    if (!wordEl) return;
+    const current = words[wordIndex];
+
+    if (isPaused) {
+      isPaused   = false;
+      isDeleting = true;
+      setTimeout(typeStep, 1100);   // pause at full word before deleting
+      return;
+    }
+
+    if (!isDeleting) {
+      charIndex++;
+      wordEl.textContent = current.slice(0, charIndex);
+      if (charIndex === current.length) {
+        isPaused = true;
+        setTimeout(typeStep, 80);
+        return;
+      }
+      setTimeout(typeStep, 90 + Math.random() * 45);  // 90–135ms, feels human
+    } else {
+      charIndex--;
+      wordEl.textContent = current.slice(0, charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        wordIndex  = (wordIndex + 1) % words.length;
+        setTimeout(typeStep, 320);  // brief gap before next word
+        return;
+      }
+      setTimeout(typeStep, 45 + Math.random() * 25);  // faster on delete
+    }
+  }
+
+  // Start after hero entrance animation has finished settling
+  setTimeout(typeStep, 2200);
+
   // ─── Header Scroll Effect ──────────────────────────────────────────────
   const header = document.querySelector('header');
   window.addEventListener('scroll', () => {
