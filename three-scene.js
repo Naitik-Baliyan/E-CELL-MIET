@@ -70,8 +70,16 @@
   // Helper: random in range
   const rnd = (min, max) => Math.random() * (max - min) + min;
 
+  // Mobile check for subtlety
+  const isMobile = window.innerWidth < 768;
+
   // Create floating objects
-  const shapes = [
+  const shapes = isMobile ? [
+    { geo: new THREE.IcosahedronGeometry(1.2, 0), mat: wireMat, pos: [2, 3, -5], rot: [0.5, 0.3, 0] },
+    { geo: new THREE.OctahedronGeometry(0.8, 0), mat: accentMat, pos: [-3, -4, -4], rot: [0.2, 0.8, 0.1] },
+    { geo: new THREE.TetrahedronGeometry(0.7, 0), mat: wireMat, pos: [4, -5, -6], rot: [0.1, 0.5, 0.3] },
+    { geo: new THREE.IcosahedronGeometry(0.5, 0), mat: wireMat, pos: [-2, 5, -8], rot: [0.9, 0.1, 0.6] },
+  ] : [
     { geo: new THREE.IcosahedronGeometry(1.8, 0), mat: wireMat, pos: [4, 2, -3], rot: [0.5, 0.3, 0] },
     { geo: new THREE.OctahedronGeometry(1.2, 0), mat: accentMat, pos: [-5, 3, -2], rot: [0.2, 0.8, 0.1] },
     { geo: new THREE.TetrahedronGeometry(1.0, 0), mat: wireMat, pos: [6, -3, -5], rot: [0.1, 0.5, 0.3] },
@@ -113,7 +121,7 @@
   });
 
   // ─── Particle Field ────────────────────────────────────────────────────────
-  const PARTICLE_COUNT = 300;
+  const PARTICLE_COUNT = isMobile ? 80 : 300;
   const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
   const particleSizes = new Float32Array(PARTICLE_COUNT);
 
@@ -133,7 +141,7 @@
     size: 0.08,
     sizeAttenuation: true,
     transparent: true,
-    opacity: 0.6,
+    opacity: isMobile ? 0.3 : 0.6,
   });
 
   const particles = new THREE.Points(particleGeo, particleMat);
@@ -144,11 +152,12 @@
   const lineMat = new THREE.LineBasicMaterial({
     color: 0xe8001d,
     transparent: true,
-    opacity: 0.06,
+    opacity: isMobile ? 0.03 : 0.06,
   });
 
   // Random connecting lines
-  for (let i = 0; i < 20; i++) {
+  const LINE_COUNT = isMobile ? 8 : 20;
+  for (let i = 0; i < LINE_COUNT; i++) {
     const lineGeo = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(rnd(-15, 15), rnd(-12, 12), rnd(-10, 0)),
       new THREE.Vector3(rnd(-15, 15), rnd(-12, 12), rnd(-10, 0)),
