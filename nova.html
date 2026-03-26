@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Events — E-Cell MIET</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events — E-Cell MIET</title>
+  <meta name="description" content="Join upcoming events, speaker sessions, and workshops at MIET E-Cell. Ignite your entrepreneurial journey.">
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  
+  <div id="scroll-progress-container">
+    <div id="scroll-progress-bar"></div>
+  </div>
+
   <div id="particles-js"></div>
 
-  <header id="main-header">
+  <header>
     <a href="index.html" class="logo-container">
       <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
     </a>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
 
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -30,7 +42,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="reveal" id="nova">
       <div class="content-box">
         <span class="section-label">Featured Event</span>

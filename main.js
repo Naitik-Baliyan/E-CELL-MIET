@@ -72,10 +72,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start after hero entrance animation has finished settling
   setTimeout(typeStep, 2200);
 
-  // ─── Header Scroll Effect ──────────────────────────────────────────────
+  // ─── Header & Scroll Effects ──────────────────────────────────────────
   const header = document.querySelector('header');
+  const scrollBar = document.getElementById('scroll-progress-bar');
+  const backToTop = document.createElement('div');
+  backToTop.id = 'back-to-top';
+  backToTop.innerHTML = '↑';
+  backToTop.setAttribute('aria-label', 'Back to top');
+  document.body.appendChild(backToTop);
+
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 50);
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+
+    // Header compacting
+    header.classList.toggle('scrolled', scrollTop > 50);
+
+    // Progress bar
+    if (scrollBar) scrollBar.style.width = scrollPercent + '%';
+
+    // Back to top visibility
+    if (scrollTop > 500) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // ─── Reveal Animation on Scroll ───────────────────────────────────────
@@ -166,6 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Smooth Scroll ─────────────────────────────────────────────────────
+  const mainContent = document.querySelector('main');
+  if (mainContent) mainContent.id = 'main-content';
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();

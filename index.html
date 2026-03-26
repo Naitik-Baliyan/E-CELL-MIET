@@ -6,12 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MIET E-Cell — Build. Launch. Disrupt.</title>
   <meta name="description" content="MIET Entrepreneurship Cell — Where student ideas become real ventures. Join MIET's most ambitious community of founders, innovators, and changemakers.">
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta property="og:title" content="MIET E-Cell — Build. Launch. Disrupt.">
+  <meta property="og:description" content="Where student ideas become real ventures. Join MIET's most ambitious community of founders, innovators, and changemakers.">
+  <meta property="og:image" content="logo.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
   <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  
+  <!-- ─── Scroll Progress Indicator ────────────────────────────────────── -->
+  <div id="scroll-progress-container">
+    <div id="scroll-progress-bar"></div>
+  </div>
+
   <!-- ─── Three.js 3D Canvas (hero bg) ─────────────────────────────────── -->
   <canvas id="three-canvas"></canvas>
 
@@ -46,7 +62,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- ─── HERO ──────────────────────────────────────────────────────── -->
     <div class="hero">
       <div class="hero-badge reveal">

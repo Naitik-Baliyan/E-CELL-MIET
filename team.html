@@ -4,17 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meet the Team — MIET E-Cell</title>
+  <meta name="description" content="Meet the visionary students and mentors behind MIET's most ambitious entrepreneurship community.">
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  
+  <div id="scroll-progress-container">
+    <div id="scroll-progress-bar"></div>
+  </div>
+
   <div id="particles-js"></div>
 
-  <header id="main-header">
+  <header>
     <a href="index.html" class="logo-container">
       <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
     </a>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-icon">🌙</span>
+    </button>
 
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -29,7 +41,8 @@
     </nav>
   </header>
 
-  <section>
+  <main id="main-content">
+    <section>
     <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
       <span class="section-label">The People</span>
       <h2>Our Team</h2>
@@ -104,7 +117,7 @@
       </p>
       <a href="index.html" class="btn btn-primary">Back to Home</a>
     </div>
-  </section>
+  </main>
 
   <footer>
     <span class="footer-logo">Ecell MIET</span>
