@@ -118,57 +118,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // ─── 3D Card Tilt Effect ───────────────────────────────────────────────
-  const tiltCards = document.querySelectorAll('.tilt-card');
+  // ─── 3D Card Tilt & Interactive Light ────────────────────────────────
+  const tiltCards = document.querySelectorAll('.tilt-card, .team-member');
 
   tiltCards.forEach(card => {
-    const MAX_TILT = 8;    // degrees
-    const MAX_LIFT = -12;  // px rise
+    const MAX_TILT = 8;
+    const MAX_LIFT = -12;
 
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top  + rect.height / 2;
 
-      const dx = (e.clientX - cx) / (rect.width  / 2);  // -1 → +1
-      const dy = (e.clientY - cy) / (rect.height / 2);  // -1 → +1
+      const dx = (e.clientX - cx) / (rect.width  / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
 
       const rotX = -dy * MAX_TILT;
       const rotY =  dx * MAX_TILT;
 
-      // Calculate glare position
-      const glareX = ((e.clientX - rect.left) / rect.width)  * 100;
-      const glareY = ((e.clientY - rect.top)  / rect.height) * 100;
+      const px = ((e.clientX - rect.left) / rect.width)  * 100;
+      const py = ((e.clientY - rect.top)  / rect.height) * 100;
+
+      // Update CSS variables for the spotlight effect in style.css
+      card.style.setProperty('--mouseX', `${px}%`);
+      card.style.setProperty('--mouseY', `${py}%`);
 
       card.style.transform =
         `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(${MAX_LIFT}px)`;
       card.style.boxShadow =
-        `0 30px 70px -15px rgba(0,0,0,0.18),
-         ${-rotY * 1.5}px ${rotX}px 30px rgba(232,0,29,0.10)`;
+        `0 30px 80px -15px rgba(0,0,0,0.22),
+         ${-rotY * 2}px ${rotX * 2}px 40px rgba(232,0,29,0.12)`;
 
-      // Glare overlay
       let glare = card.querySelector('.card-glare');
       if (!glare) {
         glare = document.createElement('div');
         glare.className = 'card-glare';
         glare.style.cssText = `
           position:absolute; inset:0; border-radius:inherit;
-          pointer-events:none; z-index:1; transition:opacity 0.3s ease;
+          pointer-events:none; z-index:1; transition:opacity 0.4s ease;
         `;
-        card.style.position = 'relative';
         card.appendChild(glare);
       }
       glare.style.background =
-        `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.22) 0%, transparent 60%)`;
+        `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.25) 0%, transparent 65%)`;
       glare.style.opacity = '1';
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform =
-        'perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      card.style.transform = '';
       card.style.boxShadow = '';
       const glare = card.querySelector('.card-glare');
       if (glare) glare.style.opacity = '0';
+    });
+  });
+
+  // ─── Magnetic Buttons Interaction ─────────────────────────────────────
+  const magneticItems = document.querySelectorAll('.btn, .theme-toggle, .logo-container');
+
+  magneticItems.forEach(item => {
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      // Magnetic pull: move toward cursor by 35% of the distance
+      item.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
+      
+      // If it has an icon, move it slightly more for a layered effect
+      const icon = item.querySelector('svg, .theme-icon');
+      if (icon) {
+        icon.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      item.style.transform = '';
+      const icon = item.querySelector('svg, .theme-icon');
+      if (icon) icon.style.transform = '';
     });
   });
 

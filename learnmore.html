@@ -8,19 +8,47 @@
   <meta name="description" content="Deep dive into entrepreneurship and the resources provided by MIET E-Cell to help you build and launch your startup.">
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- Preloader visibility control -->
+  <script>
+    if (!sessionStorage.getItem('ecell_preloader_done')) {
+      document.documentElement.classList.add('ecell-preloading');
+    }
+  </script>
+  <style>
+    .ecell-preloading #main-header,
+    .ecell-preloading #main-content,
+    .ecell-preloading footer,
+    .ecell-preloading #three-canvas,
+    .ecell-preloading .orb,
+    .ecell-preloading #scroll-progress-container {
+      filter: blur(28px);
+      opacity: 0.6;
+      transition: filter 1s var(--transition), opacity 1s var(--transition);
+    }
+  </style>
 </head>
 
 <body>
+  <!-- ─── Preloader (runs once per session) ───────────────────────── -->
+  <script src="preloader.js"></script>
   <a href="#main-content" class="skip-link">Skip to content</a>
   
   <div id="scroll-progress-container">
     <div id="scroll-progress-bar"></div>
   </div>
 
-  <div id="particles-js"></div>
+  <!-- ─── Three.js 3D Canvas (hero bg) ─────────────────────────────────── -->
+  <canvas id="three-canvas"></canvas>
 
-  <header>
+  <!-- ─── Floating ambient gradient orbs ───────────────────────────────── -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <header id="main-header">
     <a href="index.html" class="logo-container">
       <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
@@ -73,29 +101,20 @@
   </main>
 
   <footer>
-    <span class="footer-logo">Ecell MIET</span>
-    <p>&copy; 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
+    <div class="footer-glow"></div>
+    <span class="footer-logo">Ecell <em>MIET</em></span>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="talkshow.html">Talk Show</a>
+      <a href="nova.html">Events</a>
+      <a href="team.html">Team</a>
+      <a href="mailto:ecell.miet@miet.ac.in">Contact</a>
+    </div>
+    <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: "#e8001d" },
-        shape: { type: "circle" },
-        opacity: { value: 0.1, random: true },
-        size: { value: 3, random: true },
-        line_linked: { enable: true, distance: 150, color: "#e8001d", opacity: 0.1, width: 1 },
-        move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
-        modes: { grab: { distance: 140, line_linked: { opacity: 0.3 } }, push: { particles_nb: 4 } }
-      },
-      retina_detect: true
-    });
-  </script>
+  <script src="three-scene.js"></script>
 </body>
 </html>

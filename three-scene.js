@@ -202,19 +202,36 @@
     camera.position.y = mouse.y * 1.0;
     camera.lookAt(0, 0, 0);
 
-    // Animate meshes
+    // Animate meshes with interactivity
     meshes.forEach(mesh => {
       if (mesh.userData.isMirror) {
-        // Mirror solid mesh exactly
         const origin = mesh.userData.mirrorOf;
         mesh.position.copy(origin.position);
         mesh.rotation.copy(origin.rotation);
         return;
       }
-      mesh.rotation.x += mesh.userData.spinX;
-      mesh.rotation.y += mesh.userData.spinY;
-      mesh.position.y = mesh.userData.baseY +
+
+      // Base rotation
+      mesh.rotation.x += mesh.userData.spinX + (mouse.targetX * 0.01);
+      mesh.rotation.y += mesh.userData.spinY + (mouse.targetY * 0.01);
+
+      // Mouse "Push" effect
+      // Distance from mouse to mesh in 2D space (using camera projection logic or simplified screen space)
+      const dx = mouse.x * 10 - mesh.position.x;
+      const dy = mouse.y * 10 - mesh.position.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      const pushForce = Math.max(0, 5 - dist) * 0.15;
+      mesh.position.x -= (dx / dist) * pushForce;
+      mesh.position.y -= (dy / dist) * pushForce;
+
+      // Base floating
+      const floatY = mesh.userData.baseY +
         Math.sin(elapsed * mesh.userData.floatSpeed + mesh.userData.floatOffset) * mesh.userData.floatAmp;
+      
+      // Smoothly blend the pushed position back toward the floating base position
+      mesh.position.y += (floatY - mesh.position.y) * 0.05;
+      mesh.position.z += (rnd(-0.02, 0.02)); // Subtle jitter for depth
     });
 
     // Slowly rotate particle cloud

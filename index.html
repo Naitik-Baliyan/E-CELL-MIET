@@ -18,9 +18,31 @@
   <link rel="stylesheet" href="style.css">
   <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <!-- Preloader visibility control -->
+  <script>
+    if (!sessionStorage.getItem('ecell_preloader_done')) {
+      document.documentElement.classList.add('ecell-preloading');
+    }
+  </script>
+  <style>
+    .ecell-preloading #main-header,
+    .ecell-preloading #main-content,
+    .ecell-preloading footer,
+    .ecell-preloading #three-canvas,
+    .ecell-preloading .orb,
+    .ecell-preloading #scroll-progress-container {
+      filter: blur(28px);
+      opacity: 0.6;
+      transition: filter 1s var(--transition), opacity 1s var(--transition);
+    }
+  </style>
 </head>
 
 <body>
+  <!-- ─── Preloader (runs once per session) ───────────────────────── -->
+  <script src="preloader.js"></script>
+
   <a href="#main-content" class="skip-link">Skip to content</a>
   
   <!-- ─── Scroll Progress Indicator ────────────────────────────────────── -->
