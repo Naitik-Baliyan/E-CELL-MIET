@@ -15,11 +15,11 @@
 
   const renderer = new THREE.WebGLRenderer({ 
     canvas, 
-    antialias: !isMobile, 
+    antialias: true, 
     alpha: true,
     powerPreference: "high-performance"
   });
-  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
 

@@ -619,22 +619,40 @@ section { padding: 6rem 0; }
   50%       { opacity: 1;   transform: translateY(6px); }
 }
 
-/* ─── Buttons ────────────────────────────────────────────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 1rem 2.4rem;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: none; cursor: pointer;
-  position: relative;
-  overflow: hidden;
+/* ─── Typewriter Neon Vibe ───────────────────────────────────────────── */
+#typewriter-word {
+  color: var(--primary);
+  background: linear-gradient(90deg, #ff003c, #9d00ff, #00d4ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: neonShift 3s linear infinite;
+  font-weight: 800;
 }
+
+@keyframes neonShift {
+  to { background-position: 200% center; }
+}
+
+/* ─── Stats Section (Horizontal Layout) ─────────────────────────────────── */
+.stats-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: nowrap; /* Keep it horizontal */
+}
+
+.stat-card {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Rest of stat-card styles... */
 
 .btn::after {
   content: '';
