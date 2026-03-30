@@ -1,212 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <!-- Theme Shield — Prevent Flash -->
+  <script id="theme-shield">
+    (function() { 
+      const th = localStorage.getItem('ecell-theme') || 'dark'; 
+      document.documentElement.setAttribute('data-theme', th); 
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MIET E-Cell — Build. Launch. Disrupt.</title>
+  <title>E-Cell MIET — Build. Launch. Disrupt.</title>
   <meta name="description" content="MIET Entrepreneurship Cell — Where student ideas become real ventures. Join MIET's most ambitious community of founders, innovators, and changemakers.">
-  
-  <!-- SEO & Social Meta Tags -->
-  <meta property="og:title" content="MIET E-Cell — Build. Launch. Disrupt.">
-  <meta property="og:description" content="Where student ideas become real ventures. Join MIET's most ambitious community of founders, innovators, and changemakers.">
-  <meta property="og:image" content="logo.jpg">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
-  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
-  <!-- Preloader visibility control -->
   <script>
     if (!sessionStorage.getItem('ecell_preloader_done')) {
       document.documentElement.classList.add('ecell-preloading');
     }
   </script>
-  <style>
-    .ecell-preloading #main-header,
-    .ecell-preloading #main-content,
-    .ecell-preloading footer,
-    .ecell-preloading #three-canvas,
-    .ecell-preloading .orb,
-    .ecell-preloading #scroll-progress-container {
-      filter: blur(28px);
-      opacity: 0.6;
-      transition: filter 1s var(--transition), opacity 1s var(--transition);
-    }
-  </style>
 </head>
-
 <body>
-  <!-- ─── Preloader (runs once per session) ───────────────────────── -->
+  <div id="noise-overlay"></div>
   <script src="preloader.js"></script>
-
   <a href="#main-content" class="skip-link">Skip to content</a>
   
-  <!-- ─── Scroll Progress Indicator ────────────────────────────────────── -->
   <div id="scroll-progress-container">
     <div id="scroll-progress-bar"></div>
   </div>
 
-  <!-- ─── Three.js 3D Canvas (hero bg) ─────────────────────────────────── -->
   <canvas id="three-canvas"></canvas>
-
-  <!-- ─── Floating ambient gradient orbs ───────────────────────────────── -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
 
   <header id="main-header">
     <a href="index.html" class="logo-container">
-      <div class="logo-mark">
-        <img src="logo.jpg" alt="MIET E-Cell Logo">
-      </div>
+      <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
     </a>
-
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">🌙</span>
+      <span class="theme-icon">☀️</span>
     </button>
-
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
-
     <nav id="main-nav">
-      <a href="#section1">E-Cell</a>
-      <a href="#section2">About</a>
-      <a href="#section3">Talk Show</a>
-      <a href="#section4">Events</a>
-      <a href="#section5">Team</a>
-      <a href="#section6">Contact</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="talkshow.html">Talk Show</a>
+      <a href="nova.html">Events</a>
+      <a href="team.html">Team</a>
     </nav>
   </header>
 
   <main id="main-content">
-    <!-- ─── HERO ──────────────────────────────────────────────────────── -->
-    <div class="hero">
-      <div class="hero-badge reveal">
-        <span class="badge-dot"></span>
-        MIET Entrepreneurship Cell
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content reveal">
+        <div class="hero-badge">MIET Entrepreneurship Cell</div>
+        <h2 class="hero-title">
+          We Help You <br>
+          <span id="typewriter-word">Build.</span>
+        </h2>
+        <p class="hero-subtitle">The hub of innovation where student ideas are nurtured into venture-backed startups through mentorship, networking, and execution.</p>
+        <div class="hero-cta">
+          <a href="nova.html" class="btn btn-primary">
+            <span>Explore Events</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="aboutus.html" class="btn btn-secondary">Learn More</a>
+        </div>
       </div>
-      <h1 class="hero-title reveal">
-        <span class="hero-line">Build.</span>
-        <span class="hero-line delay-1">Launch.</span>
-        <span class="hero-line hero-accent delay-2">
-          <span id="typewriter-word">Disrupt.</span><span class="typewriter-cursor">|</span>
-        </span>
-      </h1>
-      <p class="hero-sub reveal delay-3">
-        Where student ideas become real ventures. Join MIET's most
-        ambitious community of founders, innovators, and changemakers.
-      </p>
-      <div class="hero-cta reveal delay-4">
-        <a href="#section4" class="btn btn-primary">
-          <span>Explore Events</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#section6" class="btn btn-outline">Get in Touch</a>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="scroll-indicator reveal delay-4">
-        <div class="scroll-line"></div>
+      <div class="scroll-indicator">
         <span>Scroll</span>
-      </div>
-    </div>
-
-    <!-- ─── STATS ─────────────────────────────────────────────────────── -->
-    <section id="stats">
-      <div class="stats-grid reveal">
-        <div class="stat-item tilt-card">
-          <div class="stat-icon">🚀</div>
-          <span class="stat-number" data-target="24">0</span>
-          <span class="stat-suffix">+</span>
-          <span class="stat-label">Events Hosted</span>
-          <div class="stat-bar"></div>
-        </div>
-        <div class="stat-item tilt-card">
-          <div class="stat-icon">💡</div>
-          <span class="stat-number" data-target="12">0</span>
-          <span class="stat-suffix">+</span>
-          <span class="stat-label">Startups Incubated</span>
-          <div class="stat-bar"></div>
-        </div>
-        <div class="stat-item tilt-card">
-          <div class="stat-icon">👥</div>
-          <span class="stat-number" data-target="350">0</span>
-          <span class="stat-suffix">+</span>
-          <span class="stat-label">Active Members</span>
-          <div class="stat-bar"></div>
-        </div>
+        <div class="scroll-line"></div>
       </div>
     </section>
 
-    <!-- ─── SECTION 1: Who We Are ──────────────────────────────────────── -->
-    <section id="section1">
+    <!-- STATS SECTION -->
+    <section class="stats-section reveal">
+        <div class="stat-card">
+            <h3 class="stat-number" data-target="25">0</h3>
+            <p>Events Hosted</p>
+        </div>
+        <div class="stat-card">
+            <h3 class="stat-number" data-target="12">0</h3>
+            <p>Startups Incubated</p>
+        </div>
+        <div class="stat-card">
+            <h3 class="stat-number" data-target="350">0</h3>
+            <p>Active Members</p>
+        </div>
+    </section>
+
+    <!-- WHO WE ARE SECTION -->
+    <section class="content-section" id="who-we-are">
       <div class="content-box tilt-card reveal">
         <div class="box-deco"></div>
         <span class="section-label">Who We Are</span>
-        <h2>Ecell and Entrepreneurship</h2>
-        <p>Discover the connection between entrepreneurship and the role of Ecell in shaping innovative leaders of tomorrow.</p>
-        <a href="learnmore.html" class="btn btn-primary">
-          <span>Learn More</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ─── SECTION 2: Our Story ───────────────────────────────────────── -->
-    <section id="section2">
-      <div class="content-box tilt-card reveal">
-        <div class="box-deco"></div>
-        <span class="section-label">Our Story</span>
-        <h2>Ecell at MIET</h2>
-        <p>Explore the journey, achievements, and people behind MIET's dynamic entrepreneurship cell.</p>
-        <a href="aboutus.html" class="btn btn-primary">
-          <span>About Us</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ─── SECTION 3: Talk Show ───────────────────────────────────────── -->
-    <section id="section3">
-      <div class="content-box tilt-card reveal">
-        <div class="box-deco"></div>
-        <span class="section-label">Nexus Series</span>
-        <h2>Nexus: The Talk Show</h2>
-        <p>A series of engaging conversations and podcasts around startups, innovation, and entrepreneurial journeys.</p>
-        <a href="talkshow.html" class="btn btn-primary">
-          <span>Interested in More? Click Here</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ─── SECTION 4: Events ──────────────────────────────────────────── -->
-    <section id="section4">
-      <div class="content-box tilt-card reveal">
-        <div class="box-deco"></div>
-        <span class="section-label">What's Coming</span>
-        <h2>Scheduled Events</h2>
-        <p>Stay up to date with our upcoming events that bring together ideas, innovation, and execution.</p>
-        <a href="nova.html" class="btn btn-primary">
-          <span>More Events</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ─── SECTION 5: Team ────────────────────────────────────────────── -->
-    <section id="section5">
-      <div class="content-box tilt-card reveal">
-        <div class="box-deco"></div>
-        <span class="section-label">The People</span>
-        <h2>About Us</h2>
-        <p>MIET E-Cell is dedicated to fostering innovation, entrepreneurial thinking, and startup culture within the student community. With a focus on learning by doing, we create opportunities for students to interact with founders, investors, and mentors to nurture their ideas into impactful ventures.</p>
+        <h2>Empowering the Next Generation of Founders</h2>
+        <p>E-Cell MIET is Meerut's premier startup ecosystem. We provide the platform, resources, and network for students to interact with founders, investors, and mentors to nurture their ideas into impactful ventures.</p>
         <a href="team.html" class="btn btn-primary">
           <span>Meet the Team</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -214,12 +107,12 @@
       </div>
     </section>
 
-    <!-- ─── SECTION 6: Contact ─────────────────────────────────────────── -->
-    <section id="section6">
+    <!-- CONTACT SECTION -->
+    <section class="content-section" id="contact">
       <div class="content-box tilt-card reveal">
         <div class="box-deco"></div>
-        <span class="section-label">Say Hello</span>
-        <h2>Contact Us</h2>
+        <span class="section-label">Get in Touch</span>
+        <h2>Ready to Launch Your Idea?</h2>
         <div class="contact-links">
           <a href="mailto:ecell.miet@miet.ac.in" class="contact-item">
             <div class="contact-icon">✉️</div>
@@ -235,11 +128,11 @@
               <span>@ecell__miet</span>
             </div>
           </a>
-          <a href="https://www.linkedin.com/in/e-cellmiet?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <a href="https://www.linkedin.com/in/e-cellmiet?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="contact-item">   
             <div class="contact-icon">💼</div>
             <div>
               <strong>LinkedIn</strong>
-              <span>MIET Entrepreneurship Cell</span>
+              <span>E-Cell MIET</span>
             </div>
           </a>
         </div>
@@ -251,11 +144,11 @@
     <div class="footer-glow"></div>
     <span class="footer-logo">Ecell <em>MIET</em></span>
     <div class="footer-links">
-      <a href="#section1">E-Cell</a>
+      <a href="#hero">Home</a>
+      <a href="aboutus.html">About</a>
       <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html">Team</a>
-      <a href="mailto:ecell.miet@miet.ac.in">Contact</a>
     </div>
     <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
@@ -263,5 +156,4 @@
   <script src="main.js"></script>
   <script src="three-scene.js"></script>
 </body>
-
 </html>

@@ -124,52 +124,53 @@
     meshes.push(wireLine);
   });
 
-  // ─── Particle Field ────────────────────────────────────────────────────────
-  const PARTICLE_COUNT = isMobile ? 80 : 300;
-  const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
-  const particleSizes = new Float32Array(PARTICLE_COUNT);
+  // ─── Particle Field & Celestial Starfield ──────────────────────────────────
+  const starGeo = new THREE.BufferGeometry();
+  const starCount = isMobile ? 500 : 2000;
+  const starPositions = new Float32Array(starCount * 3);
+  const starVelocities = new Float32Array(starCount);
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particlePositions[i * 3]     = rnd(-20, 20);
-    particlePositions[i * 3 + 1] = rnd(-20, 20);
-    particlePositions[i * 3 + 2] = rnd(-15, 5);
-    particleSizes[i] = rnd(0.5, 2.5);
+  for (let i = 0; i < starCount; i++) {
+    starPositions[i * 3]     = rnd(-60, 60);
+    starPositions[i * 3 + 1] = rnd(-40, 40);
+    starPositions[i * 3 + 2] = rnd(-80, 10);
+    starVelocities[i] = rnd(0.01, 0.04);
   }
-
-  const particleGeo = new THREE.BufferGeometry();
-  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-  particleGeo.setAttribute('size', new THREE.BufferAttribute(particleSizes, 1));
-
-  const particleMat = new THREE.PointsMaterial({
-    color: 0xe8001d,
-    size: 0.08,
-    sizeAttenuation: true,
+  
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+  const starMat = new THREE.PointsMaterial({
+    color: 0xffffff,
+    size: isMobile ? 0.05 : 0.08,
     transparent: true,
-    opacity: isMobile ? 0.3 : 0.6,
+    opacity: 0.4,
+    sizeAttenuation: true
   });
 
-  const particles = new THREE.Points(particleGeo, particleMat);
-  scene.add(particles);
+  const starField = new THREE.Points(starGeo, starMat);
+  scene.add(starField);
 
-  // ─── Connection Lines (Network) ───────────────────────────────────────────
-  const linePositions = [];
-  const lineMat = new THREE.LineBasicMaterial({
-    color: 0xe8001d,
-    transparent: true,
-    opacity: isMobile ? 0.03 : 0.06,
-  });
-
-  // Random connecting lines
-  const LINE_COUNT = isMobile ? 8 : 20;
-  for (let i = 0; i < LINE_COUNT; i++) {
-    const lineGeo = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(rnd(-15, 15), rnd(-12, 12), rnd(-10, 0)),
-      new THREE.Vector3(rnd(-15, 15), rnd(-12, 12), rnd(-10, 0)),
-    ]);
-    const line = new THREE.Line(lineGeo, lineMat);
-    scene.add(line);
-    linePositions.push(line);
+  // Red Accents (The Nebula Core)
+  const coreCount = isMobile ? 100 : 400;
+  const corePositions = new Float32Array(coreCount * 3);
+  for (let i = 0; i < coreCount; i++) {
+    corePositions[i * 3]     = rnd(-30, 30);
+    corePositions[i * 3 + 1] = rnd(-20, 20);
+    corePositions[i * 3 + 2] = rnd(-30, 5);
   }
+  const coreGeo = new THREE.BufferGeometry();
+  coreGeo.setAttribute('position', new THREE.BufferAttribute(corePositions, 3));
+  const coreMat = new THREE.PointsMaterial({
+    color: 0xe8001d,
+    size: 0.12,
+    transparent: true,
+    opacity: 0.6,
+    blending: THREE.AdditiveBlending
+  });
+  const coreField = new THREE.Points(coreGeo, coreMat);
+  scene.add(coreField);
+
+  // Connection Lines
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xe8001d, transparent: true, opacity: 0.05 });
 
   // ─── Mouse Parallax ───────────────────────────────────────────────────────
   const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
@@ -234,14 +235,36 @@
       mesh.position.z += (rnd(-0.02, 0.02)); // Subtle jitter for depth
     });
 
-    // Slowly rotate particle cloud
-    particles.rotation.y = elapsed * 0.03;
-    particles.rotation.x = Math.sin(elapsed * 0.02) * 0.1;
+    // Hyperspace scroll logic
+    const scrollDelta = window.scrollY - (window.lastScrollY || 0);
+    window.lastScrollY = window.scrollY;
+    const hyperspaceSpeed = Math.abs(scrollDelta) * 0.04;
 
-    // Pulsing red light
-    redLight.intensity = 5 + Math.sin(elapsed * 1.5) * 2;
-    redLight.position.x = Math.sin(elapsed * 0.4) * 8;
-    redLight.position.y = Math.cos(elapsed * 0.3) * 6;
+    // Drifting starfield with scroll "warp"
+    if (typeof starField !== 'undefined') {
+      const positions = starField.geometry.attributes.position.array;
+      for (let i = 0; i < starCount; i++) {
+        // Move star forward (scroll warp speed + base drift)
+        positions[i * 3 + 2] += starVelocities[i] + hyperspaceSpeed;
+        
+        // Wrap stars back to distance if they get too close
+        if (positions[i * 3 + 2] > 20) {
+          positions[i * 3 + 2] = -80;
+        }
+      }
+      starField.geometry.attributes.position.needsUpdate = true;
+      starField.rotation.y += 0.0005;
+    }
+
+    if (typeof coreField !== 'undefined') {
+      coreField.rotation.y = -elapsed * 0.015;
+      coreField.rotation.z = Math.cos(elapsed * 0.01) * 0.08;
+    }
+
+    // Pulsing nebula lights
+    redLight.intensity = 4 + Math.sin(elapsed * 0.8) * 2;
+    redLight.position.x = Math.sin(elapsed * 0.4) * 10;
+    redLight.position.y = Math.cos(elapsed * 0.3) * 8;
 
     renderer.render(scene, camera);
   }

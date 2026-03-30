@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Theme Shield � Prevent Flash -->
+  <script id="theme-shield">
+    (function() { 
+      const th = localStorage.getItem('ecell-theme') || 'dark'; 
+      document.documentElement.setAttribute('data-theme', th); 
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meet the Team — MIET E-Cell</title>
@@ -42,9 +49,9 @@
   <canvas id="three-canvas"></canvas>
 
   <!-- ─── Orbs ───────────────────────────────────────────── -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+
+
+
 
   <header id="main-header">
     <a href="index.html" class="logo-container">
@@ -310,3 +317,4 @@
   <script src="team-modal.js"></script>
 </body>
 </html>
+

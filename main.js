@@ -1,12 +1,73 @@
 document.addEventListener('DOMContentLoaded', () => {
+  /* ─── Global State & Config ────────────────────────────────────────────── */
+  const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  const cursor = document.createElement('div');
+  cursor.id = 'custom-cursor';
+  document.body.appendChild(cursor);
 
-  // ─── Dark Mode Toggle ──────────────────────────────────────────────────
+  // Custom Cursor Variables
+  let mouseX = 0, mouseY = 0;
+  let cursorX = 0, cursorY = 0;
+
+  /* ─── Cursor Follow (Inertia Based) ─────────────────────────────────────── */
+  if (!isMobile) {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.opacity = '1';
+    });
+
+    const animateCursor = () => {
+      // Linear interpolation (lerp) for smooth following
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+      requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+
+    // Hover state tracking
+    document.querySelectorAll('a, button, .team-card, .logo-container').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+      el.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+      el.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
+    });
+  }
+
+  /* ─── Magnetic Attraction Logic ────────────────────────────────────────── */
+  if (!isMobile) {
+    const magneticElements = document.querySelectorAll('.btn, .logo-container, .hamburger, .theme-toggle');
+    
+    magneticElements.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const distDeltaX = (e.clientX - centerX) * 0.45;
+        const distDeltaY = (e.clientY - centerY) * 0.45;
+
+        el.style.transform = `translate3d(${distDeltaX}px, ${distDeltaY}px, 0) scale(1.05)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = `translate3d(0, 0, 0) scale(1)`;
+      });
+    });
+  }
+
+  // ─── Dark Mode Toggle (Circular Reveal) ──────────────────────────────────
   const toggleBtn  = document.getElementById('theme-toggle');
   const themeIcon  = toggleBtn ? toggleBtn.querySelector('.theme-icon') : null;
   const html       = document.documentElement;
 
-  // Apply saved preference immediately (avoids flash on reload)
-  const savedTheme = localStorage.getItem('ecell-theme') || 'light';
+  // Create the reveal element
+  const revealDiv = document.createElement('div');
+  revealDiv.id = 'theme-reveal-circle';
+  document.body.appendChild(revealDiv);
+
+  // Apply saved preference immediately
+  const savedTheme = localStorage.getItem('ecell-theme') || 'dark';
   html.setAttribute('data-theme', savedTheme);
   if (themeIcon) themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
@@ -14,17 +75,32 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn.addEventListener('click', () => {
       const isDark   = html.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('ecell-theme', newTheme);
+      
+      const rect = toggleBtn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
 
-      // Animated icon swap
-      if (themeIcon) {
-        themeIcon.style.transform = 'rotate(360deg) scale(0.5)';
+      // Prepare reveal overlay
+      revealDiv.style.clipPath = `circle(0% at ${x}px ${y}px)`;
+      revealDiv.style.background = newTheme === 'dark' ? 'hsl(0, 0%, 4%)' : 'hsl(45, 12%, 96%)';
+      revealDiv.style.opacity = '1';
+      
+      requestAnimationFrame(() => {
+        revealDiv.style.clipPath = `circle(150% at ${x}px ${y}px)`;
+      });
+
+      // Halfway through, swap the real theme
+      setTimeout(() => {
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('ecell-theme', newTheme);
+        if (themeIcon) themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        
+        // Retract reveal
         setTimeout(() => {
-          themeIcon.textContent    = newTheme === 'dark' ? '☀️' : '🌙';
-          themeIcon.style.transform = '';
-        }, 220);
-      }
+          revealDiv.style.opacity = '0';
+          revealDiv.style.clipPath = `circle(0% at ${x}px ${y}px)`;
+        }, 300);
+      }, 500);
     });
   }
 
