@@ -207,9 +207,14 @@ body {
   color: var(--text-main);
   background: var(--bg-main);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevent horizontal scroll */
   -webkit-font-smoothing: antialiased;
   position: relative;
+  width: 100%;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* ─── Grain / Noise Texture Overlay ─────────────────────────────────────── */
@@ -625,31 +630,35 @@ section { padding: 6rem 0; }
   background: linear-gradient(90deg, #ff003c, #9d00ff, #00d4ff);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: neonShift 3s linear infinite;
   font-weight: 800;
+  display: inline-block;
+  min-width: 0;
+  word-break: break-all;
 }
 
 @keyframes neonShift {
   to { background-position: 200% center; }
 }
 
-/* ─── Stats Section (Horizontal Layout) ─────────────────────────────────── */
+/* ─── Stats Section (Responsive Dashboard) ───────────────────────────────── */
 .stats-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
-  padding: 4rem 2rem;
+  gap: 1.5rem;
+  padding: 4rem 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  flex-wrap: nowrap; /* Keep it horizontal */
+  flex-wrap: wrap; /* Critical for mobile: allows items to stack when out of space */
 }
 
 .stat-card {
   text-align: center;
-  flex: 1;
-  min-width: 200px;
+  flex: 1 1 200px;
+  padding: 1rem;
 }
 
 /* Rest of stat-card styles... */
