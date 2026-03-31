@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Shield � Prevent Flash -->
+  <!-- Theme Shield — Prevent Flash -->
   <script id="theme-shield">
     (function() { 
       const th = localStorage.getItem('ecell-theme') || 'dark'; 
@@ -9,134 +9,81 @@
     })();
   </script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Events — E-Cell MIET</title>
-  <meta name="description" content="Join upcoming events, speaker sessions, and workshops at MIET E-Cell. Ignite your entrepreneurial journey.">
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
-  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
-  <!-- Preloader visibility control -->
-  <script>
-    if (!sessionStorage.getItem('ecell_preloader_done')) {
-      document.documentElement.classList.add('ecell-preloading');
-    }
-  </script>
-  <style>
-    .ecell-preloading #main-header,
-    .ecell-preloading #main-content,
-    .ecell-preloading footer,
-    .ecell-preloading #three-canvas,
-    .ecell-preloading .orb,
-    .ecell-preloading #scroll-progress-container {
-      filter: blur(28px);
-      opacity: 0.6;
-      transition: filter 1s var(--transition), opacity 1s var(--transition);
-    }
-  </style>
 </head>
-
 <body>
-  <!-- ─── Preloader (runs once per session) ───────────────────────── -->
+  <div id="noise-overlay"></div>
   <script src="preloader.js"></script>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-  
-  <div id="scroll-progress-container">
-    <div id="scroll-progress-bar"></div>
-  </div>
-
-  <!-- ─── Three.js 3D Canvas (hero bg) ─────────────────────────────────── -->
   <canvas id="three-canvas"></canvas>
-
-  <!-- ─── Floating ambient gradient orbs ───────────────────────────────── -->
-
-
-
 
   <header id="main-header">
     <a href="index.html" class="logo-container">
       <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
     </a>
-
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">🌙</span>
+      <span class="theme-icon">☀️</span>
     </button>
-
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
-
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="aboutus.html">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html" class="active">Events</a>
       <a href="team.html">Team</a>
     </nav>
   </header>
 
   <main id="main-content">
-    <section class="reveal" id="nova">
-      <div class="content-box">
-        <span class="section-label">Featured Event</span>
-        <h2>NOVA: Speaker Session</h2>
-        <p><strong>Recent Talk Show</strong> by E-Cell MIET featuring leading founders and investors — real playbooks for idea validation, execution, and pitching.</p>
-        <p style="color: var(--primary); font-weight: 700;">Date: 18 Oct 2025 &nbsp;•&nbsp; Time: 3:00 PM – 6:30 PM &nbsp;•&nbsp; Venue: MIET Auditorium</p>
-        <div style="margin-top: 2rem;">
-            <a class="btn btn-primary" href="#register">Get Your Seat →</a>
-        </div>
+    <section class="hero-section">
+      <div class="hero-content reveal">
+        <span class="section-label">Events Archive</span>
+        <h2 class="hero-title">We help you to <br><span id="typewriter-word">Compete.</span></h2>
+        <p class="hero-subtitle">From high-stakes hackathons to industrial exposure, we bridge the gap between classroom and career.</p>
       </div>
     </section>
 
-    <section id="speakers">
-      <div class="reveal" style="text-align: center; margin-bottom: 4rem;">
-        <span class="section-label">Speakers</span>
-        <h2>Featured Speakers</h2>
-      </div>
-      
-      <div class="gallery">
-        <div class="card reveal" style="padding: 2rem;">
-          <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80" alt="Arjun Mehta" style="height: 300px; width: 100%; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
-          <h3>Arjun Mehta</h3>
-          <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">Founder & CEO, NovaLabs</p>
-          <p style="font-size: 1rem;">From dorm room to 10M+ users — frameworks for early growth and product-market fit.</p>
+    <!-- Featured Event Bento -->
+    <section class="content-section">
+      <div class="bento-grid">
+        <div class="bento-card bento-card-lg tilt-card reveal">
+          <span class="section-label">Coming Soon</span>
+          <h2>NOVA 2.0</h2>
+          <p>Meerut's largest student startup competition is coming back bigger than ever.</p>
+          <a href="index.html#contact" class="btn btn-primary">Pre-Register</a>
         </div>
-        <div class="card reveal" style="padding: 2rem;">
-          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80" alt="Rhea Kapoor" style="height: 300px; width: 100%; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
-          <h3>Rhea Kapoor</h3>
-          <p style="color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">Partner, Catalyst Capital</p>
-          <p style="font-size: 1rem;">How investors evaluate pre-seed startups and identify exceptional founders early.</p>
+        <div class="bento-card tilt-card reveal">
+          <span class="section-label">Past Event</span>
+          <h3>Talk Show</h3>
+          <p>Insightful sessions with industry leaders and successful founders.</p>
+        </div>
+        <div class="bento-card tilt-card reveal">
+          <span class="section-label">Past Event</span>
+          <h3>Shark Tank MIET</h3>
+          <p>Students pitched their ideas to real-world investors.</p>
         </div>
       </div>
     </section>
+  </main>
 
-    <section class="reveal" id="register">
-      <div class="content-box">
-        <span class="section-label">Join Us</span>
-        <h2>Register Now</h2>
-        <p>Seats are limited. MIET students get priority access. Bring your idea and passion!</p>
-        <a class="btn btn-primary" href="#">Fill Registration Form →</a>
   <footer>
     <div class="footer-glow"></div>
     <span class="footer-logo">Ecell <em>MIET</em></span>
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="aboutus.html">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html">Team</a>
-      <a href="mailto:ecell.miet@miet.ac.in">Contact</a>
     </div>
     <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
 
   <script src="main.js"></script>
   <script src="three-scene.js"></script>
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
-

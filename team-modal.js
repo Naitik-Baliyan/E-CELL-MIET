@@ -4,52 +4,61 @@
   const overlay = document.getElementById('team-modal-overlay');
   const modal   = document.getElementById('team-modal');
   const closeBtn = document.getElementById('team-modal-close');
+  const prevBtn = document.getElementById('modal-prev');
+  const nextBtn = document.getElementById('modal-next');
 
   const modalImg      = document.getElementById('modal-img');
   const modalName     = document.getElementById('modal-name');
   const modalRole     = document.getElementById('modal-role');
+  const modalDept     = document.getElementById('modal-dept');
   const modalBio      = document.getElementById('modal-bio');
   const modalLinkedin = document.getElementById('modal-linkedin');
 
+  let currentCards = [];
+  let currentIndex = -1;
+
   if (!overlay || !modal) return;
 
-  function openModal(card) {
+  function updateModal(index) {
+    if (index < 0 || index >= currentCards.length) return;
+    
+    currentIndex = index;
+    const card = currentCards[currentIndex];
+    
     const name     = card.getAttribute('data-name');
     const role     = card.getAttribute('data-role');
+    const dept     = card.getAttribute('data-dept') || "Core Team";
     const bio      = card.getAttribute('data-bio');
     const linkedin = card.getAttribute('data-linkedin'); 
     const imgSrc   = card.querySelector('img').src;
 
-    modalImg.src      = imgSrc;
+    // Transition effect for image
+    modalImg.style.opacity = '0';
+    setTimeout(() => {
+      modalImg.src = imgSrc;
+      modalImg.style.opacity = '1';
+    }, 150);
+
     modalName.textContent = name;
     modalRole.textContent = role;
+    modalDept.textContent = dept;
     modalBio.textContent  = bio;
 
-    // Reset button state
-    modalLinkedin.textContent = "Connect on LinkedIn";
-
-    // Set the global href for the link as a backup
+    // Set the LinkedIn link
     if (linkedin && linkedin !== '#' && linkedin.trim() !== "") {
-      modalLinkedin.href = linkedin; 
       modalLinkedin.style.display = 'inline-flex';
-      
-      // Clean up previous event listeners just in case
-      const newBtn = modalLinkedin.cloneNode(true);
-      modalLinkedin.parentNode.replaceChild(newBtn, modalLinkedin);
-      
-      // Re-get the new element after replacement
-      const activeBtn = document.getElementById('modal-linkedin');
-      activeBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          console.log("Redirecting to:", linkedin);
-          window.open(linkedin, '_blank');
-      });
-
+      modalLinkedin.onclick = function(e) {
+        e.preventDefault();
+        window.open(linkedin, '_blank');
+      };
     } else {
       modalLinkedin.style.display = 'none';
-      modalLinkedin.href = '#';
+      modalLinkedin.onclick = null;
     }
+  }
 
+  function openModal(index) {
+    updateModal(index);
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 
@@ -64,23 +73,60 @@
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.team-card').forEach(function (card) {
-    card.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') return;
-      openModal(card);
-    });
+  function navigate(direction) {
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) newIndex = currentCards.length - 1;
+    if (newIndex >= currentCards.length) newIndex = 0;
+    
+    // Smooth transition
+    modal.style.transform = `translateX(${direction * -20}px) scale(0.98)`;
+    modal.style.opacity = '0.5';
+    
+    setTimeout(() => {
+      updateModal(newIndex);
+      modal.style.transform = '';
+      modal.style.opacity = '1';
+    }, 200);
+  }
 
-    card.addEventListener('mousemove', function (e) {
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouseX', x + '%');
-      card.style.setProperty('--mouseY', y + '%');
+  // Initialize all cards
+  function init() {
+    currentCards = Array.from(document.querySelectorAll('.team-card'));
+    
+    currentCards.forEach((card, index) => {
+      card.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') return;
+        openModal(index);
+      });
+
+      // Mouse tracking for spotlight glow
+      card.addEventListener('mousemove', function (e) {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouseX', x + '%');
+        card.style.setProperty('--mouseY', y + '%');
+      });
     });
+  }
+
+  // Event Listeners
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (prevBtn) prevBtn.addEventListener('click', () => navigate(-1));
+  if (nextBtn) nextBtn.addEventListener('click', () => navigate(1));
+
+  overlay.addEventListener('click', function (e) { 
+    if (e.target === overlay) closeModal(); 
   });
 
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', function (e) { 
+    if (e.key === 'Escape') closeModal(); 
+    if (modal.classList.contains('active')) {
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
+    }
+  });
+
+  init();
 
 })();

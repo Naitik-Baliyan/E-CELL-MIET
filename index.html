@@ -11,26 +11,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>E-Cell MIET — Build. Launch. Disrupt.</title>
-  <meta name="description" content="MIET Entrepreneurship Cell — Where student ideas become real ventures. Join MIET's most ambitious community of founders, innovators, and changemakers.">
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
-  <script>
-    if (!sessionStorage.getItem('ecell_preloader_done')) {
-      document.documentElement.classList.add('ecell-preloading');
-    }
-  </script>
 </head>
 <body>
   <div id="noise-overlay"></div>
   <script src="preloader.js"></script>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-  
-  <div id="scroll-progress-container">
-    <div id="scroll-progress-bar"></div>
-  </div>
 
+  <!-- 3D Canvas Background -->
   <canvas id="three-canvas"></canvas>
 
   <header id="main-header">
@@ -47,7 +36,6 @@
     <nav id="main-nav">
       <a href="index.html" class="active">Home</a>
       <a href="aboutus.html">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html">Team</a>
     </nav>
@@ -57,82 +45,107 @@
     <!-- HERO SECTION -->
     <section class="hero-section" id="hero">
       <div class="hero-content reveal">
-        <div class="hero-badge">MIET Entrepreneurship Cell</div>
+        <div class="hero-badge">
+          <span class="badge-dot pulse"></span>
+          ACTIVE COMMUNITY 2025
+        </div>
         <h2 class="hero-title">
-          We Help You <br>
-          <span id="typewriter-word">Build.</span>
+          <span class="hero-line">Build.</span>
+          <span class="hero-line delay-1">Launch.</span>
+          <span class="hero-line delay-2 hero-accent">Disrupt.</span>
         </h2>
-        <p class="hero-subtitle">The hub of innovation where student ideas are nurtured into venture-backed startups through mentorship, networking, and execution.</p>
+        <div class="hero-sub">
+          We help you to <span id="typewriter-word">Build.</span>
+        </div>
         <div class="hero-cta">
-          <a href="nova.html" class="btn btn-primary">
+          <a href="nova.html" class="btn btn-primary magnetic-wrap">
             <span>Explore Events</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="aboutus.html" class="btn btn-secondary">Learn More</a>
+          <a href="aboutus.html" class="btn btn-outline magnetic-wrap">Learn Our Story</a>
         </div>
       </div>
+
       <div class="scroll-indicator">
-        <span>Scroll</span>
+        <span>Scroll Down</span>
         <div class="scroll-line"></div>
       </div>
     </section>
 
-    <!-- STATS SECTION -->
-    <section class="stats-section reveal">
-        <div class="stat-card">
-            <h3 class="stat-number" data-target="25">0</h3>
-            <p>Events Hosted</p>
+    <!-- STATS BENTO SECTION -->
+    <section class="content-section reveal">
+      <div class="bento-grid">
+        <div class="bento-card bento-card-lg tilt-card reveal">
+          <div class="stat-card">
+            <span class="stat-icon pulse">🚀</span>
+            <span class="stat-number" data-target="25">0</span>
+            <span class="stat-label">Events Yearly</span>
+          </div>
+          <div class="bento-deco"></div>
         </div>
-        <div class="stat-card">
-            <h3 class="stat-number" data-target="12">0</h3>
-            <p>Startups Incubated</p>
+        <div class="bento-card tilt-card reveal">
+          <div class="stat-card">
+            <span class="stat-icon">💡</span>
+            <span class="stat-number" data-target="12">0</span>
+            <span class="stat-label">Startups Incubated</span>
+          </div>
         </div>
-        <div class="stat-card">
-            <h3 class="stat-number" data-target="350">0</h3>
-            <p>Active Members</p>
+        <div class="bento-card tilt-card reveal">
+          <div class="stat-card">
+            <span class="stat-icon">👥</span>
+            <span class="stat-number" data-target="350">0</span>
+            <span class="stat-label">Active Members</span>
+          </div>
         </div>
-    </section>
-
-    <!-- WHO WE ARE SECTION -->
-    <section class="content-section" id="who-we-are">
-      <div class="content-box tilt-card reveal">
-        <div class="box-deco"></div>
-        <span class="section-label">Who We Are</span>
-        <h2>Empowering the Next Generation of Founders</h2>
-        <p>E-Cell MIET is Meerut's premier startup ecosystem. We provide the platform, resources, and network for students to interact with founders, investors, and mentors to nurture their ideas into impactful ventures.</p>
-        <a href="team.html" class="btn btn-primary">
-          <span>Meet the Team</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <div class="bento-card bento-card-wide reveal">
+          <div class="bento-content">
+            <h4>Join the Network</h4>
+            <p>Connect with Meerut's brightest founders and get mentored by industry veterans.</p>
+            <a href="#contact" class="bento-link">Reach Out →</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION -->
+    <!-- "WHO WE ARE" BENTO -->
+    <section class="content-section">
+      <div class="content-box tilt-card reveal" id="about">
+        <div class="box-deco"></div>
+        <span class="section-label">Our Essence</span>
+        <h2>Incubating the Future of Meerut</h2>
+        <p>E-Cell MIET isn't just a committee; it's a movement. We bridge the gap between classroom theory and real-world execution, providing students with the grit, resources, and mentorship needed to launch their dreams.</p>
+        <div class="hero-cta" style="justify-content: flex-start; margin-bottom: 0;">
+          <a href="aboutus.html" class="btn btn-primary magnetic-wrap">Dive Deeper</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION BENTO -->
     <section class="content-section" id="contact">
       <div class="content-box tilt-card reveal">
         <div class="box-deco"></div>
-        <span class="section-label">Get in Touch</span>
-        <h2>Ready to Launch Your Idea?</h2>
+        <span class="section-label">Connect</span>
+        <h2>Ready to Launch?</h2>
         <div class="contact-links">
           <a href="mailto:ecell.miet@miet.ac.in" class="contact-item">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon">📧</div>
             <div>
-              <strong>Email</strong>
+              <strong>Email Us</strong>
               <span>ecell.miet@miet.ac.in</span>
             </div>
           </a>
-          <a href="https://www.instagram.com/ecell__miet?igsh=eGRxODBienNmYzl6" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <a href="https://www.linkedin.com/in/e-cellmiet" target="_blank" rel="noopener" class="contact-item">
+            <div class="contact-icon">🔗</div>
+            <div>
+              <strong>LinkedIn</strong>
+              <span>E-Cell MIET Profile</span>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/ecell__miet?igsh=eGRxODBienNmYzl6" target="_blank" rel="noopener" class="contact-item">
             <div class="contact-icon">📸</div>
             <div>
               <strong>Instagram</strong>
               <span>@ecell__miet</span>
-            </div>
-          </a>
-          <a href="https://www.linkedin.com/in/e-cellmiet?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="contact-item">   
-            <div class="contact-icon">💼</div>
-            <div>
-              <strong>LinkedIn</strong>
-              <span>E-Cell MIET</span>
             </div>
           </a>
         </div>
@@ -146,7 +159,6 @@
     <div class="footer-links">
       <a href="#hero">Home</a>
       <a href="aboutus.html">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html">Team</a>
     </div>

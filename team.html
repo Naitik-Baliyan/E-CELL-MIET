@@ -1,57 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Theme Shield � Prevent Flash -->
+  <!-- Theme Shield — Prevent Flash -->
   <script id="theme-shield">
-    (function() { 
-      const th = localStorage.getItem('ecell-theme') || 'dark'; 
-      document.documentElement.setAttribute('data-theme', th); 
+    (function () {
+      const th = localStorage.getItem('ecell-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', th);
     })();
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meet the Team — MIET E-Cell</title>
-  <meta name="description" content="Meet the visionary students and mentors behind MIET's most ambitious entrepreneurship community.">
-  <link rel="icon" type="image/jpeg" href="logo.jpg">
+  <title>The Team — E-Cell MIET</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
-  <!-- Preloader visibility control -->
-  <script>
-    if (!sessionStorage.getItem('ecell_preloader_done')) {
-      document.documentElement.classList.add('ecell-preloading');
-    }
-  </script>
-  <style>
-    .ecell-preloading #main-header,
-    .ecell-preloading #main-content,
-    .ecell-preloading footer,
-    .ecell-preloading #three-canvas,
-    .ecell-preloading .orb,
-    .ecell-preloading #scroll-progress-container {
-      filter: blur(28px);
-      opacity: 0.6;
-      transition: filter 1s var(--transition), opacity 1s var(--transition);
-    }
-  </style>
 </head>
+
 <body>
-  <!-- ─── Preloader ───────────────────────────────────────── -->
-  <script src="preloader.js"></script>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-  
-  <div id="scroll-progress-container">
-    <div id="scroll-progress-bar"></div>
-  </div>
-
-  <!-- ─── 3D Canvas ───────────────────────────────────────── -->
+  <div id="noise-overlay"></div>
   <canvas id="three-canvas"></canvas>
-
-  <!-- ─── Orbs ───────────────────────────────────────────── -->
-
-
-
 
   <header id="main-header">
     <a href="index.html" class="logo-container">
@@ -59,7 +26,7 @@
       <h1>Ecell MIET</h1>
     </a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">🌙</span>
+      <span class="theme-icon">☀️</span>
     </button>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -67,254 +34,404 @@
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="aboutus.html">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html" class="active">Team</a>
     </nav>
   </header>
 
-  <main id="main-content">
-    <section class="team-hero">
-      <div class="reveal" style="text-align: center; margin-bottom: 2rem;">
-        <span class="section-label">The People</span>
-        <h2>Meet Our Team</h2>
-        <p style="margin: 0 auto; max-width: 600px;">The passionate minds driving innovation and entrepreneurship at MIET. Click on any member to know more.</p>
-      </div>
+  <main id="main-content" class="team-page">
+    <section class="team-hero reveal">
+      <div class="hero-badge">The Mindset Behind the Mission</div>
+      <h2>Meet the Architects of Innovation</h2>
+      <p>A diverse collective of innovators, engineers, and changemakers united by a single vision: to build the future
+        of Meerut's startup ecosystem.</p>
     </section>
 
-    <!-- LEADERSHIP -->
-    <section class="team-section" style="padding-top: 0;">
+    <!-- TEAM CATEGORY: LEADERSHIP -->
+    <div class="team-section">
       <div class="team-section-header reveal">
-        <span class="team-group-label">🏆 Leadership</span>
+        <div class="team-group-label">Leadership</div>
         <div class="team-group-line"></div>
       </div>
-      <div class="team-grid team-grid-featured">
-        <div class="team-card team-card-featured reveal"
-             data-name="Yuvraj Singh"
-             data-role="Overall Coordinator"
-             data-bio="I believe leadership begins where comfort ends. For me, this role is about setting direction, strengthening systems, and ensuring that every initiative moves with clarity and purpose. It's about making decisions when they're difficult, maintaining standards when it's easier to compromise, and holding the team together when pressure builds. As Overall Coordinator, my responsibility is simple: build structure, drive performance, and create a culture where execution matters more than noise. I am not here to participate. I am here to elevate."
-             data-linkedin="#"
-             id="team-yuvraj">
+      <section class="team-grid team-grid-horizontal">
+        <!-- MEMBER: Yuvraj Singh -->
+        <div class="team-card team-card-horizontal team-card-featured reveal" data-dept="Leadership" data-name="Yuvraj Singh" data-role="Overall Coordinator"
+          data-bio="I believe leadership begins where comfort ends. For me, this role is about setting direction, strengthening systems, and ensuring that every initiative moves with clarity and purpose. It’s about making decisions when they’re difficult, maintaining standards when it’s easier to compromise, and holding the team together when pressure builds. As Overall Coordinator, my responsibility is simple: build structure, drive performance, and create a culture where execution matters more than noise. I am not here to participate. I am here to elevate."
+          data-linkedin="https://www.linkedin.com/in/yuvraj-singh-8b9396341">
           <div class="team-card-inner">
             <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Yuvraj+Singh&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Yuvraj Singh" />
               <div class="team-card-glow"></div>
+              <img src="team/yuvraj.png" alt="Yuvraj Singh" loading="lazy">
             </div>
             <div class="team-card-info">
               <h3>Yuvraj Singh</h3>
               <span class="team-card-role">Overall Coordinator</span>
+              <div class="team-card-hint">
+                <span>View Story</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- TECHNICAL WING -->
-    <section class="team-section">
-      <div class="team-section-header reveal">
-        <span class="team-group-label">⚙️ Technical Wing</span>
-        <div class="team-group-line"></div>
-      </div>
-      <div class="team-grid">
-        <div class="team-card reveal"
-             data-name="Naitik Baliyan"
-             data-role="Jr. Technical Head"
-             data-bio="Aspiring Engineer and B.Tech student with a focus on AI and Full-Stack Web Development. Proven interest in building real-world tech solutions through a combination of technical innovation and strategic execution. Committed to continuous learning and the pursuit of excellence, I aim to translate high-level concepts into impactful digital experiences."
-             data-linkedin="https://www.linkedin.com/in/naitik-baliyan-a2656638b">
+        <!-- MEMBER: Gaurav Goel -->
+        <div class="team-card team-card-horizontal team-card-featured reveal" data-dept="Leadership" data-name="Gaurav Goel" data-role="Media & Marketing Head"
+          data-bio="Media & Marketing Head at E-Cell Miet, driving brand growth through creativity, strategy, and digital innovation. Passionate about leveraging technology to inspire entrepreneurship and build impactful communities."
+          data-linkedin="https://www.linkedin.com/in/gaurav-goel-147088310?utm_source=share_via&utm_content=profile&utm_medium=member_android">
           <div class="team-card-inner">
             <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Naitik+Baliyan&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Naitik Baliyan" />
+              <div class="team-card-glow"></div>
+              <img src="team/gaurav.png" alt="Gaurav Goel" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Gaurav Goel</h3>
+              <span class="team-card-role">Media & Marketing Head</span>
+              <div class="team-card-hint">
+                <span>View Story</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MEMBER: Jhalak Aggarwal -->
+        <div class="team-card team-card-horizontal team-card-featured reveal" data-dept="Leadership" data-name="Jhalak Aggarwal"
+          data-role="Social Media & Marketing Head"
+          data-bio="Social Media & Marketing Head at E-Cell MIET, part of the core team, leading overall strategy, content, and brand presence. As a senior member, I oversee and manage the smooth functioning of E-Cell, ensuring impactful outreach and effective execution across all initiatives."
+          data-linkedin="https://www.linkedin.com/in/jhalak-agarwal-686b8533b?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/Jhalak.png" alt="Jhalak Aggarwal" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Jhalak Aggarwal</h3>
+              <span class="team-card-role">Social Media & Marketing Head</span>
+              <div class="team-card-hint">
+                <span>View Story</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- TEAM CATEGORY: TECHNICAL -->
+    <div class="team-section">
+      <div class="team-section-header reveal">
+        <div class="team-group-label">Technical & Development</div>
+        <div class="team-group-line"></div>
+      </div>
+      <section class="team-grid">
+        <!-- MEMBER: Naitik Baliyan -->
+        <div class="team-card reveal" data-dept="Technical" data-name="Naitik Baliyan" data-role="Jr.Technical Head"
+          data-bio="Expert in software engineering and leading the core development of E-Cell projects with a focus on cutting-edge technologies."
+          data-linkedin="https://www.linkedin.com/in/naitik-baliyan-a2656638b">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/naitik.png" alt="Naitik Baliyan" loading="lazy">
             </div>
             <div class="team-card-info">
               <h3>Naitik Baliyan</h3>
-              <span class="team-card-role">Jr. Technical Head</span>
+              <span class="team-card-role">Technical Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-        <div class="team-card reveal"
-             data-name="Rachit Jain"
-             data-role="Jr. Technical Head"
-             data-bio="I am excited to share that I am now part of the leadership team at E-Cell MIET. My focus remains on Artificial Intelligence and Machine Learning, with a specific emphasis on helping student founders translate technical complexity into commercial success. I am committed to building the infrastructure that turns visionary concepts into scalable reality. In my personal time, I prioritize physical discipline through weightlifting."
-             data-linkedin="https://www.linkedin.com/in/rachit-jain-5a4819333">
+
+        <!-- MEMBER: Rachit Jain -->
+        <div class="team-card reveal" data-dept="Technical" data-name="Rachit Jain" data-role="Jr.Technical Head"
+          data-bio="Dedicated developer focused on building digital tools that empower young founders and startup teams."
+          data-linkedin="https://www.linkedin.com/in/rachit-jain-5a4819333">
           <div class="team-card-inner">
             <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Rachit+Jain&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Rachit Jain" />
+              <div class="team-card-glow"></div>
+              <img src="team/rachit.png" alt="Rachit Jain" loading="lazy">
             </div>
             <div class="team-card-info">
               <h3>Rachit Jain</h3>
-              <span class="team-card-role">Jr. Technical Head</span>
+              <span class="team-card-role">Jr.Technical Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- CREATIVE & CONTENT -->
-    <section class="team-section">
+    <!-- TEAM CATEGORY: OUTREACH & CONTENT -->
+    <div class="team-section">
       <div class="team-section-header reveal">
-        <span class="team-group-label">🎨 Creative &amp; Content</span>
+        <div class="team-group-label">Outreach & Content</div>
         <div class="team-group-line"></div>
       </div>
-      <div class="team-grid">
-        <div class="team-card reveal"
-             data-name="Tanishik Premi"
-             data-role="Jr. Creativity Head"
-             data-bio="I love turning wild ideas into reality, whether that means designing with a retro art style or soldering together a new electronics project. You will usually find me blasting rock music, hunting down classic retro games, or tinkering with hardware. I am naturally curious and love diving down rabbit holes to learn new skills, bringing high-energy enthusiasm to every digital and physical project I touch."
-             data-linkedin="https://www.linkedin.com/in/tanishik-premi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+      <section class="team-grid">
+        <!-- MEMBER: Sanyam Jain -->
+        <div class="team-card reveal" data-dept="Outreach" data-name="Sanyam Jain" data-role="Jr. PR Head"
+          data-bio="As a Core Member of E-Cell and Founder of Just Build, I am dedicated to building ecosystems that empower students and entrepreneurs. My journey in business has taught me that true leadership is about impact and intentional growth. I'm now focused on helping others level up their mindset and execution to create something that lasts."
+          data-linkedin="https://www.linkedin.com/in/sanyam-jain7505?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android">
           <div class="team-card-inner">
             <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Tanishik+Premi&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Tanishik Premi" />
-            </div>
-            <div class="team-card-info">
-              <h3>Tanishik Premi</h3>
-              <span class="team-card-role">Jr. Creativity Head</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal"
-             data-name="Shishir Rastogi"
-             data-role="Jr. Graphic Design Head"
-             data-bio="I'm Shishir Rastogi, a creative professional with expertise in UX/UI design, video editing, graphics design, and front-end development. With a strong work ethic and attention to detail, I deliver exceptional results. I'm a lifelong learner and thrive in fast-paced environments, always seeking new opportunities to challenge myself and grow."
-             data-linkedin="https://www.linkedin.com/in/shishir-rastogi">
-          <div class="team-card-inner">
-            <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Shishir+Rastogi&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Shishir Rastogi" />
-            </div>
-            <div class="team-card-info">
-              <h3>Shishir Rastogi</h3>
-              <span class="team-card-role">Jr. Graphic Design Head</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal"
-             data-name="Rijul Chaudhary"
-             data-role="Jr. Content/Editor Head"
-             data-bio="I believe greatness is a byproduct of curation. Working at the intersection of visual storytelling and strategic growth, I transform raw concepts into high-impact digital experiences. For me, creativity is about more than aesthetics—it's the intellectual rigour required to engineer perspectives and turn a vision into a movement."
-             data-linkedin="https://www.linkedin.com/in/rijul-chaudhary-237a903b7?utm_source=share_via&utm_content=profile&utm_medium=member_android">
-          <div class="team-card-inner">
-            <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Rijul+Chaudhary&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Rijul Chaudhary" />
-            </div>
-            <div class="team-card-info">
-              <h3>Rijul Chaudhary</h3>
-              <span class="team-card-role">Jr. Content/Editor Head</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- OUTREACH & EVENTS -->
-    <section class="team-section">
-      <div class="team-section-header reveal">
-        <span class="team-group-label">📣 Outreach &amp; Events</span>
-        <div class="team-group-line"></div>
-      </div>
-      <div class="team-grid">
-        <div class="team-card reveal"
-             data-name="Sanyam Jain"
-             data-role="Jr. PR Head"
-             data-bio="As a Core Member of E-Cell and Founder of Just Build, I am dedicated to building ecosystems that empower students and entrepreneurs. My journey in business has taught me that true leadership is about impact and intentional growth. I'm now focused on helping others level up their mindset and execution to create something that lasts."
-             data-linkedin="https://www.linkedin.com/in/sanyam-jain7505?utm_source=share_via&utm_content=profile&utm_medium=member_android">
-          <div class="team-card-inner">
-            <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Sanyam+Jain&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Sanyam Jain" />
+              <div class="team-card-glow"></div>
+              <img src="team/sanyam.png" alt="Sanyam Jain" loading="lazy">
             </div>
             <div class="team-card-info">
               <h3>Sanyam Jain</h3>
               <span class="team-card-role">Jr. PR Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-        <div class="team-card reveal"
-             data-name="Anshika Baliyan"
-             data-role="Jr. Event Head"
-             data-bio="I'm Anshika B, serving as the PR Head and Junior Event member at E-Cell. With strong communication and networking skills, I focus on building impactful outreach, maintaining professional relationships, and ensuring clear, strategic messaging across platforms."
-             data-linkedin="https://www.linkedin.com/in/anshika-baliyan-59039b37a?utm_source=share_via&utm_content=profile&utm_medium=member_android">
+
+        <!-- MEMBER: Anshika Baliyan -->
+        <div class="team-card reveal" data-dept="Events" data-name="Anshika Baliyan" data-role="Jr. Event Head"
+          data-bio="I'm Anshika Baliyan, serving as the PR Head and Junior Event member at E-Cell. With strong communication and networking skills, I focus on building impactful outreach, maintaining professional relationships, and ensuring clear, strategic messaging across platforms."
+          data-linkedin="https://www.linkedin.com/in/anshika-baliyan-59039b37a?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android">
           <div class="team-card-inner">
             <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Anshika+Baliyan&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Anshika Baliyan" />
+              <div class="team-card-glow"></div>
+              <img src="team/anshika.png" alt="Anshika Baliyan" loading="lazy">
             </div>
             <div class="team-card-info">
               <h3>Anshika Baliyan</h3>
               <span class="team-card-role">Jr. Event Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
-        <div class="team-card reveal"
-             data-name="Devansh Goel"
-             data-role="Jr. Social Media Head"
-             data-bio="I am Devansh Goel, an expert in video editing and social media management with a focus on content creation and digital strategy."
-             data-linkedin="https://www.linkedin.com/in/thedevanshgoel?utm_source=share_via&utm_content=profile&utm_medium=member_android">
+
+        <!-- MEMBER: Anima Gupta -->
+        <div class="team-card reveal" data-dept="Events" data-name="Anima Gupta" data-role="Jr. Event Head"
+          data-bio="Curious and growth-driven individual passionate about creativity, design, and exploring new ideas."
+          data-linkedin="https://www.linkedin.com/in/anima-gupta-114323344">
           <div class="team-card-inner">
             <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Devansh+Goel&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Devansh Goel" />
-            </div>
-            <div class="team-card-info">
-              <h3>Devansh Goel</h3>
-              <span class="team-card-role">Jr. Social Media Head</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal"
-             data-name="Pratibha"
-             data-role="Jr. Social Media Head"
-             data-bio="Driven by a passion for building meaningful professional relationships and fostering a culture of continuous learning."
-             data-linkedin="https://www.linkedin.com/in/pratibha-nimesh-86aa49338?utm_source=share_via&utm_content=profile&utm_medium=member_android">
-          <div class="team-card-inner">
-            <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Pratibha&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Pratibha" />
-            </div>
-            <div class="team-card-info">
-              <h3>Pratibha</h3>
-              <span class="team-card-role">Jr. Social Media Head</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal"
-             data-name="Anima Gupta"
-             data-role="Jr. Event Head"
-             data-bio="Curious and growth-driven individual passionate about creativity, design, and exploring new ideas."
-             data-linkedin="#">
-          <div class="team-card-inner">
-            <div class="team-card-img-wrap">
-              <img src="https://ui-avatars.com/api/?name=Anima+Gupta&background=1a1a2e&color=e8001d&size=200&bold=true" alt="Anima Gupta" />
+              <div class="team-card-glow"></div>
+              <img src="team/anima.png" alt="Anima Gupta" loading="lazy">
             </div>
             <div class="team-card-info">
               <h3>Anima Gupta</h3>
               <span class="team-card-role">Jr. Event Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- MEMBER: Pratibha -->
+        <div class="team-card reveal" data-dept="Social Media" data-name="Pratibha" data-role="Jr. Social Media Head"
+          data-bio="Driven by a passion for building meaningful professional relationships and fostering a culture of continuous learning."
+          data-linkedin="https://www.linkedin.com/in/pratibha-nimesh-86aa49338?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/pratibha.png" alt="Pratibha" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Pratibha</h3>
+              <span class="team-card-role">Jr. Social Media Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MEMBER: Devansh Goel -->
+        <div class="team-card reveal" data-dept="Social Media" data-name="Devansh Goel" data-role="Jr. Social Media Head"
+          data-bio="Managing the digital voice and brand presence of MIET E-Cell."           data-linkedin="https://www.linkedin.com/in/thedevanshgoel?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/devansh.png"
+                alt="Devansh Goel" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Devansh Goel</h3>
+              <span class="team-card-role">Jr. Social Media Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- TEAM CATEGORY: CREATIVE & CONTENT -->
+    <div class="team-section">
+      <div class="team-section-header reveal">
+        <div class="team-group-label">Creative & Content</div>
+        <div class="team-group-line"></div>
       </div>
-    </section>
+      <section class="team-grid">
+        <!-- MEMBER: Tanishk Premi -->
+        <div class="team-card reveal" data-dept="Creative" data-name="Tanishk Premi" data-role="Jr. Creativity Head"
+          data-bio="Transforming ideas into vivid realities. I lead creative initiatives that elevate the E-Cell brand through bold innovation and artistic vision."
+          data-linkedin="https://www.linkedin.com/in/tanishik-premi?utm_source=share&amp;utm_campaign=share_via&amp;utm_content=profile&amp;utm_medium=android_app">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/tanishik.png" alt="Tanishk Premi" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Tanishk Premi</h3>
+              <span class="team-card-role">Jr. Creativity Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MEMBER: Shishir Rastogi -->
+        <div class="team-card reveal" data-dept="Creative" data-name="Shishir Rastogi" data-role="Jr. Graphic Design Head"
+          data-bio="Where precision meets design. I specialize in crafting high-impact graphics that define the visual standard of MIET's startup culture."
+          data-linkedin="https://www.linkedin.com/in/shishir-rastogi">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/Shishir Rastogi.png" alt="Shishir Rastogi" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Shishir Rastogi</h3>
+              <span class="team-card-role">Jr. Graphic Design Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MEMBER: Rijul -->
+        <div class="team-card reveal" data-dept="Content" data-name="Rijul" data-role="Jr. Content/Editor Head"
+          data-bio="Polishing the E-Cell narrative. As an editor, I ensure our communication is sharp, strategic, and consistently impactful across all platforms."
+          data-linkedin="https://www.linkedin.com/in/rijul-chaudhary-237a903b7?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android">
+          <div class="team-card-inner">
+            <div class="team-card-img-wrap">
+              <div class="team-card-glow"></div>
+              <img src="team/rijul.png" alt="Rijul" loading="lazy">
+            </div>
+            <div class="team-card-info">
+              <h3>Rijul</h3>
+              <span class="team-card-role">Jr. Content/Editor Head</span>
+              <div class="team-card-hint">
+                <span>View Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+
+
   </main>
 
+  <!-- PREMIUM MODAL (SOLID DESIGN) -->
   <div class="team-modal-overlay" id="team-modal-overlay">
     <div class="team-modal" id="team-modal">
-      <button class="team-modal-close" id="team-modal-close">✕</button>
+      <button class="team-modal-close" id="team-modal-close" aria-label="Close modal">×</button>
+      
+      <!-- NAVIGATION BUTTONS -->
+      <button class="modal-nav modal-nav-prev" id="modal-prev" aria-label="Previous member">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <button class="modal-nav modal-nav-next" id="modal-next" aria-label="Next member">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
       <div class="team-modal-content">
         <div class="team-modal-header">
-          <div class="team-modal-img-wrap"><img id="modal-img" src="" alt="" /></div>
-          <div class="team-modal-title"><h3 id="modal-name"></h3><span class="team-modal-role" id="modal-role"></span></div>
+          <div class="team-modal-img-wrap">
+            <img src="" id="modal-img" alt="Member Title">
+          </div>
+          <div class="team-modal-title">
+            <div class="team-modal-dept" id="modal-dept">Department</div>
+            <h3 id="modal-name">Member Name</h3>
+            <span class="team-modal-role" id="modal-role">Role</span>
+          </div>
         </div>
         <div class="team-modal-divider"></div>
-        <p class="team-modal-bio" id="modal-bio"></p>
-        <a class="team-modal-linkedin" id="modal-linkedin" href="#" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        <div class="team-modal-bio" id="modal-bio">Bio description goes here...</div>
+        <a href="#" id="modal-linkedin" target="_blank" class="team-modal-linkedin">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+          <span>Connect on LinkedIn</span>
+        </a>
       </div>
     </div>
   </div>
 
   <footer>
+    <div class="footer-glow"></div>
+    <span class="footer-logo">Ecell <em>MIET</em></span>
     <div class="footer-links">
-      <a href="index.html">Home</a><a href="aboutus.html">About</a><a href="talkshow.html">Talk Show</a><a href="nova.html">Events</a><a href="team.html">Team</a>
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="nova.html">Events</a>
+      <a href="team.html" class="active">Team</a>
     </div>
-    <p>© 2025 MIET Entrepreneurship Cell.</p>
+    <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
 
   <script src="main.js"></script>
   <script src="three-scene.js"></script>
   <script src="team-modal.js"></script>
 </body>
-</html>
 
+</html>

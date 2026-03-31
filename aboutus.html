@@ -1,110 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Theme Shield � Prevent Flash -->
+  <!-- Theme Shield — Prevent Flash -->
   <script id="theme-shield">
     (function() { 
       const th = localStorage.getItem('ecell-theme') || 'dark'; 
       document.documentElement.setAttribute('data-theme', th); 
     })();
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us — MIET E-Cell</title>
-  <meta name="description" content="Discover the mission, vision, and role of MIET Entrepreneurship Cell in shaping the innovators of tomorrow.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — E-Cell MIET</title>
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="stylesheet" href="style.css">
-  <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
-  <!-- Preloader visibility control -->
-  <script>
-    if (!sessionStorage.getItem('ecell_preloader_done')) {
-      document.documentElement.classList.add('ecell-preloading');
-    }
-  </script>
-  <style>
-    .ecell-preloading #main-header,
-    .ecell-preloading #main-content,
-    .ecell-preloading footer,
-    .ecell-preloading #three-canvas,
-    .ecell-preloading .orb,
-    .ecell-preloading #scroll-progress-container {
-      filter: blur(28px);
-      opacity: 0.6;
-      transition: filter 1s var(--transition), opacity 1s var(--transition);
-    }
-  </style>
 </head>
-
 <body>
-  <!-- ─── Preloader (runs once per session) ───────────────────────── -->
+  <div id="noise-overlay"></div>
   <script src="preloader.js"></script>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-  
-  <div id="scroll-progress-container">
-    <div id="scroll-progress-bar"></div>
-  </div>
 
-  <!-- ─── Three.js 3D Canvas (hero bg) ─────────────────────────────────── -->
   <canvas id="three-canvas"></canvas>
-
-  <!-- ─── Floating ambient gradient orbs ───────────────────────────────── -->
-
-
-
 
   <header id="main-header">
     <a href="index.html" class="logo-container">
       <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
     </a>
-
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">🌙</span>
+      <span class="theme-icon">☀️</span>
     </button>
-
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
-
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="aboutus.html" class="active">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html">Team</a>
     </nav>
   </header>
 
   <main id="main-content">
-    <div class="content-box reveal">
-      <span class="section-label">What It Means</span>
-      <h2>What is Entrepreneurship?</h2>
-      <p>
-        Entrepreneurship is the process of creating, developing, and scaling ideas into impactful ventures. It's about turning ideas into action — whether through startups, social ventures, or innovation within organizations.
-      </p>
-    </div>
+    <section class="hero-section">
+      <div class="hero-content reveal">
+        <span class="section-label">Our Story</span>
+        <h2 class="hero-title">We help you to <br><span id="typewriter-word">Compete.</span></h2>
+        <p class="hero-subtitle">From high-stakes hackathons to industrial exposure, we bridge the gap between classroom and career.</p>
+      </div>
+    </section>
 
-    <div class="content-box reveal">
-      <span class="section-label">Our Purpose</span>
-      <h2>The Role of E-Cell</h2>
-      <p>
-        E-Cell at MIET empowers students to think beyond academics and embrace entrepreneurial thinking. We support innovative minds through mentorship, resources, workshops, and networking opportunities.
-      </p>
-    </div>
-
-    <div class="content-box reveal">
-      <span class="section-label">Where We're Headed</span>
-      <h2>Our Vision</h2>
-      <p>
-        To cultivate a thriving entrepreneurial culture at MIET where students actively explore business ideas, learn from real founders, and get hands-on experience in building ventures.
-      </p>
-      <p>
-        Have questions? <a href="mailto:ecell.miet@miet.ac.in">Contact us at ecell.miet@miet.ac.in</a>
-      </p>
-    </div>
+    <section class="content-section">
+      <div class="content-box tilt-card reveal">
+        <div class="box-deco"></div>
+        <h2>Our Mission</h2>
+        <p>Our mission is to create a vibrant ecosystem where student ideas meet the right mentorship and resources. We believe that entrepreneurship is not just about starting a business, but about solving real-world problems with innovation and grit.</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">25+</span>
+                <span class="stat-label">Events Yearly</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">12+</span>
+                <span class="stat-label">Startups Incubated</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">350+</span>
+                <span class="stat-label">Active Community</span>
+            </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -113,10 +78,8 @@
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="aboutus.html">About</a>
-      <a href="talkshow.html">Talk Show</a>
       <a href="nova.html">Events</a>
       <a href="team.html">Team</a>
-      <a href="mailto:ecell.miet@miet.ac.in">Contact</a>
     </div>
     <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
@@ -125,4 +88,3 @@
   <script src="three-scene.js"></script>
 </body>
 </html>
-
