@@ -171,15 +171,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Reveal Animation on Scroll ───────────────────────────────────────
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 70);
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target); // Stop observing once visible
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+  function initReveal() {
+    const revealedItems = document.querySelectorAll('.reveal');
+    revealedItems.forEach(el => revealObserver.observe(el));
+  }
+  
+  initReveal();
+  // Double check after a short delay for dynamically loaded content/images
+  setTimeout(initReveal, 500); 
+  window.addEventListener('scroll', () => { 
+    // Manual trigger for edge cases
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  }, { passive: true });
 
   // ─── 3D Card Tilt ──────────────────────────────────────────────────────
   if (!isMobile) {
