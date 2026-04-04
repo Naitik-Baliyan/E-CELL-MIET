@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const y = e.clientY - rect.top - rect.height / 2;
 
         item.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
-        
+
         const icon = item.querySelector('svg, .theme-icon, span');
         if (icon && icon !== item) {
           icon.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
@@ -60,10 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Dark Mode Toggle (Circular Reveal) ──────────────────────────────────
-  const toggleBtn  = document.getElementById('theme-toggle');
-  const themeIcon  = toggleBtn ? toggleBtn.querySelector('.theme-icon') : null;
-  const html       = document.documentElement;
-  const revealDiv  = document.createElement('div');
+  const toggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = toggleBtn ? toggleBtn.querySelector('.theme-icon') : null;
+  const html = document.documentElement;
+  const revealDiv = document.createElement('div');
   revealDiv.id = 'theme-reveal-circle';
   document.body.appendChild(revealDiv);
 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
-      const isDark   = html.getAttribute('data-theme') === 'dark';
+      const isDark = html.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       const rect = toggleBtn.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       revealDiv.style.clipPath = `circle(0% at ${x}px ${y}px)`;
       revealDiv.style.background = newTheme === 'dark' ? 'hsl(0, 0%, 4%)' : 'hsl(45, 12%, 96%)';
       revealDiv.style.opacity = '1';
-      
+
       requestAnimationFrame(() => {
         revealDiv.style.clipPath = `circle(150% at ${x}px ${y}px)`;
       });
@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── Typewriter Effect ─────────────────────────────────────────────────
-  const words    = ['Build.', 'Launch.', 'Innovate.', 'Succeed.', 'Scale.', 'Disrupt.'];
-  const wordEl   = document.getElementById('typewriter-word');
-  let wordIndex  = 0;
-  let charIndex  = 0;
+  const words = ['Build.', 'Launch.', 'Innovate.', 'Succeed.', 'Scale.', 'Disrupt.'];
+  const wordEl = document.getElementById('typewriter-word');
+  let wordIndex = 0;
+  let charIndex = 0;
   let isDeleting = false;
-  let isPaused   = false;
+  let isPaused = false;
 
   function typeStep() {
     if (!wordEl) return;
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Mobile Menu ───────────────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger');
-  const nav       = document.getElementById('main-nav');
+  const nav = document.getElementById('main-nav');
   if (hamburger && nav) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('open');
@@ -233,9 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const targetText = entry.target.getAttribute('data-target') || entry.target.textContent.replace('+', '');
-        const target     = parseInt(targetText);
-        const duration   = 2000;
-        let startTime    = null;
+        const target = parseInt(targetText);
+        const duration = 2000;
+        let startTime = null;
         const animate = (ts) => {
           if (!startTime) startTime = ts;
           const progress = Math.min((ts - startTime) / duration, 1);
