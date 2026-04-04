@@ -1850,12 +1850,14 @@ p {
 }
 
 .glimpse-card img, .moment-card img {
+  display: block;
   width: 100%;
   height: 100%;
+  min-height: 100%;
   object-fit: cover;
   object-position: center;
   transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-  background-color: #1a1a1a; /* Visual placeholder */
+  background-color: #1a1a1a;
 }
 
 .glimpse-overlay {
