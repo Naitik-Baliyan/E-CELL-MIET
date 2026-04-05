@@ -13,28 +13,27 @@
   --accent:         hsl(0, 100%, 62%);
   --secondary:      hsl(0, 0%, 5%);
 
-  /* Backgrounds */
-  --bg-main:   hsl(45, 12%, 96%);
-  --bg-card:   hsla(0, 0%, 100%, 0.55);
-  --bg-glass:  hsla(0, 0%, 100%, 0.35);
+  /* Backgrounds (Dark by Default) */
+  --bg-main:      hsl(0, 0%, 4%);
+  --bg-card:      hsla(240, 8%, 8%, 0.85);
+  --bg-glass:     hsla(0, 0%, 10%, 0.5);
 
-  /* Text */
-  --text-main:    hsl(0, 0%, 9%);
-  --text-muted:   hsl(0, 0%, 36%);
+  /* Text (Dark by Default) */
+  --text-main:    hsl(0, 0%, 100%);
+  --text-muted:   hsl(0, 0%, 60%);
   --text-on-dark: hsl(0, 0%, 100%);
 
   /* Depth & Elevation */
   --perspective:     1400px;
-  --depth-shadow:    0 2px 4px rgba(0,0,0,0.01),
-                     0 4px 8px rgba(0,0,0,0.01),
-                     0 8px 16px rgba(0,0,0,0.01);
+  --depth-shadow:    0 24px 64px -12px rgba(0,0,0,0.5),
+                     0 4px 20px hsla(352, 100%, 45%, 0.1);
 
   /* Effects */
-  --glass-blur:      blur(28px);
-  --shadow-soft:     0 8px 32px rgba(0,0,0,0.04);
-  --shadow-premium:  0 24px 64px -12px rgba(0,0,0,0.12),
-                     0 4px 20px hsla(352, 100%, 45%, 0.08);
-  --border-glass:    0.5px solid hsla(0, 0%, 100%, 0.6);
+  --glass-blur:      blur(40px);
+  --shadow-soft:     0 8px 32px rgba(0,0,0,0.2);
+  --shadow-premium:  0 32px 80px -12px rgba(0,0,0,0.6),
+                     0 4px 20px hsla(352, 100%, 45%, 0.15);
+  --border-glass:    0.5px solid hsla(0, 0%, 100%, 0.1);
   --radius-lg:       36px;
   --radius-md:       22px;
   --transition:      cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
@@ -484,7 +483,13 @@ header.scrolled {
   box-shadow: 8px 8px 20px rgba(232,0,29,0.25), 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.logo-container h1 { font-size: 1.35rem; margin: 0; }
+.logo-container h1 { 
+  font-size: 1.35rem; 
+  margin: 0; 
+  color: var(--text-main); 
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
 
 /* ─── Nav ────────────────────────────────────────────────────────────────── */
 nav { display: flex; gap: 0.4rem; }
@@ -581,15 +586,11 @@ section { padding: 6rem 0; }
 
 .hero-line {
   display: block;
-  color: var(--secondary);
-  /* 3D text depth via layered text-shadow */
-  text-shadow:
-    1px 1px 0 rgba(0,0,0,0.07),
-    2px 2px 0 rgba(0,0,0,0.05),
-    3px 3px 0 rgba(0,0,0,0.04),
-    4px 4px 0 rgba(0,0,0,0.03),
-    5px 5px 0 rgba(0,0,0,0.02),
-    6px 6px 12px rgba(0,0,0,0.06);
+  color: var(--text-main);
+  /* 3D text depth - subtle for theme compatibility */
+  text-shadow: 
+    1px 1px 0 rgba(0,0,0,0.1),
+    2px 2px 0 rgba(0,0,0,0.05);
   animation: heroSlide 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
@@ -2443,8 +2444,10 @@ footer p {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100vh;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(24px);
+    background: var(--bg-glass);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: var(--border-glass);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -2453,7 +2456,7 @@ footer p {
     animation: menuFade 0.35s ease both;
   }
 
-  nav.open a { font-size: 1.6rem; color: var(--secondary); }
+  nav.open a { font-size: 1.6rem; color: var(--text-main); font-weight: 800; }
 
   @keyframes menuFade {
     from { opacity: 0; transform: scale(0.96); }

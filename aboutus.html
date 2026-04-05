@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Shield — Prevent Flash -->
-  <script id="theme-shield">
-    (function() { 
-      const th = localStorage.getItem('ecell-theme') || 'dark'; 
-      document.documentElement.setAttribute('data-theme', th); 
-    })();
+  <!-- Forced Dark Mode -->
+  <script>
+    document.documentElement.setAttribute('data-theme', 'dark');
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,9 +23,6 @@
       <div class="logo-mark"><img src="logo.jpg" alt="MIET E-Cell Logo"></div>
       <h1>Ecell MIET</h1>
     </a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-icon">☀️</span>
-    </button>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -116,8 +110,11 @@
     <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
 
-  <script src="main.js"></script>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="three-scene.js"></script>
+  <script src="main.js"></script>
+
   <!-- Feedback System -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>

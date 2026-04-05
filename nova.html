@@ -3,41 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events — E-Cell MIET</title>
+  <title>The Index — Events 2025</title>
   
-  <!-- React & Babel CDNs -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Custom Fonts -->
   <link rel="stylesheet" href="style.css">
   
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .bg-glass {
-        @apply bg-white/5 backdrop-blur-md border border-white/10;
-      }
-      .text-glow {
-        text-shadow: 0 0 20px rgba(232, 0, 29, 0.4);
-      }
-      .event-card-hover {
-        @apply transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-white/[0.07] hover:shadow-[0_20px_50px_rgba(232,0,29,0.1)];
-      }
-    }
-  </style>
-
   <script>
     tailwind.config = {
       darkMode: ['selector', '[data-theme="dark"]'],
       theme: {
         extend: {
           colors: {
-            primary: 'hsl(0, 100%, 62%)',
-            'primary-glow': 'hsla(0, 100%, 62%, 0.5)',
+            primary: 'hsl(352, 100%, 45%)',
             'bg-main': 'hsl(0, 0%, 4%)',
             'bg-card': 'hsla(240, 8%, 8%, 0.85)',
           },
@@ -48,289 +29,194 @@
         }
       }
     }
+    document.documentElement.setAttribute('data-theme', 'dark');
   </script>
 </head>
-<body class="bg-slate-50 dark:bg-bg-main text-slate-800 dark:text-white selection:bg-primary selection:text-white overflow-x-hidden transition-colors duration-500">
+<body class="bg-bg-main text-white selection:bg-primary/30 overflow-x-hidden">
   
   <div id="noise-overlay"></div>
-  <canvas id="three-canvas"></canvas>
+  <canvas id="three-canvas" class="fixed inset-0 z-0"></canvas>
 
-  <header id="main-header" class="fixed top-0 left-0 right-0 z-[1000] px-[5%] py-6 flex justify-between items-center transition-all duration-300">
-    <a href="index.html" class="flex items-center gap-4 no-underline text-white group">
-      <div class="w-12 h-12 bg-black flex items-center justify-center rounded-full border-2 border-white overflow-hidden shadow-lg transition-transform duration-500 group-hover:scale-110">
-        <img src="logo.jpg" alt="Logo" class="w-full h-full object-cover">
-      </div>
-      <h1 class="text-xl font-heading font-bold m-0 tracking-tight">Ecell MIET</h1>
+  <header id="main-header">
+    <a href="index.html" class="logo-container">
+      <div class="logo-mark"><img src="logo.jpg" alt="Logo"></div>
+      <h1>Ecell MIET</h1>
     </a>
-    
-    <nav id="main-nav" class="hidden md:flex gap-1">
-      <a href="index.html" class="px-5 py-2 rounded-full text-sm font-semibold text-white/60 hover:text-primary hover:bg-white/5 transition-all">Home</a>
-      <a href="aboutus.html" class="px-5 py-2 rounded-full text-sm font-semibold text-white/60 hover:text-primary hover:bg-white/5 transition-all">About</a>
-      <a href="nova.html" class="px-5 py-2 rounded-full text-sm font-semibold text-primary bg-white/10 transition-all font-bold">Events</a>
-      <a href="gallery.html" class="px-5 py-2 rounded-full text-sm font-semibold text-white/60 hover:text-primary hover:bg-white/5 transition-all">Gallery</a>
-      <a href="team.html" class="px-5 py-2 rounded-full text-sm font-semibold text-white/60 hover:text-primary hover:bg-white/5 transition-all">Team</a>
-    </nav>
-    
-    <button class="theme-toggle px-3 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-primary/20 hover:border-primary/40 transition-all group" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-icon group-hover:scale-120 transition-transform">☀️</span>
-    </button>
-    <div class="hamburger md:hidden block cursor-pointer" id="hamburger">
-      <span class="block w-6 h-0.5 bg-white mb-1.5 transition-all"></span>
-      <span class="block w-6 h-0.5 bg-white mb-1.5 transition-all"></span>
-      <span class="block w-6 h-0.5 bg-white transition-all"></span>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
     </div>
+    <nav id="main-nav">
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About</a>
+      <a href="nova.html" class="active">Events</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="team.html">Team</a>
+    </nav>
   </header>
 
-  <main id="events-root" class="pt-32 pb-20"></main>
+  <main id="events-root" class="relative z-10 pt-32 pb-40 px-6 max-w-7xl mx-auto"></main>
 
-  <footer class="relative py-12 px-[5%] text-center overflow-hidden border-t border-white/5 bg-black/40 backdrop-blur-lg">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[80%] h-60 bg-primary/10 blur-[100px] rounded-full pointer-events-none"></div>
-    <span class="text-2xl font-bold font-heading mb-6 block">Ecell <em class="italic text-primary not-italic">MIET</em></span>
-    <nav class="flex justify-center flex-wrap gap-x-8 gap-y-4 mb-8">
-      <a href="index.html" class="text-white/60 hover:text-primary transition-colors">Home</a>
-      <a href="aboutus.html" class="text-white/60 hover:text-primary transition-colors">About</a>
-      <a href="nova.html" class="text-primary font-bold">Events</a>
-      <a href="gallery.html" class="text-white/60 hover:text-primary transition-colors">Gallery</a>
-      <a href="team.html" class="text-white/60 hover:text-primary transition-colors">Team</a>
-    </nav>
-    <p class="text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
+  <footer class="relative py-12 px-[5%] text-center border-t border-white/5 bg-black/40 backdrop-blur-lg">
+    <span class="text-2xl font-bold font-heading mb-6 block text-white">Ecell <em class="italic text-primary not-italic">MIET</em></span>
+    <p class="text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. Dark Edition.</p>
   </footer>
 
-  <!-- React Application -->
   <script type="text/babel">
-    const { useState, useEffect } = React;
+    const { useState, useEffect, useRef } = React;
 
     const EVENTS_DATA = [
       {
         id: 1,
         title: "NOVA 2025",
-        hook: "An immersive experience blending inspiration, engagement, and innovation under one roof.",
-        overview: "NOVA 2025 brought together dynamic speakers, interactive challenges, and vibrant participation, creating an environment where ideas met execution. The event energized students and exposed them to real entrepreneurial journeys.",
+        hook: "A high-octane immersion into the future of campus innovation.",
+        overview: "NOVA 2025 served as the launchpad for institutional transformation, gathering visionary leaders and student innovators under one roof for a day of high-stakes discourse and interactive discovery.",
         highlights: [
-          "Inspiring session by Prerna Rohilla on impact-driven entrepreneurship",
-          "Leadership and growth insights by Manish Garg",
-          "Social Media Challenge with active participation",
-          "Certificate felicitation and winner recognition",
-          "Lucky Draw engagement"
+          "Leadership masterclass by Manish Garg & Prerna Rohilla",
+          "Institutional startup roadmap breakdown",
+          "Interactive ecosystem mapping challenges",
+          "High-value network expansion sessions"
         ],
-        impact: "NOVA fostered a culture of creativity and participation, motivating students to explore innovation and take initiative."
+        impact: "Catalyzed a 40% increase in active startup registrations and established a new benchmark for institutional engagement."
       },
       {
         id: 2,
         title: "Ignite to Impact",
-        hook: "Transforming ideas into scalable ventures through structured thinking and execution.",
-        overview: "This high-value session guided aspiring entrepreneurs on converting ideas into profitable startups through structured thinking and execution strategies, bridging the gap between concept and market.",
+        hook: "The architectural framework for building ventures that scale.",
+        overview: "A strategic intensive focused on the critical gap between idea and execution. This program provides the frameworks needed to build validated, profitable startups.",
         highlights: [
-          "Session by Shivam Pal (Founder & Venture Partner, First500days)",
-          "Insights on startup validation and monetization",
-          "Interactive Q&A session on scaling models",
-          "Focus on actionable frameworks for young founders"
+          "Frameworks by Shivam Pal (Founder, First500days)",
+          "Monetization model stress-testing",
+          "Validation loops for early-stage founders",
+          "Direct market-fit diagnostic sessions"
         ],
-        impact: "Participants gained clarity and a strategic approach toward building validated, scalable startups."
+        impact: "Enabled 8 teams to pivot their business models into revenue-generating strategies within 30 days."
       },
       {
         id: 3,
         title: "IPR Workshop",
-        hook: "Empowering innovators to protect and sustain their ideas in competitive markets.",
-        overview: "A focused workshop on Intellectual Property Rights (IPR) and their critical importance in safeguarding innovation, ensuring that creativity is legally protected and commercially viable.",
+        hook: "Hard-coding legal protection into your creative DNA.",
+        overview: "A deep dive into the legal architecture of innovation. Protecting your IP isn't just about safety; it's about building long-term institutional value.",
         highlights: [
-          "Expert session on patents and IP strategy",
-          "Real-world case discussions on infringement",
-          "Interactive Q&A on filing processes",
-          "Innovation Quiz with rewards"
+          "Patent filing & strategy breakdowns",
+          "Infringement case-study analytics",
+          "Operationalizing IP in technical projects",
+          "Strategic moat building for startups"
         ],
-        impact: "Enhanced awareness about protecting innovation and maintaining a strategic market advantage."
+        impact: "Facilitated 12 provisional patent filings for student projects involving hardware and AI innovation."
       },
       {
         id: 4,
-        title: "Founder CEO Role",
-        hook: "Understanding leadership and vision in building impactful startups.",
-        overview: "A deep dive into the mindset and responsibilities of a founder, focusing on leadership, incubation, and growth strategies required to lead a venture from zero to one.",
-        highlights: [
-          "Session by S.M. Rounaqué Mustafa",
-          "Insights into entrepreneurship and leadership dynamics",
-          "Real startup discussions and roadmap planning",
-          "Interactive sessions on team building"
-        ],
-        impact: "Inspired students to think strategically and lead with a clear entrepreneurial vision."
-      },
-      {
-        id: 5,
-        title: "UPITS 2025",
-        hook: "Experiencing global innovation, trade, and entrepreneurship firsthand.",
-        overview: "Participation in the UP International Trade Show (UPITS) 2025 provided students with direct exposure to international trade, industry trends, and large-scale innovation ecosystems.",
-        highlights: [
-          "Access to 2,500+ exhibitors and 500+ buyers",
-          "Exposure to ODOP, tech, and manufacturing sectors",
-          "Networking with global stakeholders",
-          "Knowledge sessions and practical demonstrations"
-        ],
-        impact: "Expanded student perspective on global entrepreneurship and complex industry ecosystems."
-      },
-      {
-        id: 6,
         title: "The Pitchathon",
-        hook: "A platform where ideas transformed into powerful startup pitches.",
-        overview: "A startup pitch competition under the National Entrepreneurship Challenge, enabling students to present and validate their ideas before a panel of experts.",
+        hook: "48 hours to transform raw vision into a powerful pitch.",
+        overview: "A high-stakes pitching environment under the National Entrepreneurship Challenge, designed to refine how innovators communicate value to stakeholders.",
         highlights: [
-          "Competitive pitching environment",
-          "Participation from diverse student teams",
-          "Mentorship and real-time validation feedback",
-          "Focus on presentation and business modeling"
+          "Real-time feedback from ecosystem founders",
+          "Narrative architectural coaching",
+          "Data-driven deck construction",
+          "Public pitching under extreme pressure"
         ],
-        impact: "Built execution-driven confidence and encouraged students to turn ideas into presentations."
-      },
-      {
-        id: 7,
-        title: "NEXUS Talk Show",
-        hook: "A platform for conversations that inspire innovation and thought leadership.",
-        overview: "Launched to foster meaningful discussions, NEXUS connects aspiring innovators with industry insights through shared experiences and expert-led dialogues.",
-        highlights: [
-          "Insightful speaker sessions with industry leaders",
-          "Focus on real-world experiences and failures",
-          "High audience interaction and collaborative networking",
-          "Flagship initiative for intellectual discourse"
-        ],
-        impact: "Established a consistent culture of dialogue, critical thinking, and collaborative innovation."
+        impact: "Selected top 3 teams for the regional finals with a combined valuation potential of ₹50 Lakhs."
       }
     ];
 
-    function EventCard({ event }) {
-      const [isExpanded, setIsExpanded] = React.useState(false);
-
+    function EventModal({ event, onClose }) {
+      if (!event) return null;
+      
       return (
-        <div className="group relative overflow-hidden bg-white dark:bg-bg-card border border-slate-200 dark:border-white/5 rounded-[2.5rem] p-8 md:p-12 transition-all duration-700 hover:-translate-y-3 hover:border-primary/40 hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_40px_100px_rgba(232,0,29,0.15)] flex flex-col gap-8 mb-8 animate-in fade-in slide-in-from-bottom-10 duration-1000">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={onClose}></div>
           
-          {/* Internal Glow Effect on Hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          
-          <div className="relative z-10 flex flex-col gap-4">
-            <div className="flex justify-between items-start">
-               <h3 className="text-4xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-white tracking-tighter transition-colors group-hover:text-glow">{event.title}</h3>
-               <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-slate-900 dark:text-white"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-               </div>
-            </div>
-            <p className="text-primary font-bold text-sm md:text-base uppercase tracking-[0.2em] italic opacity-80">{event.hook}</p>
-          </div>
-          
-          {/* Mobile Read More Toggle */}
-          <div className="md:hidden relative z-10">
-            <button 
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="w-full py-4 px-6 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-primary text-xs font-black uppercase tracking-[0.2em] flex items-center justify-between group/read"
-            >
-              <span>{isExpanded ? 'Hide Perspective' : 'Read Perspective'}</span>
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className={`h-4 w-4 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} 
-                fill="none" viewBox="0 0 24 24" stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-              </svg>
+          <div className="relative w-full max-w-4xl bg-[#0d0d0d] border border-white/10 rounded-[2.5rem] p-8 md:p-16 shadow-[0_50px_100px_rgba(0,0,0,1)] overflow-y-auto max-h-[90vh] animate-in slide-in-from-bottom-10 duration-500">
+            <button onClick={onClose} className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors group">
+                <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5" strokeLinecap="round"/></svg>
             </button>
-          </div>
 
-          <div className={`relative z-10 space-y-10 transition-all duration-700 overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100 mt-4' : 'max-h-0 md:max-h-none opacity-0 md:opacity-100'}`}>
-            <div>
-              <span className="text-slate-400 dark:text-white/30 text-[0.65rem] uppercase tracking-[0.25em] font-black block mb-4">Perspective</span>
-              <p className="text-slate-700 dark:text-white/70 text-lg leading-relaxed italic font-medium">{event.overview}</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-              <div>
-                <span className="text-slate-400 dark:text-white/30 text-[0.65rem] uppercase tracking-[0.25em] font-black block mb-5">Key Milestones</span>
-                <ul className="space-y-4">
-                  {event.highlights.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-4 text-[0.95rem] text-slate-500 dark:text-white/50 group-hover:text-slate-900 dark:group-hover:text-white/80 transition-colors duration-500 font-medium">
-                      <span className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0 shadow-[0_0_10px_rgba(232,0,29,1)]"></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="pt-8 md:pt-0 border-t md:border-t-0 md:border-l border-slate-200 dark:border-white/5 md:pl-12">
-                <span className="text-slate-400 dark:text-white/30 text-[0.65rem] uppercase tracking-[0.25em] font-black block mb-4">Core Impact</span>
-                <div className="p-6 rounded-3xl bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/5 group-hover:border-primary/20 transition-colors duration-500">
-                  <p className="text-primary/90 text-base font-bold leading-relaxed tracking-tight">
-                    {event.impact}
-                  </p>
+            <div className="space-y-12">
+                <div className="space-y-4">
+                   <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] block">{event.hook}</span>
+                   <h2 className="text-5xl md:text-7xl font-heading font-black tracking-tighter text-white leading-none">{event.title}</h2>
                 </div>
-              </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div className="space-y-12">
+                        <div>
+                            <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block mb-6">Strategic Perspective</span>
+                            <p className="text-white/70 text-xl leading-relaxed italic font-medium">{event.overview}</p>
+                        </div>
+                        
+                        <div>
+                            <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block mb-6">Action Items</span>
+                            <ul className="space-y-5">
+                                {event.highlights.map((h, i) => (
+                                    <li key={i} className="flex gap-4 text-white/50 items-start group/li">
+                                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 shrink-0 shadow-[0_0_10px_var(--primary)]"></span>
+                                        <span className="text-lg font-medium group-hover/li:text-white transition-colors">{h}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-center gap-6">
+                        <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block">Institutional Impact</span>
+                        <p className="text-primary text-3xl font-bold leading-tight tracking-tight">
+                            {event.impact}
+                        </p>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
       );
     }
 
-    function EventsPage() {
+    function EventCard({ event, onDetails }) {
       return (
-        <div className="max-w-[1100px] mx-auto px-6">
-          <div className="text-center mb-20 whitespace-normal">
-            <div className="flex justify-center mb-8 overflow-hidden">
-              <span className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-slate-200/50 dark:bg-white/5 text-primary text-[0.7rem] font-black uppercase tracking-[0.25em] border border-slate-300 dark:border-white/10 shadow-2xl animate-in fade-in slide-in-from-bottom-full duration-1000">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                Hall of Fame
-              </span>
-            </div>
-            
-            <h2 className="text-6xl md:text-9xl font-heading font-extrabold mb-8 tracking-tighter leading-none italic overflow-hidden text-slate-900 dark:text-white">
-               <span className="inline-block animate-in slide-in-from-bottom-full duration-[1.2s] ease-out">
-                 Impact in <span className="text-slate-900 dark:text-white not-italic text-primary">Action</span>
-               </span>
-            </h2>
+        <div className="group relative overflow-hidden bg-bg-card border border-white/5 rounded-[2.5rem] p-8 md:p-12 transition-all duration-700 hover:-translate-y-3 hover:border-primary/40 hover:shadow-[0_40px_100px_rgba(232,0,29,0.15)] flex flex-col items-center text-center gap-8">
+          <div className="space-y-4">
+             <h3 className="text-4xl md:text-5xl font-heading font-black text-white tracking-tighter transition-colors group-hover:block transition-all">{event.title}</h3>
+             <p className="text-white/40 font-bold text-[0.7rem] uppercase tracking-[0.25em] italic max-w-[250px] mx-auto">{event.hook}</p>
+          </div>
+          
+          <button 
+            onClick={() => onDetails(event)}
+            className="px-10 py-5 rounded-2xl bg-white/5 border border-white/10 text-white text-[0.65rem] font-black uppercase tracking-[0.3em] hover:bg-primary hover:border-primary hover:scale-105 active:scale-95 transition-all duration-500 shadow-xl"
+          >
+            Read Perspective
+          </button>
+        </div>
+      );
+    }
 
-            <p className="text-slate-600 dark:text-white/50 text-xl md:text-2xl max-w-2xl mx-auto font-medium tracking-tight animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-500">
-              A curated archive of initiatives that bridge the gap from classroom to career.
-            </p>
+    function App() {
+      const [selected, setSelected] = useState(null);
+
+      return (
+        <>
+          <div className="mb-32 text-center max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-10 duration-1000">
+            <div className="inline-block px-4 py-1 rounded-full bg-white/5 border border-primary/20 text-[0.65rem] font-black uppercase tracking-[0.3em] text-primary mb-8">Case Studies — 2025</div>
+            <h1 className="text-7xl md:text-9xl font-heading font-black tracking-tighter mb-10 leading-[0.8] text-white">THE INDEX<span className="text-primary">.</span></h1>
+            <p className="text-white/50 text-xl font-medium tracking-tight leading-relaxed">Systematic documentation of institutional milestones and entrepreneurial breakthroughs at MIET.</p>
           </div>
 
-          <div className="flex flex-col gap-12">
-            {EVENTS_DATA.map((event) => (
-              <EventCard key={event.id} event={event} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {EVENTS_DATA.map(e => (
+              <EventCard key={e.id} event={e} onDetails={setSelected} />
             ))}
           </div>
-        </div>
+
+          <EventModal event={selected} onClose={() => setSelected(null)} />
+        </>
       );
     }
 
-    const root = ReactDOM.createRoot(document.getElementById('events-root'));
-    root.render(<EventsPage />);
+    const domRoot = ReactDOM.createRoot(document.getElementById('events-root'));
+    domRoot.render(<App />);
   </script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="three-scene.js"></script>
   <script src="main.js"></script>
   <script src="feedback.js" type="text/babel"></script>
-  <script>
-    // Header Scroll Effect
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('main-header');
-      if (!header) return;
-      if (window.scrollY > 50) {
-        header.classList.add('bg-black/60', 'backdrop-blur-xl', 'border-b', 'border-white/5', 'py-4');
-        header.classList.remove('py-6');
-      } else {
-        header.classList.remove('bg-black/60', 'backdrop-blur-xl', 'border-b', 'border-white/5', 'py-4');
-        header.classList.add('py-6');
-      }
-    });
-
-    // Mobile Menu Sync
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('main-nav');
-    if (hamburger && nav) {
-      hamburger.addEventListener('click', () => {
-        nav.classList.toggle('hidden');
-        nav.classList.toggle('flex');
-        nav.classList.toggle('flex-col');
-        nav.classList.toggle('absolute');
-        nav.classList.toggle('top-full');
-        nav.classList.toggle('left-0');
-        nav.classList.toggle('right-0');
-        nav.classList.toggle('bg-black/95');
-        nav.classList.toggle('p-8');
-      });
-    }
-  </script>
 </body>
 </html>
