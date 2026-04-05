@@ -164,9 +164,9 @@ function FeedbackSystem() {
   return (
     <>
       {/* Floating Trigger */}
-      <div className="fixed bottom-8 right-[5.5rem] z-[9000] flex flex-col items-end group">
+      <div className="fixed bottom-8 right-6 md:right-[5.5rem] z-[9000] flex flex-col items-end group">
         {/* Tooltip */}
-        <div className="mb-4 px-4 py-2 bg-bg-card border border-white/10 backdrop-blur-xl rounded-xl text-xs font-black uppercase tracking-widest text-white/80 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500 pointer-events-none shadow-2xl">
+        <div className="mb-4 px-4 py-2 bg-bg-card border border-white/10 backdrop-blur-xl rounded-xl text-xs font-black uppercase tracking-widest text-white/80 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500 pointer-events-none shadow-2xl">
           Share Feedback
         </div>
         
