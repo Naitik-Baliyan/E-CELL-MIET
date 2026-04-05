@@ -67,6 +67,34 @@
       </div>
     </section>
 
+    <!-- ANNOUNCEMENTS / WHAT'S HAPPENING NEXT -->
+    <section class="content-section" id="announcements">
+      <div class="content-box reveal" style="background: linear-gradient(135deg, rgba(232,0,29,0.15) 0%, rgba(0,0,0,0) 100%); border: 1px solid rgba(232,0,29,0.25); box-shadow: 0 0 40px -10px rgba(232,0,29,0.1);">
+        <div class="box-deco"></div>
+        <div class="flex justify-between items-start flex-wrap gap-10">
+          <div class="max-w-2xl">
+            <span class="section-label">High Priority — 8th April</span>
+            <h2 class="text-5xl md:text-8xl font-heading font-black tracking-tighter text-white leading-none mb-6">Pre-Launchathon <span class="text-primary italic">2026</span></h2>
+            <p class="text-white/60 font-bold uppercase tracking-[0.4em] text-[0.6rem] md:text-[0.65rem] mb-8">E-Cell MIET × MIET Incubation Forum</p>
+            <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-10">The national-level qualifying round for the <span class="text-white font-bold">Bharat Shiksha Expo</span>. Challenge your vision against the best.</p>
+            
+            <div class="hero-cta" style="justify-content: flex-start; margin-bottom: 0;">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScZFjLBINh4YOFkJFbbEyoKMnlih3BIptaivVFjn3HsG7xMDw/viewform" target="_blank" rel="noopener" class="btn btn-primary magnetic-wrap pulse-glow">Register Now</a>
+              <button onclick="toggleAnnouncementModal(true)" class="btn btn-outline magnetic-wrap">View Details</button>
+            </div>
+          </div>
+
+          <div id="countdown-timer" class="flex gap-4 md:gap-8 items-center bg-white/5 border border-white/10 px-6 md:px-10 py-5 md:py-8 rounded-[2rem] backdrop-blur-3xl shadow-2xl mx-auto md:mx-0">
+             <div class="text-center"><span id="days" class="text-3xl md:text-5xl font-black text-primary block leading-none">00</span><span class="text-[0.45rem] md:text-[0.55rem] uppercase font-black tracking-widest opacity-40 mt-2 block">Days</span></div>
+             <div class="w-px h-10 md:h-16 bg-white/10"></div>
+             <div class="text-center"><span id="hours" class="text-3xl md:text-5xl font-black text-white block leading-none">00</span><span class="text-[0.45rem] md:text-[0.55rem] uppercase font-black tracking-widest opacity-40 mt-2 block">Hrs</span></div>
+             <div class="w-px h-10 md:h-16 bg-white/10"></div>
+             <div class="text-center"><span id="minutes" class="text-3xl md:text-5xl font-black text-white block leading-none">00</span><span class="text-[0.45rem] md:text-[0.55rem] uppercase font-black tracking-widest opacity-40 mt-2 block">Mins</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- STATS BENTO SECTION -->
     <section class="content-section reveal">
       <div class="bento-grid">
@@ -213,6 +241,65 @@
       </div>
     </section>
 
+    <!-- ANNOUNCEMENT MODAL (DEDICATED) -->
+    <div id="ann-modal" class="fixed inset-0 z-[10000] hidden items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/95 backdrop-blur-3xl" onclick="toggleAnnouncementModal(false)"></div>
+      <div class="relative w-full max-w-2xl bg-[#0d0d0d] border border-white/10 rounded-[3rem] p-10 md:p-14 shadow-[0_50px_100px_rgba(0,0,0,1)] max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-500">
+        <button onclick="toggleAnnouncementModal(false)" class="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary transition-all group">
+            <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </button>
+
+        <div class="space-y-12">
+            <div>
+              <span class="text-primary font-black text-[0.65rem] uppercase tracking-[0.4em] block mb-4">Event Roadmap</span>
+              <h3 class="text-4xl md:text-5xl font-heading font-black text-white tracking-tighter leading-none mb-6">Pre-Launchathon <span class="italic text-primary">2026</span></h3>
+              <p class="text-white/50 leading-relaxed italic">The journey starts at Raman Block and leads to the India Expo Centre.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+               <div class="space-y-4">
+                  <h4 class="text-xs font-black uppercase tracking-widest text-white/40">Logistics</h4>
+                  <p class="text-sm text-white/80 leading-loose">
+                    <strong class="text-primary mr-2">📍 Venue:</strong> Audi 3 & 4, Raman Block, MIET<br/>
+                    <strong class="text-primary mr-2">📅 Date:</strong> 8th April 2026<br/>
+                    <strong class="text-primary mr-2">⏰ Deadline:</strong> April 8th
+                  </p>
+               </div>
+               <div class="space-y-4">
+                  <h4 class="text-xs font-black uppercase tracking-widest text-white/40">Eligibility</h4>
+                  <p class="text-sm text-white/80 leading-loose">
+                    <strong class="text-primary mr-2">👥 Team:</strong> Up to 4 Members<br/>
+                    <strong class="text-primary mr-2">🎯 Stage:</strong> Idea or Early-stage<br/>
+                    <strong class="text-primary mr-2">✨ Requirement:</strong> Original Concepts
+                  </p>
+               </div>
+            </div>
+
+            <div class="space-y-6">
+               <h4 class="text-xs font-black uppercase tracking-widest text-primary">Professional Perks</h4>
+               <ul class="space-y-5">
+                  <li class="flex gap-4 items-start">
+                    <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                    <p class="text-sm text-white/70"><strong>National Stage:</strong> Selected teams pitch at Bharat Shiksha Expo (23–25 April) in front of industry leaders.</p>
+                  </li>
+                  <li class="flex gap-4 items-start">
+                    <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                    <p class="text-sm text-white/70"><strong>Validation:</strong> Direct evaluation by seasoned professional judges and venture builders.</p>
+                  </li>
+                  <li class="flex gap-4 items-start">
+                    <div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+                    <p class="text-sm text-white/70"><strong>Certification:</strong> Official recognition and incubation pathway for high-potential ideas.</p>
+                  </li>
+               </ul>
+            </div>
+
+            <div class="pt-6 border-t border-white/5">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScZFjLBINh4YOFkJFbbEyoKMnlih3BIptaivVFjn3HsG7xMDw/viewform" target="_blank" rel="noopener" class="w-full btn btn-primary py-5">Register Now</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
     <!-- CONTACT SECTION BENTO -->
     <section class="content-section" id="contact">
       <div class="content-box tilt-card reveal">
@@ -269,5 +356,48 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="feedback.js" type="text/babel"></script>
+  <script>
+    // Pre-Launchathon Countdown Timer
+    function updateCountdown() {
+      const deadline = new Date('April 8, 2026 10:00:00').getTime();
+      const now = new Date().getTime();
+      const gap = deadline - now;
+
+      if (gap <= 0) {
+        document.getElementById('countdown-timer').style.display = 'none';
+        return;
+      }
+
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+
+      const d = Math.floor(gap / day);
+      const h = Math.floor((gap % day) / hour);
+      const m = Math.floor((gap % hour) / minute);
+
+      document.getElementById('days').innerText = d.toString().padStart(2, '0');
+      document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+      document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+    }
+
+    // Modal Controller for Announcements
+    function toggleAnnouncementModal(show) {
+      const modal = document.getElementById('ann-modal');
+      if (show) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      } else {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    }
+
+    setInterval(updateCountdown, 60000); // Update every minute
+    updateCountdown(); // Initial call
+  </script>
 </body>
 </html>
