@@ -1527,6 +1527,22 @@ p {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.modal-event-img-wrap {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  background: #1a1a1a;
+}
+
+.modal-event-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Modal Content */
 .team-modal-content {
   padding: 2.5rem 2.5rem 2.5rem;
@@ -1655,6 +1671,45 @@ p {
   line-height: 1.75;
   margin-bottom: 1.8rem;
   max-width: 100%;
+}
+
+.glimpse-card {
+  position: relative;
+  border-radius: 32px; 
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transition: all 0.6s var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Blurred Backdrop Layer */
+.glimpse-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(25px) brightness(0.6) saturate(1.2);
+  opacity: 0.5;
+  transform: scale(1.2);
+  z-index: 0;
+}
+
+/* Foreground Contain Layer */
+.glimpse-card img:not(.glimpse-card-bg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  position: relative;
+  z-index: 1;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* LinkedIn Button */
@@ -1796,17 +1851,34 @@ p {
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
-  border: 1px solid rgba(255,255,255,0.05);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+  transition: all 0.6s var(--transition);
+  background: var(--bg-card);
 }
 
-.moment-card img {
+/* Blurred Backdrop Layer */
+.moment-card-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
-  transition: transform 0.6s ease;
+  filter: blur(20px) saturate(1.2);
+  opacity: 0.45;
+  transform: scale(1.15);
+  z-index: 0;
+}
+
+/* Foreground Contain Layer */
+.moment-card img:not(.moment-card-bg) {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  object-position: center;
+  transition: transform 0.8s var(--transition);
 }
 
 .moment-card:hover img {
@@ -1828,83 +1900,155 @@ p {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 380px;
   grid-auto-flow: dense;
-  gap: 25px;
+  gap: 30px; /* Increased gap for cleaner look */
 }
 
 .glimpse-card {
   position: relative;
-  border-radius: 24px;
+  border-radius: 32px; 
   overflow: hidden;
   cursor: pointer;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transition: all 0.6s var(--transition);
 }
 
 .glimpse-card.wide { grid-column: span 2; }
 .glimpse-card.tall { grid-row: span 2; }
 .glimpse-card.big { grid-column: span 2; grid-row: span 2; }
 
-.glimpse-card, .moment-card {
-  background: var(--bg-glass); /* Dynamic background while images load */
-  overflow: hidden;
-}
-
-.glimpse-card img, .moment-card img {
+.glimpse-card img {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Seamless look */
   object-position: center;
-  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-  background-color: #1a1a1a;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.glimpse-overlay {
+/* Minimal Hover Effect with View Icon */
+.glimpse-card::after {
+  content: '👁️';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
-  align-items: flex-end;
-  padding: 24px;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(4px);
+  color: white;
 }
 
-.glimpse-card:hover .glimpse-overlay {
-  opacity: 1;
+.glimpse-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15);
 }
 
 .glimpse-card:hover img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-.glimpse-info span {
+.glimpse-card:hover::after {
+  opacity: 1;
+}
+
+/* ─── LIGHTBOX (Refined) ────────────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s var(--transition);
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 80vh;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.5s var(--transition);
+}
+
+.lightbox-overlay.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 20px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
   display: block;
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 4px;
 }
 
-.glimpse-info h4 {
+.lightbox-close {
+  position: absolute;
+  top: 2rem; right: 2rem;
+  width: 50px; height: 50px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 50%;
   color: white;
-  margin: 0;
-  font-size: 1.1rem;
-  transform: translateY(10px);
-  transition: transform 0.4s ease;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.glimpse-card:hover .glimpse-info h4 {
-  transform: translateY(0);
+.lightbox-close:hover {
+  background: var(--primary);
+  transform: rotate(90deg);
+}
+
+.lightbox-nav {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.lightbox-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.lightbox-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
 }
 
 @media (max-width: 1100px) {
   .glimpses-grid { 
     grid-template-columns: repeat(2, 1fr); 
     grid-auto-rows: 320px;
+    gap: 20px;
   }
 }
 
@@ -1915,12 +2059,278 @@ p {
   }
   .glimpse-card.wide, .glimpse-card.big { grid-column: span 1; }
   .glimpse-card.tall, .glimpse-card.big { grid-row: span 1; }
-  .moment-card { width: 320px; height: 220px; }
 }
 
 @media (max-width: 480px) {
   .glimpses-grid { grid-auto-rows: 340px; }
-  .moment-card { width: 280px; height: 180px; }
+  .lightbox-content { max-width: 95vw; }
+}
+
+
+/* ─── EVENTS SHOWCASE (Hall of Fame) ────────────────────────────────────── */
+.events-section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.event-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 28px;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  min-height: 480px;
+}
+
+.event-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-premium);
+  background: hsla(0, 0%, 100%, 0.15);
+}
+
+[data-theme="dark"] .event-card:hover {
+  background: hsla(240, 10%, 12%, 0.95);
+}
+
+.event-card-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.event-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 1.2rem;
+  border-radius: 99px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border: 1px solid rgba(232, 0, 29, 0.15);
+}
+
+/* Badge Variants */
+.badge-workshop { background: rgba(59, 130, 246, 0.1); color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); }
+.badge-talk { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-color: rgba(139, 92, 246, 0.2); }
+.badge-competition { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+.badge-exposure { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+.badge-summit { background: rgba(232, 0, 29, 0.1); color: var(--primary); border-color: rgba(232, 0, 29, 0.2); }
+
+.event-title {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.event-hook {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.event-overview {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-impact-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.event-expand-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0;
+  transition: gap 0.3s ease;
+}
+
+.event-card:hover .event-expand-btn {
+  gap: 0.8rem;
+}
+
+/* ─── EVENT MODAL ───────────────────────────────────────────────────────── */
+.event-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  padding: 2rem;
+}
+
+.event-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.event-modal {
+  background: var(--bg-card);
+  border: var(--border-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  border-radius: 32px;
+  position: relative;
+  transform: scale(0.9) translateY(20px);
+  transition: all 0.5s var(--transition);
+  overflow-y: auto;
+  box-shadow: var(--shadow-premium);
+}
+
+.event-modal.active {
+  transform: scale(1) translateY(0);
+}
+
+.event-modal-content {
+  padding: 4rem;
+}
+
+.event-modal-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.event-modal-close:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
+[data-theme="dark"] .event-modal-close { background: rgba(255, 255, 255, 0.08); }
+
+.modal-event-header {
+  margin-bottom: 2.5rem;
+}
+
+.modal-event-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.modal-event-hook {
+  font-size: 1.2rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.modal-section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.modal-event-overview {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 3rem;
+}
+
+.modal-event-highlights {
+  list-style: none;
+  margin-bottom: 3rem;
+}
+
+.modal-event-highlights li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.modal-event-highlights li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.modal-event-impact {
+  background: var(--primary-soft);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(232, 0, 29, 0.1);
+}
+
+.modal-event-impact p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .events-grid { grid-template-columns: 1fr; }
+  .event-card { min-height: auto; padding: 2rem; }
+  .event-modal-content { padding: 2.5rem 1.5rem; }
+  .modal-event-title { font-size: 1.8rem; }
+  .event-modal-overlay { padding: 1rem; }
 }
 
 /* ─── Footer ─────────────────────────────────────────────────────────────── */
@@ -2089,3 +2499,4 @@ footer p {
   .hero-cta { flex-direction: column; width: 100%; }
   .btn { width: 100%; }
 }
+

@@ -36,6 +36,7 @@
       <a href="index.html">Home</a>
       <a href="aboutus.html" class="active">About</a>
       <a href="nova.html">Events</a>
+      <a href="gallery.html">Gallery</a>
       <a href="team.html">Team</a>
     </nav>
   </header>
@@ -78,11 +79,26 @@
         <h2>Community in Action</h2>
       </div>
       <div class="glimpses-grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
-        <div class="glimpse-card tilt-card"><img src="assets/events/event-31.jpeg" alt="Community 1" loading="lazy" decoding="async"></div>
-        <div class="glimpse-card tilt-card"><img src="assets/events/event-32.jpeg" alt="Community 2" loading="lazy" decoding="async"></div>
-        <div class="glimpse-card tilt-card"><img src="assets/events/event-33.jpeg" alt="Community 3" loading="lazy" decoding="async"></div>
-        <div class="glimpse-card tilt-card"><img src="assets/events/event-34.jpeg" alt="Community 4" loading="lazy" decoding="async"></div>
-        <div class="glimpse-card tilt-card"><img src="assets/events/event-35.jpeg" alt="Community 5" loading="lazy" decoding="async"></div>
+        <div class="glimpse-card tilt-card">
+          <img src="assets/events/event-31.jpeg" class="glimpse-card-bg" aria-hidden="true">
+          <img src="assets/events/event-31.jpeg" alt="Community 1" loading="lazy" decoding="async">
+        </div>
+        <div class="glimpse-card tilt-card">
+          <img src="assets/events/event-32.jpeg" class="glimpse-card-bg" aria-hidden="true">
+          <img src="assets/events/event-32.jpeg" alt="Community 2" loading="lazy" decoding="async">
+        </div>
+        <div class="glimpse-card tilt-card">
+          <img src="assets/events/event-33.jpeg" class="glimpse-card-bg" aria-hidden="true">
+          <img src="assets/events/event-33.jpeg" alt="Community 3" loading="lazy" decoding="async">
+        </div>
+        <div class="glimpse-card tilt-card">
+          <img src="assets/events/event-34.jpeg" class="glimpse-card-bg" aria-hidden="true">
+          <img src="assets/events/event-34.jpeg" alt="Community 4" loading="lazy" decoding="async">
+        </div>
+        <div class="glimpse-card tilt-card">
+          <img src="assets/events/event-35.jpeg" class="glimpse-card-bg" aria-hidden="true">
+          <img src="assets/events/event-35.jpeg" alt="Community 5" loading="lazy" decoding="async">
+        </div>
       </div>
     </section>
   </main>
@@ -90,16 +106,23 @@
   <footer>
     <div class="footer-glow"></div>
     <span class="footer-logo">Ecell <em>MIET</em></span>
-    <div class="footer-links">
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="aboutus.html">About</a>
       <a href="nova.html">Events</a>
+      <a href="gallery.html">Gallery</a>
       <a href="team.html">Team</a>
-    </div>
+    </nav>
     <p>© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
   </footer>
 
   <script src="main.js"></script>
   <script src="three-scene.js"></script>
+  <!-- Feedback System -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="feedback.js" type="text/babel"></script>
 </body>
 </html>
