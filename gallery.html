@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery — E-Cell MIET</title>
   
-  <!-- React & Babel CDNs -->
+  <!-- Supabase & Tailwind & Babel CDNs -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Custom Design Tokens (Sync with style.css) -->
@@ -114,54 +113,23 @@
       <a href="gallery.html" class="text-primary font-bold">Gallery</a>
       <a href="team.html" class="text-slate-600 dark:text-white/60 hover:text-primary transition-colors">Team</a>
     </nav>
-    <p class="text-slate-500 dark:text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. All rights reserved.</p>
+    <p class="text-slate-500 dark:text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. All rights reserved. <a href="admin.html" style="opacity: 0.1; font-size: 8px; text-decoration: none;">.</a></p>
   </footer>
 
   <!-- React Application -->
   <script type="text/babel">
-    const { useState, useEffect } = React;
+    const SUPABASE_URL = 'https://qrlpvpvkaiwaueajpkmz.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_oBu__impqaRKS3XMMK1BpQ_-r4zr7AG';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const GALLERY_IMAGES = [
+    const FALLBACK_IMAGES = [
       { id: 1, src: 'assets/events/event-1.jpeg' },
       { id: 2, src: 'assets/events/event-2.jpeg' },
       { id: 3, src: 'assets/events/event-3.jpeg' },
       { id: 4, src: 'assets/events/event-4.jpeg' },
       { id: 5, src: 'assets/events/event-5.jpeg' },
       { id: 6, src: 'assets/events/event-6.jpeg' },
-      { id: 7, src: 'assets/events/event-7.jpeg' },
-      { id: 8, src: 'assets/events/event-8.jpeg' },
-      { id: 9, src: 'assets/events/event-9.jpeg' },
-      { id: 10, src: 'assets/events/event-10.jpeg' },
-      { id: 11, src: 'assets/events/event-11.jpeg' },
-      { id: 12, src: 'assets/events/event-12.jpeg' },
-      { id: 13, src: 'assets/events/event-13.jpeg' },
-      { id: 14, src: 'assets/events/event-14.jpeg' },
-      { id: 15, src: 'assets/events/event-15.jpeg' },
-      { id: 16, src: 'assets/events/event-16.jpeg' },
-      { id: 17, src: 'assets/events/event-17.jpeg' },
-      { id: 18, src: 'assets/events/event-18.jpeg' },
-      { id: 19, src: 'assets/events/event-19.jpeg' },
-      { id: 20, src: 'assets/events/event-20.jpeg' },
-      { id: 21, src: 'assets/events/event-21.jpeg' },
-      { id: 22, src: 'assets/events/event-22.jpeg' },
-      { id: 23, src: 'assets/events/event-23.jpeg' },
-      { id: 24, src: 'assets/events/event-24.jpeg' },
-      { id: 25, src: 'assets/events/event-25.jpeg' },
-      { id: 26, src: 'assets/events/event-26.jpeg' },
-      { id: 27, src: 'assets/events/event-27.jpeg' },
-      { id: 28, src: 'assets/events/event-28.jpeg' },
-      { id: 29, src: 'assets/events/event-29.jpeg' },
-      { id: 30, src: 'assets/events/event-30.jpeg' },
-      { id: 31, src: 'assets/events/event-31.jpeg' },
-      { id: 32, src: 'assets/events/event-32.jpeg' },
-      { id: 33, src: 'assets/events/event-33.jpeg' },
-      { id: 34, src: 'assets/events/event-34.jpeg' },
-      { id: 35, src: 'assets/events/event-35.jpeg' },
-      { id: 36, src: 'assets/events/event-36.jpeg' },
-      { id: 37, src: 'assets/events/event-37.jpeg' },
-      { id: 38, src: 'assets/events/event-38.jpeg' },
-      { id: 39, src: 'assets/events/event-39.jpeg' },
-      { id: 40, src: 'assets/events/event-40.jpeg' }
+      { id: 7, src: 'assets/events/event-10.jpeg' }
     ];
 
     function GalleryCard({ src, onClick, index }) {
@@ -233,8 +201,21 @@
 
     function GalleryApp() {
       const [selectedImage, setSelectedImage] = useState(null);
+      const [images, setImages] = useState(FALLBACK_IMAGES);
 
       useEffect(() => {
+        async function fetchImages() {
+          const { data, error } = await supabaseClient
+            .from('gallery')
+            .select('*')
+            .order('created_at', { ascending: false });
+          
+          if (!error && data && data.length > 0) {
+            setImages(data.map(item => ({ id: item.id, src: item.url })));
+          }
+        }
+        fetchImages();
+
         const handleEsc = (e) => {
           if (e.key === 'Escape') setSelectedImage(null);
         };
@@ -264,7 +245,7 @@
           </div>
 
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-            {GALLERY_IMAGES.map((img, index) => (
+            {images.map((img, index) => (
               <GalleryCard 
                 key={img.id} 
                 src={img.src} 

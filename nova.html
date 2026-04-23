@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Index — Events 2025</title>
   
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -58,77 +59,24 @@
 
   <footer class="relative py-12 px-[5%] text-center border-t border-white/5 bg-black/40 backdrop-blur-lg">
     <span class="text-2xl font-bold font-heading mb-6 block text-white">Ecell <em class="italic text-primary not-italic">MIET</em></span>
-    <p class="text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. Dark Edition.</p>
+    <p class="text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. Dark Edition. <a href="admin.html" style="opacity: 0.1; font-size: 8px; text-decoration: none;">.</a></p>
   </footer>
 
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
 
-    const EVENTS_DATA = [
+    const SUPABASE_URL = 'https://qrlpvpvkaiwaueajpkmz.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_oBu__impqaRKS3XMMK1BpQ_-r4zr7AG';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const FALLBACK_EVENTS = [
       {
         id: 1,
         title: "NOVA 2025",
         hook: "A high-octane immersion into the future of campus innovation.",
-        overview: "NOVA 2025 served as the launchpad for institutional transformation, gathering visionary leaders and student innovators under one roof for a day of high-stakes discourse and interactive discovery.",
-        highlights: [
-          "Leadership masterclass by Manish Garg & Prerna Rohilla",
-          "Institutional startup roadmap breakdown",
-          "Interactive ecosystem mapping challenges",
-          "High-value network expansion sessions"
-        ],
-        impact: "Catalyzed a 40% increase in active startup registrations and established a new benchmark for institutional engagement."
-      },
-      {
-        id: 2,
-        title: "Ignite to Impact",
-        hook: "The architectural framework for building ventures that scale.",
-        overview: "A strategic intensive focused on the critical gap between idea and execution. This program provides the frameworks needed to build validated, profitable startups.",
-        highlights: [
-          "Frameworks by Shivam Pal (Founder, First500days)",
-          "Monetization model stress-testing",
-          "Validation loops for early-stage founders",
-          "Direct market-fit diagnostic sessions"
-        ],
-        impact: "Enabled 8 teams to pivot their business models into revenue-generating strategies within 30 days."
-      },
-      {
-        id: 3,
-        title: "IPR Workshop",
-        hook: "Hard-coding legal protection into your creative DNA.",
-        overview: "A deep dive into the legal architecture of innovation. Protecting your IP isn't just about safety; it's about building long-term institutional value.",
-        highlights: [
-          "Patent filing & strategy breakdowns",
-          "Infringement case-study analytics",
-          "Operationalizing IP in technical projects",
-          "Strategic moat building for startups"
-        ],
-        impact: "Facilitated 12 provisional patent filings for student projects involving hardware and AI innovation."
-      },
-      {
-        id: 4,
-        title: "The Pitchathon",
-        hook: "48 hours to transform raw vision into a powerful pitch.",
-        overview: "A high-stakes pitching environment under the National Entrepreneurship Challenge, designed to refine how innovators communicate value to stakeholders.",
-        highlights: [
-          "Real-time feedback from ecosystem founders",
-          "Narrative architectural coaching",
-          "Data-driven deck construction",
-          "Public pitching under extreme pressure"
-        ],
-        impact: "Selected top 3 teams for the regional finals with a combined valuation potential of ₹50 Lakhs."
-      },
-      {
-        id: 5,
-        title: "NEXUS – The Talk Show Experience",
-        hook: "A platform for conversations that inspire innovation and thought leadership.",
-        overview: "NEXUS was introduced as a platform to foster meaningful conversations, share real-world experiences, and connect aspiring innovators with industry insights. It aims to bridge the gap between experience and aspiration through open dialogue.",
-        highlights: [
-          "Insightful sessions by industry speakers",
-          "Focus on real-world experiences and practical learnings",
-          "High audience engagement and interaction",
-          "Collaborative initiative by E-Cell MIET"
-        ],
-        impact: "NEXUS established a culture of dialogue and critical thinking, encouraging students to explore ideas beyond boundaries and think like innovators."
+        overview: "NOVA 2025 served as the launchpad for institutional transformation...",
+        highlights: ["Leadership masterclass", "Institutional startup roadmap"],
+        impact: "Catalyzed a 40% increase in active startup registrations."
       }
     ];
 
@@ -203,6 +151,23 @@
 
     function App() {
       const [selected, setSelected] = useState(null);
+      const [events, setEvents] = useState([]);
+
+      useEffect(() => {
+        async function fetchEvents() {
+          const { data, error } = await supabaseClient
+            .from('events')
+            .select('*')
+            .order('created_at', { ascending: false });
+          
+          if (!error && data && data.length > 0) {
+            setEvents(data);
+          } else {
+            setEvents(FALLBACK_EVENTS);
+          }
+        }
+        fetchEvents();
+      }, []);
 
       return (
         <>
@@ -213,7 +178,7 @@
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {EVENTS_DATA.map(e => (
+            {events.map(e => (
               <EventCard key={e.id} event={e} onDetails={setSelected} />
             ))}
           </div>

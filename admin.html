@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — E-Cell MIET</title>
+  
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: #050505;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+    .bg-glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .uploader-area {
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .uploader-area:hover {
+      border-color: #e8001d;
+      background: rgba(232, 0, 29, 0.05);
+    }
+    .btn-primary {
+      background: #e8001d;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(232, 0, 29, 0.3);
+    }
+    .loading-spinner {
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top: 3px solid #e8001d;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="text-white min-h-screen">
+  <div id="noise-overlay"></div>
+
+  <nav class="p-6 md:p-10 flex justify-between items-center relative z-10">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="logo.jpg" alt="Logo" class="w-10 h-10 rounded-full border-2 border-white/20">
+      <span class="font-heading font-bold text-xl tracking-tighter">Ecell Admin</span>
+    </a>
+    <a href="gallery.html" class="text-white/40 hover:text-white transition-colors text-sm">View Public Gallery</a>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-6 py-10 relative z-10">
+    <header class="mb-12">
+      <h1 class="text-5xl md:text-7xl font-heading font-black tracking-tighter mb-4">Event <span class="text-[#e8001d]">Uploader</span></h1>
+      <p class="text-white/40 text-lg">Upload images from your phone or desktop. They'll be live instantly.</p>
+    </header>    <!-- Upload Section -->
+    <section class="bg-glass rounded-[2rem] p-8 md:p-12 mb-10">
+      <h2 class="text-2xl font-heading font-bold mb-6">Gallery Uploader</h2>
+      <div id="upload-status" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+      <div class="space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Event Name (Folder)</label>
+            <input type="text" id="event-name" placeholder="e.g., NOVA 2025" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+          </div>
+          <div class="space-y-2">
+            <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Short Caption</label>
+            <input type="text" id="event-caption" placeholder="e.g., Opening Ceremony" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+          </div>
+        </div>
+
+        <div class="uploader-area rounded-[1.5rem] p-10 flex flex-col items-center justify-center gap-4 cursor-pointer" onclick="document.getElementById('file-input').click()">
+          <input type="file" id="file-input" class="hidden" accept="image/*" multiple onchange="handleFileSelect(event)">
+          <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-3xl">📸</div>
+          <div class="text-center">
+            <p class="font-bold text-xl">Select or Drop Images</p>
+            <p class="text-white/30 text-sm mt-1">PNG, JPG or WebP up to 10MB</p>
+          </div>
+        </div>
+
+        <div id="file-preview" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8"></div>
+
+        <button id="upload-btn" onclick="startUpload()" disabled class="w-full btn-primary py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm disabled:opacity-30 disabled:cursor-not-allowed">
+          Upload to Gallery
+        </button>
+      </div>
+    </section>
+
+    <!-- Event Detail Manager -->
+    <section class="bg-glass rounded-[2rem] p-8 md:p-12 mb-10 border-[#e8001d]/20 border">
+      <h2 class="text-2xl font-heading font-bold mb-6">Create New Event Page</h2>
+      <div id="event-status" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
+
+      <div class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Event Title</label>
+            <input type="text" id="new-event-title" placeholder="e.g., The Pitchathon" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+          </div>
+          <div class="space-y-2">
+            <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Hook Line</label>
+            <input type="text" id="new-event-hook" placeholder="e.g., 48 hours to transform raw vision..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Detailed Overview</label>
+          <textarea id="new-event-overview" rows="3" placeholder="Describe the event strategy and purpose..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors"></textarea>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Highlights (One per line)</label>
+          <textarea id="new-event-highlights" rows="3" placeholder="Highlight 1&#10;Highlight 2&#10;Highlight 3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors"></textarea>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Impact Statement</label>
+          <input type="text" id="new-event-impact" placeholder="e.g., Facilitated 12 provisional patent filings..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+        </div>
+
+        <button onclick="saveEvent()" class="w-full bg-white/10 hover:bg-white/20 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs transition-all border border-white/10">
+          Save Event Details
+        </button>
+      </div>
+    </section>
+
+    <!-- Recent Uploads -->
+    <section>
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-heading font-bold">Gallery Archive</h2>
+        <button onclick="fetchExistingImages()" class="text-white/40 hover:text-[#e8001d] text-xs font-bold uppercase tracking-widest">Refresh</button>
+      </div>
+      <div id="recent-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- Loaded via JS -->
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const SUPABASE_URL = 'https://qrlpvpvkaiwaueajpkmz.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_oBu__impqaRKS3XMMK1BpQ_-r4zr7AG';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let selectedFiles = [];
+
+    function handleFileSelect(event) {
+      const files = Array.from(event.target.files);
+      selectedFiles = [...selectedFiles, ...files];
+      renderPreview();
+      updateUploadButton();
+    }
+
+    function renderPreview() {
+      const container = document.getElementById('file-preview');
+      container.innerHTML = '';
+      selectedFiles.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const div = document.createElement('div');
+          div.className = 'relative aspect-square rounded-xl overflow-hidden group border border-white/10';
+          div.innerHTML = `
+            <img src="${e.target.result}" class="w-full h-full object-cover">
+            <button onclick="removeFile(${index})" class="absolute top-2 right-2 w-6 h-6 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center text-xs hover:bg-red-500">×</button>
+          `;
+          container.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function removeFile(index) {
+      selectedFiles.splice(index, 1);
+      renderPreview();
+      updateUploadButton();
+    }
+
+    function updateUploadButton() {
+      const btn = document.getElementById('upload-btn');
+      btn.disabled = selectedFiles.length === 0;
+      btn.innerText = `Upload ${selectedFiles.length} Image${selectedFiles.length > 1 ? 's' : ''}`;
+    }
+
+    async function startUpload() {
+      const btn = document.getElementById('upload-btn');
+      const status = document.getElementById('upload-status');
+      const eventName = document.getElementById('event-name').value || 'Uncategorized';
+      const caption = document.getElementById('event-caption').value || '';
+
+      btn.disabled = true;
+      btn.innerHTML = '<div class="flex items-center justify-center gap-3"><div class="loading-spinner"></div> Processing...</div>';
+      
+      status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-blue-500/10 text-blue-400 block';
+      status.innerText = `Uploading ${selectedFiles.length} images... Please wait.`;
+
+      try {
+        for (const file of selectedFiles) {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+          const filePath = `${fileName}`;
+
+          const { data: uploadData, error: uploadError } = await supabaseClient.storage
+            .from('gallery')
+            .upload(filePath, file);
+
+          if (uploadError) throw uploadError;
+
+          const { data: { publicUrl } } = supabaseClient.storage
+            .from('gallery')
+            .getPublicUrl(filePath);
+
+          const { error: dbError } = await supabaseClient
+            .from('gallery')
+            .insert([
+              { url: publicUrl, title: caption, event_name: eventName }
+            ]);
+
+          if (dbError) throw dbError;
+        }
+
+        status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-green-500/10 text-green-400 block';
+        status.innerText = 'Success! All images are now live.';
+        selectedFiles = [];
+        document.getElementById('event-name').value = '';
+        document.getElementById('event-caption').value = '';
+        renderPreview();
+        updateUploadButton();
+        fetchExistingImages();
+
+      } catch (error) {
+        console.error(error);
+        status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-red-500/10 text-red-400 block';
+        status.innerText = 'Upload failed: ' + error.message;
+        btn.disabled = false;
+        updateUploadButton();
+      }
+    }
+
+    async function saveEvent() {
+      const status = document.getElementById('event-status');
+      const title = document.getElementById('new-event-title').value;
+      const hook = document.getElementById('new-event-hook').value;
+      const overview = document.getElementById('new-event-overview').value;
+      const highlights = document.getElementById('new-event-highlights').value.split('\n').filter(h => h.trim());
+      const impact = document.getElementById('new-event-impact').value;
+
+      if (!title || !hook) {
+        alert('Title and Hook are required!');
+        return;
+      }
+
+      status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-blue-500/10 text-blue-400 block';
+      status.innerText = 'Saving event details...';
+
+      const { error } = await supabaseClient
+        .from('events')
+        .insert([{ title, hook, overview, highlights, impact }]);
+
+      if (error) {
+        status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-red-500/10 text-red-400 block';
+        status.innerText = 'Error: ' + error.message;
+      } else {
+        status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-green-500/10 text-green-400 block';
+        status.innerText = 'Event added successfully!';
+        // Reset form
+        ['new-event-title', 'new-event-hook', 'new-event-overview', 'new-event-highlights', 'new-event-impact'].forEach(id => document.getElementById(id).value = '');
+      }
+    }
+
+    async function fetchExistingImages() {
+      const grid = document.getElementById('recent-grid');
+      const { data, error } = await supabaseClient
+        .from('gallery')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(12);
+
+      if (error) return;
+
+      grid.innerHTML = data.map(item => `
+        <div class="aspect-square rounded-xl overflow-hidden border border-white/5 bg-white/5 relative group">
+          <img src="${item.url}" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-2">
+             <span class="text-[0.4rem] uppercase font-black tracking-widest text-white/40 mb-2">${item.event_name}</span>
+             <button onclick="deleteImage('${item.id}', '${item.url}')" class="text-[0.6rem] font-black uppercase tracking-widest text-red-500 hover:text-white">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function deleteImage(id, url) {
+      if (!confirm('Are you sure?')) return;
+      const fileName = url.split('/').pop();
+      await supabaseClient.storage.from('gallery').remove([fileName]);
+      await supabaseClient.from('gallery').delete().eq('id', id);
+      fetchExistingImages();
+    }
+
+    fetchExistingImages();
+  </script>
+</body>
+</html>
