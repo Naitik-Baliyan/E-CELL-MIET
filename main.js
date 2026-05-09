@@ -262,4 +262,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.5 });
   counters.forEach(c => countObserver.observe(c));
+
+  // ─── Secret Click Navigation to Admin Panel ──────────────────────────────────
+  let logoClicks = 0;
+  let logoClickTimer = null;
+  const handleSecretClick = () => {
+    logoClicks++;
+    clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(() => { logoClicks = 0; }, 2000); // Reset count after 2s of inactivity
+    
+    if (logoClicks >= 5) {
+      window.location.href = 'admin.html';
+    }
+  };
+
+  // Add click listeners to logo containers and footer elements
+  document.querySelectorAll('.logo-container, .footer-logo, footer span, footer p, .logo-mark').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', handleSecretClick);
+  });
 });

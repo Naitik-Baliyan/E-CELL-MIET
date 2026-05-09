@@ -15,30 +15,74 @@
 
   <style>
     body {
-      background: #050505;
+      background: #020202;
       font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 0, 29, 0.08) 0%, rgba(0,0,0,0) 80%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::after {
+      content: "";
+      position: absolute;
+      bottom: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 0, 29, 0.05) 0%, rgba(0,0,0,0) 80%);
+      z-index: 0;
+      pointer-events: none;
     }
     .font-heading { font-family: 'Space Grotesk', sans-serif; }
     .bg-glass {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
     }
     .uploader-area {
-      border: 2px dashed rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      border: 2px dashed rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.01);
+      backdrop-filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .uploader-area:hover {
       border-color: #e8001d;
-      background: rgba(232, 0, 29, 0.05);
+      background: rgba(232, 0, 29, 0.04);
+      transform: scale(1.01);
+      box-shadow: 0 20px 40px rgba(232, 0, 29, 0.05);
     }
     .btn-primary {
-      background: #e8001d;
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #e8001d 0%, #b20012 100%);
+      box-shadow: 0 4px 20px rgba(232, 0, 29, 0.2);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(232, 0, 29, 0.3);
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 15px 30px rgba(232, 0, 29, 0.4);
+    }
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+    input, textarea {
+      background: rgba(255, 255, 255, 0.02) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    input:focus, textarea:focus {
+      border-color: rgba(232, 0, 29, 0.5) !important;
+      box-shadow: 0 0 20px rgba(232, 0, 29, 0.1) !important;
+      background: rgba(255, 255, 255, 0.04) !important;
     }
     .loading-spinner {
       border: 3px solid rgba(255,255,255,0.1);
@@ -52,6 +96,22 @@
   </style>
 </head>
 <body class="text-white min-h-screen">
+  <!-- Lock Screen Overlay -->
+  <div id="admin-lock-screen" class="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center p-6 transition-all duration-700">
+    <div class="max-w-md w-full bg-glass p-8 md:p-12 rounded-[2.5rem] border border-white/10 text-center space-y-8 shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
+      <div class="w-20 h-20 bg-primary/10 border border-white/10 rounded-full flex items-center justify-center text-3xl mx-auto animate-pulse">🔒</div>
+      <div>
+        <h2 class="text-3xl font-heading font-black tracking-tighter text-white">Security Gateway</h2>
+        <p class="text-white/40 text-sm mt-2">Enter administrative passcode to unlock.</p>
+      </div>
+      <div class="space-y-4">
+        <input type="password" id="admin-passcode-input" placeholder="••••••••" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center text-xl tracking-widest outline-none focus:border-[#e8001d] transition-all">
+        <button onclick="checkAdminPasscode()" class="w-full py-4 btn-primary rounded-2xl font-black uppercase tracking-[0.25em] text-xs">Unlock Console</button>
+      </div>
+      <p id="lock-error" class="text-red-500 text-xs font-bold uppercase tracking-wider hidden">Access Denied: Invalid Passcode</p>
+    </div>
+  </div>
+
   <div id="noise-overlay"></div>
 
   <nav class="p-6 md:p-10 flex justify-between items-center relative z-10">
@@ -132,7 +192,7 @@
           <input type="text" id="new-event-impact" placeholder="e.g., Facilitated 12 provisional patent filings..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
         </div>
 
-        <button onclick="saveEvent()" class="w-full bg-white/10 hover:bg-white/20 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs transition-all border border-white/10">
+        <button onclick="saveEvent()" class="w-full btn-primary py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm">
           Save Event Details
         </button>
       </div>
@@ -151,6 +211,44 @@
   </main>
 
   <script>
+    const ADMIN_PASSCODE = 'MIETecell2026';
+
+    function checkPasscodeSession() {
+      const saved = sessionStorage.getItem('admin_authorized');
+      if (saved === 'true') {
+        const lock = document.getElementById('admin-lock-screen');
+        if (lock) lock.style.display = 'none';
+      }
+    }
+
+    function checkAdminPasscode() {
+      const input = document.getElementById('admin-passcode-input').value;
+      const error = document.getElementById('lock-error');
+      
+      if (input === ADMIN_PASSCODE) {
+        sessionStorage.setItem('admin_authorized', 'true');
+        const lock = document.getElementById('admin-lock-screen');
+        if (lock) {
+          lock.style.opacity = '0';
+          lock.style.pointerEvents = 'none';
+          setTimeout(() => lock.style.display = 'none', 700);
+        }
+      } else {
+        if (error) {
+          error.classList.remove('hidden');
+          document.getElementById('admin-passcode-input').value = '';
+        }
+      }
+    }
+
+    // Trigger on enter key
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('admin-passcode-input')?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkAdminPasscode();
+      });
+      checkPasscodeSession();
+    });
+
     const SUPABASE_URL = 'https://qrlpvpvkaiwaueajpkmz.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_oBu__impqaRKS3XMMK1BpQ_-r4zr7AG';
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);

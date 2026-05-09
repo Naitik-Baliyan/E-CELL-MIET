@@ -302,25 +302,51 @@
     const SUPABASE_KEY = 'sb_publishable_oBu__impqaRKS3XMMK1BpQ_-r4zr7AG';
     const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    async function loadDynamicMoments() {
-      const { data, error } = await _supabase
-        .from('gallery')
-        .select('url')
-        .order('created_at', { ascending: false })
-        .limit(10);
+    const FALLBACK_STRIP = [
+      'assets/events/event-1.jpeg',
+      'assets/events/event-2.jpeg',
+      'assets/events/event-3.jpeg',
+      'assets/events/event-4.jpeg',
+      'assets/events/event-5.jpeg',
+      'assets/events/event-6.jpeg',
+      'assets/events/event-7.jpeg',
+      'assets/events/event-8.jpeg',
+      'assets/events/event-9.jpeg',
+      'assets/events/event-10.jpeg'
+    ];
 
-      if (error || !data || data.length === 0) return;
+    async function loadDynamicMoments() {
+      let imageUrls = [...FALLBACK_STRIP];
+
+      try {
+        const { data, error } = await _supabase
+          .from('gallery')
+          .select('url')
+          .order('created_at', { ascending: false })
+          .limit(10);
+
+        if (!error && data && data.length > 0) {
+          const dbUrls = data.map(item => item.url);
+          const filteredFallback = FALLBACK_STRIP.filter(
+            fb => !dbUrls.some(db => db.includes(fb.split('/').pop()))
+          );
+          imageUrls = [...dbUrls, ...filteredFallback].slice(0, 15);
+        }
+      } catch (err) {
+        console.error(err);
+      }
 
       const carousel = document.getElementById('dynamic-moments-carousel');
-      const items = data.map(item => `
-        <div class="moment-card">
-          <img src="${item.url}" class="moment-card-bg" aria-hidden="true">
-          <img src="${item.url}" loading="lazy">
-        </div>
-      `);
-      
-      // Double for infinite loop
-      carousel.innerHTML = [...items, ...items].join('');
+      if (carousel) {
+        const items = imageUrls.map(url => `
+          <div class="moment-card">
+            <img src="${url}" class="moment-card-bg" aria-hidden="true">
+            <img src="${url}" loading="lazy">
+          </div>
+        `);
+        // Double for infinite loop
+        carousel.innerHTML = [...items, ...items].join('');
+      }
     }
 
     loadDynamicMoments();

@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Index — Events 2025</title>
-  
+
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <link rel="stylesheet" href="style.css">
-  
+
   <script>
     tailwind.config = {
       darkMode: ['selector', '[data-theme="dark"]'],
@@ -33,8 +34,9 @@
     document.documentElement.setAttribute('data-theme', 'dark');
   </script>
 </head>
+
 <body class="bg-bg-main text-white selection:bg-primary/30 overflow-x-hidden">
-  
+
   <div id="noise-overlay"></div>
   <canvas id="three-canvas" class="fixed inset-0 z-0"></canvas>
 
@@ -58,8 +60,10 @@
   <main id="events-root" class="relative z-10 pt-32 pb-40 px-6 max-w-7xl mx-auto"></main>
 
   <footer class="relative py-12 px-[5%] text-center border-t border-white/5 bg-black/40 backdrop-blur-lg">
-    <span class="text-2xl font-bold font-heading mb-6 block text-white">Ecell <em class="italic text-primary not-italic">MIET</em></span>
-    <p class="text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. Dark Edition. <a href="admin.html" style="opacity: 0.1; font-size: 8px; text-decoration: none;">.</a></p>
+    <span class="text-2xl font-bold font-heading mb-6 block text-white">Ecell <em
+        class="italic text-primary not-italic">MIET</em></span>
+    <p class="text-white/40 text-sm">© 2025 MIET Entrepreneurship Cell. Dark Edition. <a href="admin.html"
+        style="opacity: 0.1; font-size: 8px; text-decoration: none;">.</a></p>
   </footer>
 
   <script type="text/babel">
@@ -72,59 +76,143 @@
     const FALLBACK_EVENTS = [
       {
         id: 1,
+        title: "Pre-Launchathon 2026",
+        hook: "The ultimate national qualifying stage for the Bharat Shiksha Expo.",
+        overview: "An intense incubation bootcamp where student innovators refine their pitches, validate early concepts, and present to seasoned venture architects for a ticket to the national stage.",
+        highlights: ["Pitch deck scrub-downs & presentation styling", "One-on-one VC mentorship sessions", "Direct qualification pathways to Bharat Shiksha Expo"],
+        impact: "Empowered 15+ teams to pitch, securing direct validation and incubator pathways."
+      },
+      {
+        id: 2,
+        title: "NEXUS – The Talk Show Event",
+        hook: "A vision to foster thought-provoking conversations & inspire young innovators.",
+        overview: "NEXUS is a premier platform brought to life by E-Cell MIET in collaboration with MIET Incubation Forum. It serves as a vision to foster thought-provoking conversations, enable cross-industry insights, and inspire young innovators to think beyond boundaries where experience meets aspiration.",
+        highlights: [
+          "Inaugural addresses by Mr. Shoaib Hussain and Mr. Ashutosh Vashishtha",
+          "Visionary support and leadership by Mr. Rehan Ahmed (CEO, MIET Incubation Forum)",
+          "Constant guidance from Faculty Coordinator Mr. Ashish Kumar"
+        ],
+        impact: "Established a powerful culture of dialogue, disruption, and direction for all those who dare to dream differently."
+      },
+      {
+        id: 3,
+        title: "Inception – The Pitchathon",
+        hook: "Our Startup Pitch Competition organized under NEC 2025 by IIT Bombay.",
+        overview: "Inception – E-Cell MIET's flagship Startup Pitch Competition, organized under the prestigious National Entrepreneurship Challenge 2025 by IIT Bombay, turned out to be an outstanding success filled with innovation, energy, and entrepreneurial spirit.",
+        highlights: [
+          "Groundbreaking ideas pitched by student developers",
+          "Comprehensive mentorship for presentation validation",
+          "National challenge alignment under IIT Bombay's NEC framework"
+        ],
+        impact: "Nurtured the spirit of grassroots innovation, preparing student teams to build the scalable startups of tomorrow."
+      },
+      {
+        id: 4,
+        title: "E-Cell MIET at UPITS 2025",
+        hook: "A week of innovation, culture & global connections.",
+        overview: "From 25–29 September 2025, our E-Cell family participated in the 3rd edition of the UP International Trade Show (UPITS) at India Expo Centre & Mart, Greater Noida. The mega fair brought together 2,500+ exhibitors, 500+ international buyers, and over half a million visitors from 80+ countries.",
+        highlights: [
+          "Explored ODOP (One District One Product) pavilion featuring 343 artisan stalls",
+          "Witnessed inauguration by PM Narendra Modi and reviewed preparation with CM Yogi Adityanath",
+          "Engaged in direct MoUs with 27 universities to bridge innovation and academics"
+        ],
+        impact: "Obtained immense industrial and trade insight, empowering E-Cell with global networking opportunities."
+      },
+      {
+        id: 5,
+        title: "Building a Startup – The Role of a Founder CEO",
+        hook: "Learning entrepreneurship and incubation with Physics Wallah School of Startup.",
+        overview: "An insightful executive session held at MIET, successfully organized by MIET Incubation Forum along with the E-Cell team. We were honored to host Mr. S.M. Rounaqué Mustafa, sharing invaluable lessons on entrepreneurship and leadership.",
+        highlights: [
+          "Auspicious lamp-lighting by respected Director Mr. S.K. Singh",
+          "Invaluable masterclass by Mr. S.M. Rounaqué Mustafa (Head, PW School of Startup)",
+          "Real startup stories and morale-boosting discussions with CEO Mr. Rehan Ahmed"
+        ],
+        impact: "Left our audience of incubated startups and aspiring entrepreneurs deeply motivated and inspired."
+      },
+      {
+        id: 6,
+        title: "IPR Workshop: Innovation Meets Protection",
+        hook: "Intellectual Property Rights awareness and competitive strategy.",
+        overview: "A successful collaborative workshop organized by MIET Incubation Forum along with the E-Cell team and ZeusIP Advocates LLP. The session provided invaluable insights into protecting student innovations and maintaining market competitiveness.",
+        highlights: [
+          "Floral welcome and session guidance by Mr. Rohit Aggarwal (IPR Head, MIET)",
+          "Legal expertise shared by Naveen Varma & Anmol Agarwal (ZeusIP Advocates LLP)",
+          "Interactive IPR quiz with exciting goodies awarded to the top winners"
+        ],
+        impact: "Equipped student builders with essential awareness of legal protection for their original designs."
+      },
+      {
+        id: 7,
+        title: "Ignite to Impact",
+        hook: "Where sparks of ideas turn into profitable startups.",
+        overview: "An inspiring collaboration between MIET Incubation Forum, E-Cell MIET, and First500days, guiding student creators through the critical journey of transforming raw concepts into profitable business models.",
+        highlights: [
+          "Keynotes by serial investor Mr. Shivam Pal (Founder & Venture Partner, First500days)",
+          "Actionable startup clarity and product-market fit strategies",
+          "Dynamic Q&A session addressing early-stage funding and development roadblocks"
+        ],
+        impact: "Provided student founders with precise direction, clarity, and motivation for their business launches."
+      },
+      {
+        id: 8,
         title: "NOVA 2025",
-        hook: "A high-octane immersion into the future of campus innovation.",
-        overview: "NOVA 2025 served as the launchpad for institutional transformation...",
-        highlights: ["Leadership masterclass", "Institutional startup roadmap"],
-        impact: "Catalyzed a 40% increase in active startup registrations."
+        hook: "An unforgettable celebration of ideas, innovation, and inspiration.",
+        overview: "NOVA – A Burst of Brilliance was a sensational success! From thought-provoking guest panels to thrilling challenges, NOVA brought together visionaries and creators to collaborate and celebrate the spirit of campus entrepreneurship.",
+        highlights: [
+          "Impact keynotes by Prerna Rohilla (Founder, Mom Money Mindset)",
+          "Leadership wisdom shared by Manish Garg (Mentor & Director of Engineering)",
+          "Social Media Challenge felicitation and exciting Lucky Draw events"
+        ],
+        impact: "Achieved absolute engagement with aspiring student builders, celebrating talent with certificates and prizes."
       }
     ];
 
     function EventModal({ event, onClose }) {
       if (!event) return null;
-      
+
       return (
         <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
           <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={onClose}></div>
-          
+
           <div className="relative w-full max-w-4xl bg-[#0d0d0d] border border-white/10 rounded-[2.5rem] p-8 md:p-16 shadow-[0_50px_100px_rgba(0,0,0,1)] overflow-y-auto max-h-[90vh] animate-in slide-in-from-bottom-10 duration-500">
             <button onClick={onClose} className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors group">
-                <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5" strokeLinecap="round"/></svg>
+              <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="2.5" strokeLinecap="round" /></svg>
             </button>
 
             <div className="space-y-12">
-                <div className="space-y-4">
-                   <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] block">{event.hook}</span>
-                   <h2 className="text-5xl md:text-7xl font-heading font-black tracking-tighter text-white leading-none">{event.title}</h2>
+              <div className="space-y-4">
+                <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] block">{event.hook}</span>
+                <h2 className="text-5xl md:text-7xl font-heading font-black tracking-tighter text-white leading-none">{event.title}</h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div className="space-y-12">
+                  <div>
+                    <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block mb-6">Strategic Perspective</span>
+                    <p className="text-white/70 text-xl leading-relaxed italic font-medium">{event.overview}</p>
+                  </div>
+
+                  <div>
+                    <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block mb-6">Action Items</span>
+                    <ul className="space-y-5">
+                      {event.highlights.map((h, i) => (
+                        <li key={i} className="flex gap-4 text-white/50 items-start group/li">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 shrink-0 shadow-[0_0_10px_var(--primary)]"></span>
+                          <span className="text-lg font-medium group-hover/li:text-white transition-colors">{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    <div className="space-y-12">
-                        <div>
-                            <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block mb-6">Strategic Perspective</span>
-                            <p className="text-white/70 text-xl leading-relaxed italic font-medium">{event.overview}</p>
-                        </div>
-                        
-                        <div>
-                            <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block mb-6">Action Items</span>
-                            <ul className="space-y-5">
-                                {event.highlights.map((h, i) => (
-                                    <li key={i} className="flex gap-4 text-white/50 items-start group/li">
-                                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 shrink-0 shadow-[0_0_10px_var(--primary)]"></span>
-                                        <span className="text-lg font-medium group-hover/li:text-white transition-colors">{h}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-center gap-6">
-                        <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block">Institutional Impact</span>
-                        <p className="text-primary text-3xl font-bold leading-tight tracking-tight">
-                            {event.impact}
-                        </p>
-                    </div>
+                <div className="bg-white/[0.02] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-center gap-6">
+                  <span className="text-white/20 text-[0.6rem] uppercase tracking-[0.3em] font-black block">Institutional Impact</span>
+                  <p className="text-primary text-3xl font-bold leading-tight tracking-tight">
+                    {event.impact}
+                  </p>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -135,11 +223,11 @@
       return (
         <div className="group relative overflow-hidden bg-bg-card border border-white/5 rounded-[2.5rem] p-8 md:p-12 transition-all duration-700 hover:-translate-y-3 hover:border-primary/40 hover:shadow-[0_40px_100px_rgba(232,0,29,0.15)] flex flex-col items-center text-center gap-8">
           <div className="space-y-4">
-             <h3 className="text-4xl md:text-5xl font-heading font-black text-white tracking-tighter transition-colors group-hover:block transition-all">{event.title}</h3>
-             <p className="text-white/40 font-bold text-[0.7rem] uppercase tracking-[0.25em] italic max-w-[250px] mx-auto">{event.hook}</p>
+            <h3 className="text-4xl md:text-5xl font-heading font-black text-white tracking-tighter transition-colors group-hover:block transition-all">{event.title}</h3>
+            <p className="text-white/40 font-bold text-[0.7rem] uppercase tracking-[0.25em] italic max-w-[250px] mx-auto">{event.hook}</p>
           </div>
-          
-          <button 
+
+          <button
             onClick={() => onDetails(event)}
             className="px-10 py-5 rounded-2xl bg-white/5 border border-white/10 text-white text-[0.65rem] font-black uppercase tracking-[0.3em] hover:bg-primary hover:border-primary hover:scale-105 active:scale-95 transition-all duration-500 shadow-xl"
           >
@@ -159,9 +247,12 @@
             .from('events')
             .select('*')
             .order('created_at', { ascending: false });
-          
+
           if (!error && data && data.length > 0) {
-            setEvents(data);
+            const filteredFallback = FALLBACK_EVENTS.filter(
+              fb => !data.some(d => d.title.toLowerCase() === fb.title.toLowerCase())
+            );
+            setEvents([...data, ...filteredFallback]);
           } else {
             setEvents(FALLBACK_EVENTS);
           }
@@ -197,4 +288,5 @@
   <script src="main.js"></script>
   <script src="feedback.js" type="text/babel"></script>
 </body>
+
 </html>

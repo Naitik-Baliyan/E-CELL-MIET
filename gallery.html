@@ -129,7 +129,20 @@
       { id: 4, src: 'assets/events/event-4.jpeg' },
       { id: 5, src: 'assets/events/event-5.jpeg' },
       { id: 6, src: 'assets/events/event-6.jpeg' },
-      { id: 7, src: 'assets/events/event-10.jpeg' }
+      { id: 7, src: 'assets/events/event-7.jpeg' },
+      { id: 8, src: 'assets/events/event-8.jpeg' },
+      { id: 9, src: 'assets/events/event-9.jpeg' },
+      { id: 10, src: 'assets/events/event-10.jpeg' },
+      { id: 11, src: 'assets/events/event-11.jpeg' },
+      { id: 12, src: 'assets/events/event-12.jpeg' },
+      { id: 13, src: 'assets/events/event-13.jpeg' },
+      { id: 14, src: 'assets/events/event-14.jpeg' },
+      { id: 15, src: 'assets/events/event-15.jpeg' },
+      { id: 16, src: 'assets/events/event-16.jpeg' },
+      { id: 17, src: 'assets/events/event-17.jpeg' },
+      { id: 18, src: 'assets/events/event-18.jpeg' },
+      { id: 19, src: 'assets/events/event-19.jpeg' },
+      { id: 20, src: 'assets/events/event-20.jpeg' }
     ];
 
     function GalleryCard({ src, onClick, index }) {
@@ -211,7 +224,13 @@
             .order('created_at', { ascending: false });
           
           if (!error && data && data.length > 0) {
-            setImages(data.map(item => ({ id: item.id, src: item.url })));
+            const fetched = data.map(item => ({ id: item.id, src: item.url }));
+            const filteredFallback = FALLBACK_IMAGES.filter(
+              fb => !fetched.some(f => f.src.includes(fb.src.split('/').pop()))
+            );
+            setImages([...fetched, ...filteredFallback]);
+          } else {
+            setImages(FALLBACK_IMAGES);
           }
         }
         fetchImages();
