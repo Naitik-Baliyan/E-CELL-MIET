@@ -5,7 +5,9 @@
 
 const { useState, useEffect, useRef } = React;
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyed7dK1l3uGtd1tP1fzr2Yc0to5XnldKmhYKUYIhWy6U1TTgg8z48uBEQfPFOczXY/exec';
+const SUPABASE_URL = 'https://qrlpvpvkaiwaueajpkmz.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_oBu__impqaRKS3XMMK1BpQ_-r4zr7AG';
+const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
 function FeedbackModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -40,16 +42,20 @@ function FeedbackModal({ isOpen, onClose }) {
     setIsSubmitting(true);
     setError(null);
 
+    if (!supabaseClient) {
+      setError('Feedback system not fully connected.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const { error: submitError } = await supabaseClient
+        .from('feedback')
+        .insert([
+          { name: formData.name || 'Anonymous', feedback: formData.feedback }
+        ]);
+
+      if (submitError) throw submitError;
 
       setIsSubmitting(false);
       setIsSuccess(true);

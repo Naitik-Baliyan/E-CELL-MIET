@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard — E-Cell MIET</title>
-  
+
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+    rel="stylesheet">
 
   <style>
     body {
@@ -20,6 +23,7 @@
       position: relative;
       overflow-x: hidden;
     }
+
     body::before {
       content: "";
       position: absolute;
@@ -27,10 +31,11 @@
       right: -200px;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(232, 0, 29, 0.08) 0%, rgba(0,0,0,0) 80%);
+      background: radial-gradient(circle, rgba(232, 0, 29, 0.08) 0%, rgba(0, 0, 0, 0) 80%);
       z-index: 0;
       pointer-events: none;
     }
+
     body::after {
       content: "";
       position: absolute;
@@ -38,11 +43,15 @@
       left: -200px;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(232, 0, 29, 0.05) 0%, rgba(0,0,0,0) 80%);
+      background: radial-gradient(circle, rgba(232, 0, 29, 0.05) 0%, rgba(0, 0, 0, 0) 80%);
       z-index: 0;
       pointer-events: none;
     }
-    .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+    .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
     .bg-glass {
       background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(30px);
@@ -50,65 +59,93 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
     }
+
     .uploader-area {
       border: 2px dashed rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.01);
       backdrop-filter: blur(10px);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .uploader-area:hover {
       border-color: #e8001d;
       background: rgba(232, 0, 29, 0.04);
       transform: scale(1.01);
       box-shadow: 0 20px 40px rgba(232, 0, 29, 0.05);
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #e8001d 0%, #b20012 100%);
       box-shadow: 0 4px 20px rgba(232, 0, 29, 0.2);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .btn-primary:hover:not(:disabled) {
       transform: translateY(-2px) scale(1.01);
       box-shadow: 0 15px 30px rgba(232, 0, 29, 0.4);
     }
+
     .btn-primary:active:not(:disabled) {
       transform: translateY(1px);
     }
-    input, textarea {
+
+    input,
+    textarea {
       background: rgba(255, 255, 255, 0.02) !important;
       border: 1px solid rgba(255, 255, 255, 0.08) !important;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    input:focus, textarea:focus {
+
+    input:focus,
+    textarea:focus {
       border-color: rgba(232, 0, 29, 0.5) !important;
       box-shadow: 0 0 20px rgba(232, 0, 29, 0.1) !important;
       background: rgba(255, 255, 255, 0.04) !important;
     }
+
     .loading-spinner {
-      border: 3px solid rgba(255,255,255,0.1);
+      border: 3px solid rgba(255, 255, 255, 0.1);
       border-top: 3px solid #e8001d;
       border-radius: 50%;
       width: 20px;
       height: 20px;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
+
 <body class="text-white min-h-screen">
   <!-- Lock Screen Overlay -->
-  <div id="admin-lock-screen" class="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center p-6 transition-all duration-700">
-    <div class="max-w-md w-full bg-glass p-8 md:p-12 rounded-[2.5rem] border border-white/10 text-center space-y-8 shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
-      <div class="w-20 h-20 bg-primary/10 border border-white/10 rounded-full flex items-center justify-center text-3xl mx-auto animate-pulse">🔒</div>
+  <div id="admin-lock-screen"
+    class="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center p-6 transition-all duration-700">
+    <div
+      class="max-w-md w-full bg-glass p-8 md:p-12 rounded-[2.5rem] border border-white/10 text-center space-y-8 shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
+      <div
+        class="w-20 h-20 bg-primary/10 border border-white/10 rounded-full flex items-center justify-center text-3xl mx-auto animate-pulse">
+        🔒</div>
       <div>
         <h2 class="text-3xl font-heading font-black tracking-tighter text-white">Security Gateway</h2>
         <p class="text-white/40 text-sm mt-2">Enter administrative passcode to unlock.</p>
       </div>
       <div class="space-y-4">
-        <input type="password" id="admin-passcode-input" placeholder="••••••••" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center text-xl tracking-widest outline-none focus:border-[#e8001d] transition-all">
-        <button onclick="checkAdminPasscode()" class="w-full py-4 btn-primary rounded-2xl font-black uppercase tracking-[0.25em] text-xs">Unlock Console</button>
+        <input type="password" id="admin-passcode-input" placeholder="••••••••"
+          class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center text-xl tracking-widest outline-none focus:border-[#e8001d] transition-all">
+        <button onclick="checkAdminPasscode()"
+          class="w-full py-4 btn-primary rounded-2xl font-black uppercase tracking-[0.25em] text-xs">Unlock
+          Console</button>
       </div>
-      <p id="lock-error" class="text-red-500 text-xs font-bold uppercase tracking-wider hidden">Access Denied: Invalid Passcode</p>
+      <p id="lock-error" class="text-red-500 text-xs font-bold uppercase tracking-wider hidden">Access Denied: Invalid
+        Passcode</p>
     </div>
   </div>
 
@@ -124,9 +161,10 @@
 
   <main class="max-w-4xl mx-auto px-6 py-10 relative z-10">
     <header class="mb-12">
-      <h1 class="text-5xl md:text-7xl font-heading font-black tracking-tighter mb-4">Event <span class="text-[#e8001d]">Uploader</span></h1>
+      <h1 class="text-5xl md:text-7xl font-heading font-black tracking-tighter mb-4">Event <span
+          class="text-[#e8001d]">Uploader</span></h1>
       <p class="text-white/40 text-lg">Upload images from your phone or desktop. They'll be live instantly.</p>
-    </header>    <!-- Upload Section -->
+    </header> <!-- Upload Section -->
     <section class="bg-glass rounded-[2rem] p-8 md:p-12 mb-10">
       <h2 class="text-2xl font-heading font-bold mb-6">Gallery Uploader</h2>
       <div id="upload-status" class="hidden mb-6 p-4 rounded-xl text-sm font-medium"></div>
@@ -135,16 +173,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
             <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Event Name (Folder)</label>
-            <input type="text" id="event-name" placeholder="e.g., NOVA 2025" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+            <input type="text" id="event-name" placeholder="e.g., NOVA 2025"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
           </div>
           <div class="space-y-2">
             <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Short Caption</label>
-            <input type="text" id="event-caption" placeholder="e.g., Opening Ceremony" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+            <input type="text" id="event-caption" placeholder="e.g., Opening Ceremony"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
           </div>
         </div>
 
-        <div class="uploader-area rounded-[1.5rem] p-10 flex flex-col items-center justify-center gap-4 cursor-pointer" onclick="document.getElementById('file-input').click()">
-          <input type="file" id="file-input" class="hidden" accept="image/*" multiple onchange="handleFileSelect(event)">
+        <div class="uploader-area rounded-[1.5rem] p-10 flex flex-col items-center justify-center gap-4 cursor-pointer"
+          onclick="document.getElementById('file-input').click()">
+          <input type="file" id="file-input" class="hidden" accept="image/*" multiple
+            onchange="handleFileSelect(event)">
           <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center text-3xl">📸</div>
           <div class="text-center">
             <p class="font-bold text-xl">Select or Drop Images</p>
@@ -154,7 +196,8 @@
 
         <div id="file-preview" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8"></div>
 
-        <button id="upload-btn" onclick="startUpload()" disabled class="w-full btn-primary py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm disabled:opacity-30 disabled:cursor-not-allowed">
+        <button id="upload-btn" onclick="startUpload()" disabled
+          class="w-full btn-primary py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm disabled:opacity-30 disabled:cursor-not-allowed">
           Upload to Gallery
         </button>
       </div>
@@ -169,30 +212,37 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-2">
             <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Event Title</label>
-            <input type="text" id="new-event-title" placeholder="e.g., The Pitchathon" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+            <input type="text" id="new-event-title" placeholder="e.g., The Pitchathon"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
           </div>
           <div class="space-y-2">
             <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Hook Line</label>
-            <input type="text" id="new-event-hook" placeholder="e.g., 48 hours to transform raw vision..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+            <input type="text" id="new-event-hook" placeholder="e.g., 48 hours to transform raw vision..."
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
           </div>
         </div>
 
         <div class="space-y-2">
           <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Detailed Overview</label>
-          <textarea id="new-event-overview" rows="3" placeholder="Describe the event strategy and purpose..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors"></textarea>
+          <textarea id="new-event-overview" rows="3" placeholder="Describe the event strategy and purpose..."
+            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors"></textarea>
         </div>
 
         <div class="space-y-2">
-          <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Highlights (One per line)</label>
-          <textarea id="new-event-highlights" rows="3" placeholder="Highlight 1&#10;Highlight 2&#10;Highlight 3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors"></textarea>
+          <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Highlights (One per
+            line)</label>
+          <textarea id="new-event-highlights" rows="3" placeholder="Highlight 1&#10;Highlight 2&#10;Highlight 3"
+            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors"></textarea>
         </div>
 
         <div class="space-y-2">
           <label class="text-[0.65rem] uppercase tracking-widest font-black text-white/30">Impact Statement</label>
-          <input type="text" id="new-event-impact" placeholder="e.g., Facilitated 12 provisional patent filings..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
+          <input type="text" id="new-event-impact" placeholder="e.g., Facilitated 12 provisional patent filings..."
+            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#e8001d] transition-colors">
         </div>
 
-        <button onclick="saveEvent()" class="w-full btn-primary py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm">
+        <button onclick="saveEvent()"
+          class="w-full btn-primary py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm">
           Save Event Details
         </button>
       </div>
@@ -202,7 +252,8 @@
     <section>
       <div class="flex justify-between items-center mb-8">
         <h2 class="text-2xl font-heading font-bold">Gallery Archive</h2>
-        <button onclick="fetchExistingImages()" class="text-white/40 hover:text-[#e8001d] text-xs font-bold uppercase tracking-widest">Refresh</button>
+        <button onclick="fetchExistingImages()"
+          class="text-white/40 hover:text-[#e8001d] text-xs font-bold uppercase tracking-widest">Refresh</button>
       </div>
       <div id="recent-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         <!-- Loaded via JS -->
@@ -224,7 +275,7 @@
     function checkAdminPasscode() {
       const input = document.getElementById('admin-passcode-input').value;
       const error = document.getElementById('lock-error');
-      
+
       if (input === ADMIN_PASSCODE) {
         sessionStorage.setItem('admin_authorized', 'true');
         const lock = document.getElementById('admin-lock-screen');
@@ -300,7 +351,7 @@
 
       btn.disabled = true;
       btn.innerHTML = '<div class="flex items-center justify-center gap-3"><div class="loading-spinner"></div> Processing...</div>';
-      
+
       status.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-blue-500/10 text-blue-400 block';
       status.innerText = `Uploading ${selectedFiles.length} images... Please wait.`;
 
@@ -410,4 +461,5 @@
     fetchExistingImages();
   </script>
 </body>
+
 </html>
