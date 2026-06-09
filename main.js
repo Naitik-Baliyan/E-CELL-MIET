@@ -71,3 +71,75 @@ window.addEventListener('scroll', () => {
     header.style.background = 'var(--bg-glass)';
   }
 });
+
+// ─── STATS COUNTER ANIMATION ──────────────────────────────────────────────────
+const counters = document.querySelectorAll('.counter');
+const animationSpeed = 40; // The higher the number, the slower the animation
+
+const countObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = +counter.getAttribute('data-target');
+        
+        const updateCount = () => {
+          const count = +counter.innerText;
+          // Calculate increment based on target size to ensure they all finish around the same time
+          const inc = target / animationSpeed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 25);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        updateCount();
+        observer.unobserve(counter); // Only run once
+      }
+    });
+  },
+  { threshold: 0.5 } // Trigger when 50% visible
+);
+
+counters.forEach(counter => {
+  countObserver.observe(counter);
+});
+
+// ─── MODAL LOGIC ──────────────────────────────────────────────────────────────
+const modalBtns = document.querySelectorAll('.collab-cta');
+const modals = document.querySelectorAll('.modal-overlay');
+const closeBtns = document.querySelectorAll('.modal-close');
+
+modalBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modalId = btn.getAttribute('data-modal');
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+  });
+});
+
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const modal = e.target.closest('.modal-overlay');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  });
+});
+
+// Close modal when clicking outside the content
+modals.forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  });
+});

@@ -8,7 +8,9 @@
   <!-- We will link our CSS here later -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -27,7 +29,7 @@
         <li><a href="#events">Events</a></li>
       </ul>
     </nav>
-    <a href="#join" class="join-btn">Join the Cell</a>
+    <a href="#join" class="join-btn">Connect with us</a>
   </header>
 
   <main>
@@ -48,37 +50,28 @@
         <!-- RIGHT: Tagline + CTA -->
         <div class="hero-right">
           <p class="hero-tag">ENTREPRENEURSHIP CELL</p>
-          <h2 class="hero-tagline"><span class="tagline-intro">Igniting the</span><br><span class="tagline-serif">Entrepreneurial</span><br><span class="tagline-accent">Spark.</span></h2>
+          <h2 class="hero-tagline"><span class="tagline-intro">Igniting the</span><br><span
+              class="tagline-serif">Entrepreneurial</span><br><span class="tagline-accent">Spark.</span></h2>
           <div class="hero-stats">
-            <span>200+ <em>Members</em></span>
-            <span>30+ <em>Events</em></span>
-            <span>5+ <em>Startups</em></span>
-          </div>
-          <a href="#join" class="hero-cta-btn">Get Started &rarr;</a>
-        </div>
 
-      </div>
+            <a href="#join" class="hero-cta-btn">Know More &rarr;</a>
+          </div>
+
+        </div>
     </section>
 
     <!-- 3. ABOUT SECTION -->
     <section id="about">
       <div class="about-grid">
         <div class="about-left">
-          <p class="section-label">01 — Who We Are</p>
-          <h2 class="section-heading">Built by <span class="text-red">Students.</span><br>Built for <span class="text-red">Founders.</span></h2>
+          <h2 class="section-heading">What's <span class="text-red">E-Cell ?</span></h2>
         </div>
         <div class="about-right">
-          <p class="about-body">E-Cell MIET is a student-run initiative at Meerut Institute of Engineering & Technology, dedicated to building an innovation-driven culture on campus since 2022.</p>
-          <div class="about-cards">
-            <div class="about-card">
-              <h4>Our Mission</h4>
-              <p>Cultivate an entrepreneurial mindset and bridge the gap between ideas and execution.</p>
-            </div>
-            <div class="about-card">
-              <h4>Our Vision</h4>
-              <p>Be the leading hub for student startups and technological innovation in the region.</p>
-            </div>
-          </div>
+          <p class="about-body">E-Cell MIET helps the hustling startups and young professionals via dynamic workshops,
+            thought-provoking speaker sessions, high-stakes business plan competitions, and numerous other game-changing
+            initiatives throughout the year to create a crucible for innovation. We stand as pillars of support for
+            budding entrepreneurs, providing them with personalized guidance from experienced mentors, crucial funding
+            opportunities, and a robust network that can change the course of their journey forever!</p>
         </div>
       </div>
     </section>
@@ -87,83 +80,145 @@
     <div class="stats-bar">
       <div class="stats-bar-inner">
         <div class="stats-bar-item">
-          <span class="stats-bar-num">200<sup>+</sup></span>
+          <span class="stats-bar-num"><span class="counter" data-target="200">0</span><sup>+</sup></span>
           <span class="stats-bar-label">Active Members</span>
         </div>
         <div class="stats-divider"></div>
         <div class="stats-bar-item">
-          <span class="stats-bar-num">30<sup>+</sup></span>
+          <span class="stats-bar-num"><span class="counter" data-target="30">0</span><sup>+</sup></span>
           <span class="stats-bar-label">Events Hosted</span>
         </div>
         <div class="stats-divider"></div>
         <div class="stats-bar-item">
-          <span class="stats-bar-num">5<sup>+</sup></span>
+          <span class="stats-bar-num"><span class="counter" data-target="5">0</span><sup>+</sup></span>
           <span class="stats-bar-label">Startups Launched</span>
-        </div>
-        <div class="stats-divider"></div>
-        <div class="stats-bar-item">
-          <span class="stats-bar-num">2022</span>
-          <span class="stats-bar-label">Founded</span>
         </div>
       </div>
     </div>
 
-    <!-- 5. INITIATIVES -->
-    <section id="initiatives">
-      <p class="section-label">02 — What We Do</p>
-      <h2 class="section-heading">Our Core <span class="text-red">Initiatives</span></h2>
-      <div class="init-grid">
-        <article class="init-card">
-          <span class="init-num">01</span>
-          <h3>Incubation Support</h3>
-          <p>Workspace, seed funding access, and mentorship for early-stage student startups ready to scale.</p>
+    <!-- 5. COLLABORATIONS -->
+    <section id="collaborations">
+      <p class="section-label">Partnerships</p>
+      <h2 class="section-heading">Our <span class="text-red">Collaborations</span></h2>
+      <div class="collab-grid">
+        <article class="collab-card">
+          <div class="collab-img-wrapper">
+            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img">
+          </div>
+          <h3>MIET Incubation Forum</h3>
+          <p>Fostering entrepreneurship by providing incubation support, mentorship, and vital resources to transform innovative ideas into viable startups.</p>
+          <button class="collab-cta" data-modal="modal-mif">Know More &rarr;</button>
         </article>
-        <article class="init-card">
-          <span class="init-num">02</span>
-          <h3>Speaker Sessions</h3>
-          <p>Learn directly from industry leaders, successful alumni founders, and venture capitalists.</p>
-        </article>
-        <article class="init-card">
-          <span class="init-num">03</span>
-          <h3>Hackathons &amp; Pitch Fests</h3>
-          <p>Compete, build rapid prototypes, and pitch your ideas to real investors on a national stage.</p>
+        <article class="collab-card">
+          <div class="collab-logo">IIC</div>
+          <h3>Institution's Innovation Council</h3>
+          <p>An initiative by the Ministry of Education to systematically foster the culture of innovation and encourage creative problem solving among students.</p>
+          <button class="collab-cta" data-modal="modal-iic">Know More &rarr;</button>
         </article>
       </div>
     </section>
 
-    <!-- 6. CTA BAND -->
-    <section id="join" class="cta-band">
-      <div class="cta-band-inner">
-        <div>
-          <p class="section-label" style="color:rgba(255,255,255,0.5);">Ready?</p>
-          <h2>Build the Future<br>with <span class="text-red">E-Cell.</span></h2>
+    <!-- MODALS -->
+    <div class="modal-overlay" id="modal-mif">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div class="modal-header">
+          <div class="collab-img-wrapper">
+            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img">
+          </div>
+          <h3>MIET Incubation Forum (MIF)</h3>
         </div>
-        <div class="cta-band-actions">
-          <a href="#register" class="btn-white">Join the Cell &rarr;</a>
-          <a href="#about" class="btn-ghost">Learn More</a>
+        <div class="modal-body">
+          <p>The MIET Incubation Forum provides a comprehensive ecosystem for student entrepreneurs. It offers state-of-the-art workspace, mentorship from seasoned professionals, and access to seed funding networks.</p>
+          <p>By connecting students with industry experts and alumni founders, MIF acts as a catalyst for transforming raw ideas into market-ready businesses.</p>
         </div>
       </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-iic">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <div class="modal-header">
+          <div class="collab-logo">IIC</div>
+          <h3>Institution's Innovation Council (IIC)</h3>
+        </div>
+        <div class="modal-body">
+          <p>IIC is an initiative of the Ministry of Education (MoE) designed to systematically foster the culture of innovation in all Higher Education Institutions (HEIs).</p>
+          <p>The council organizes periodic workshops, seminars, and interactions with entrepreneurs to create a vibrant innovation ecosystem on campus.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. SPOTLIGHTS -->
+    <section id="spotlights">
+      <div class="spotlights-header">
+        <p class="section-label">Wall of Fame</p>
+        <h2 class="section-heading">Our <span class="text-red">Spotlights</span></h2>
+      </div>
+
+      <!-- Single scrolling track with all 8 images -->
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-left">
+          <img src="spotlight1.jpg" alt="" class="marquee-img">
+          <img src="spotlight2.jpg" alt="" class="marquee-img">
+          <img src="spotlight3.jpg" alt="" class="marquee-img">
+          <img src="spotlight4.jpg" alt="" class="marquee-img">
+          <img src="spotlight5.jpg" alt="" class="marquee-img">
+          <img src="spotlight6.jpg" alt="" class="marquee-img">
+          <img src="spotlight7.jpg" alt="" class="marquee-img">
+          <img src="spotlight8.jpg" alt="" class="marquee-img">
+          <!-- Duplicate for seamless loop -->
+          <img src="spotlight1.jpg" alt="" class="marquee-img">
+          <img src="spotlight2.jpg" alt="" class="marquee-img">
+          <img src="spotlight3.jpg" alt="" class="marquee-img">
+          <img src="spotlight4.jpg" alt="" class="marquee-img">
+          <img src="spotlight5.jpg" alt="" class="marquee-img">
+          <img src="spotlight6.jpg" alt="" class="marquee-img">
+          <img src="spotlight7.jpg" alt="" class="marquee-img">
+          <img src="spotlight8.jpg" alt="" class="marquee-img">
+        </div>
+      </div>
+
     </section>
 
   </main>
 
   <!-- 7. FOOTER -->
   <footer>
-    <div class="footer-top">
+
+    <!-- Top accent bar -->
+    <div class="footer-accent"></div>
+
+    <div class="footer-main">
+
+      <!-- Brand column -->
       <div class="footer-brand">
-        <h3>E-CELL<br><span>MIET</span></h3>
-        <p>Meerut Institute of Engineering<br>and Technology, Meerut.</p>
+        <div class="footer-logo-row">
+          <img src="logo.jpg" alt="E-Cell MIET Logo" class="footer-logo-img">
+          <div class="footer-logo-text">
+            <span class="footer-logo-name">E-Cell MIET</span>
+            <span class="footer-logo-sub">Entrepreneurship Cell of MIET</span>
+          </div>
+        </div>
+        <p class="footer-tagline">Igniting the entrepreneurial spark<br>at Meerut Institute of Engineering<br>& Technology.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social-btn" aria-label="LinkedIn">in</a>
+          <a href="#" class="footer-social-btn" aria-label="Instagram">&#9632;</a>
+          <a href="#" class="footer-social-btn" aria-label="Twitter">&#10005;</a>
+        </div>
       </div>
+
+      <!-- Links columns -->
       <div class="footer-links">
         <div class="footer-col">
           <h5>Navigate</h5>
           <a href="#home">Home</a>
           <a href="#about">About</a>
-          <a href="#initiatives">Initiatives</a>
-          <a href="#join">Join</a>
+          <a href="#collaborations">Collaborations</a>
+          <a href="#spotlights">Spotlights</a>
         </div>
         <div class="footer-col">
-          <h5>Connect</h5>
+          <h5>Follow Us</h5>
           <a href="#">LinkedIn</a>
           <a href="#">Instagram</a>
           <a href="#">Twitter / X</a>
@@ -172,15 +227,21 @@
           <h5>Contact</h5>
           <a href="mailto:ecell.miet@miet.ac.in">ecell.miet@miet.ac.in</a>
           <a href="#">MIET Campus, Meerut</a>
+          <a href="#">UP — 250005</a>
         </div>
       </div>
+
     </div>
+
+    <!-- Bottom bar -->
     <div class="footer-bottom">
-      <p>&copy; 2026 E-Cell MIET. All rights reserved.</p>
+      <p>&copy; 2026 E-Cell MIET &mdash; All rights reserved.</p>
       <p>Engineered for Innovation.</p>
     </div>
+
   </footer>
 
   <script src="main.js"></script>
 </body>
+
 </html>
