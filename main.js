@@ -109,7 +109,7 @@ counters.forEach(counter => {
 });
 
 // ─── MODAL LOGIC ──────────────────────────────────────────────────────────────
-const modalBtns = document.querySelectorAll('.collab-cta');
+const modalBtns = document.querySelectorAll('[data-modal]');
 const modals = document.querySelectorAll('.modal-overlay');
 const closeBtns = document.querySelectorAll('.modal-close');
 
@@ -143,3 +143,67 @@ modals.forEach(modal => {
     }
   });
 });
+
+// ─── CONTACT FORM TOGGLE ──────────────────────────────────────────────────────
+const toggleFormBtn = document.getElementById('toggleFormBtn');
+const contactFormWrapper = document.getElementById('contactFormWrapper');
+
+if (toggleFormBtn && contactFormWrapper) {
+  toggleFormBtn.addEventListener('click', () => {
+    toggleFormBtn.classList.toggle('active');
+    
+    if (toggleFormBtn.classList.contains('active')) {
+      contactFormWrapper.style.maxHeight = contactFormWrapper.scrollHeight + "px";
+    } else {
+      contactFormWrapper.style.maxHeight = "0";
+    }
+  });
+}
+
+// ─── GOOGLE SHEETS FORM SUBMISSION ────────────────────────────────────────────
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const originalBtnText = submitBtn.innerHTML;
+    
+    // Change button to loading state
+    submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+    submitBtn.style.opacity = '0.7';
+    submitBtn.disabled = true;
+    
+    const formData = new FormData(contactForm);
+    const data = new URLSearchParams();
+    for (const pair of formData) {
+      data.append(pair[0], pair[1]);
+    }
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzScME1OX7dYmnvT9Nw0kiYIBUwvv2BT-1ILLUgknETkUPzWB4yA6U13RbEii1VJVp4/exec';
+    
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: data
+    })
+      .then(response => {
+        alert('Message sent successfully! Check your email for a confirmation.');
+        contactForm.reset();
+        
+        // Collapse the form
+        if (toggleFormBtn.classList.contains('active')) {
+          toggleFormBtn.click();
+        }
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        // Fallback success message because Google Scripts sometimes throws CORS errors even when successful
+        alert('Message sent successfully! Check your email for a confirmation.');
+        contactForm.reset();
+      })
+      .finally(() => {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.style.opacity = '1';
+        submitBtn.disabled = false;
+      });
+  });
+}

@@ -30,7 +30,7 @@
         <li><a href="#spotlights">Spotlights</a></li>
       </ul>
     </nav>
-    <a href="#contact" class="join-btn">Connect with us</a>
+    <button data-modal="modal-connect" class="join-btn" style="border:none; cursor:pointer;">Connect with us</button>
   </header>
 
   <main>
@@ -107,13 +107,15 @@
             <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img">
           </div>
           <h3>MIET Incubation Forum</h3>
-          <p>Fostering entrepreneurship by providing incubation support, mentorship, and vital resources to transform innovative ideas into viable startups.</p>
+          <p>Fostering entrepreneurship by providing incubation support, mentorship, and vital resources to transform
+            innovative ideas into viable startups.</p>
           <button class="collab-cta" data-modal="modal-mif">Know More &rarr;</button>
         </article>
         <article class="collab-card">
           <div class="collab-logo">IIC</div>
           <h3>Institution's Innovation Council</h3>
-          <p>An initiative by the Ministry of Education to systematically foster the culture of innovation and encourage creative problem solving among students.</p>
+          <p>An initiative by the Ministry of Education to systematically foster the culture of innovation and encourage
+            creative problem solving among students.</p>
           <button class="collab-cta" data-modal="modal-iic">Know More &rarr;</button>
         </article>
       </div>
@@ -130,8 +132,10 @@
           <h3>MIET Incubation Forum (MIF)</h3>
         </div>
         <div class="modal-body">
-          <p>The MIET Incubation Forum provides a comprehensive ecosystem for student entrepreneurs. It offers state-of-the-art workspace, mentorship from seasoned professionals, and access to seed funding networks.</p>
-          <p>By connecting students with industry experts and alumni founders, MIF acts as a catalyst for transforming raw ideas into market-ready businesses.</p>
+          <p>The MIET Incubation Forum provides a comprehensive ecosystem for student entrepreneurs. It offers
+            state-of-the-art workspace, mentorship from seasoned professionals, and access to seed funding networks.</p>
+          <p>By connecting students with industry experts and alumni founders, MIF acts as a catalyst for transforming
+            raw ideas into market-ready businesses.</p>
         </div>
       </div>
     </div>
@@ -144,8 +148,86 @@
           <h3>Institution's Innovation Council (IIC)</h3>
         </div>
         <div class="modal-body">
-          <p>IIC is an initiative of the Ministry of Education (MoE) designed to systematically foster the culture of innovation in all Higher Education Institutions (HEIs).</p>
-          <p>The council organizes periodic workshops, seminars, and interactions with entrepreneurs to create a vibrant innovation ecosystem on campus.</p>
+          <p>IIC is an initiative of the Ministry of Education (MoE) designed to systematically foster the culture of
+            innovation in all Higher Education Institutions (HEIs).</p>
+          <p>The council organizes periodic workshops, seminars, and interactions with entrepreneurs to create a vibrant
+            innovation ecosystem on campus.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-connect">
+      <div class="modal-content modal-connect-content">
+        <button class="modal-close">&times;</button>
+        <div class="modal-header">
+          <h3 style="margin-top: 0;">Let's Connect</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Reach out to us on our socials or
+            drop a message directly!</p>
+        </div>
+        <div class="modal-body connect-modal-body">
+          <div class="connect-socials">
+            <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer"
+              class="connect-social-card">
+              <i class="fa-brands fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
+              rel="noopener noreferrer" class="connect-social-card">
+              <i class="fa-brands fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer"
+              class="connect-social-card">
+              <i class="fa-brands fa-x-twitter"></i>
+              <span>X (Twitter)</span>
+            </a>
+            <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer" class="connect-social-card">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="connect-form-section">
+            <button class="toggle-form-btn" id="toggleFormBtn">
+              <span>Message Us Directly</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="contact-form-wrapper" id="contactFormWrapper">
+              <form id="contactForm" class="custom-contact-form">
+                <div class="form-group">
+                  <label for="c-name">Name</label>
+                  <input type="text" id="c-name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="c-email">Email</label>
+                  <input type="email" id="c-email" name="email" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="c-year">Year</label>
+                    <select id="c-year" name="year" required>
+                      <option value="" disabled selected>Select Year</option>
+                      <option value="1">1st Year</option>
+                      <option value="2">2nd Year</option>
+                      <option value="3">3rd Year</option>
+                      <option value="4">4th Year</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="c-course">Course</label>
+                    <input type="text" id="c-course" name="course" placeholder="e.g. B.Tech CSE" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="c-message">Feedback / Message</label>
+                  <textarea id="c-message" name="message" rows="4" placeholder="How can we help you?"
+                    required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -201,12 +283,18 @@
             <span class="footer-logo-sub">Entrepreneurship Cell of MIET</span>
           </div>
         </div>
-        <p class="footer-tagline">Igniting the entrepreneurial spark<br>at Meerut Institute of Engineering<br>& Technology.</p>
+        <p class="footer-tagline">Igniting the entrepreneurial spark<br>at Meerut Institute of Engineering<br>&
+          Technology.</p>
         <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer"
+            class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
+            rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer"
+            class="footer-social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer" class="footer-social-btn"
+            aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
       </div>
 
@@ -222,9 +310,11 @@
         <div class="footer-col">
           <h5>Follow Us</h5>
           <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer">Twitter / X</a>
-          <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
+            rel="noopener noreferrer">Instagram</a>
+          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank"
+            rel="noopener noreferrer">Twitter / X</a>
+          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
         <div class="footer-col">
           <h5>Contact</h5>
