@@ -207,3 +207,60 @@ if (contactForm) {
       });
   });
 }
+
+// ─── GALLERY LIGHTBOX ──────────────────────────────────────────────────────────
+const galleryItems = document.querySelectorAll('.gallery-item');
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+if (lightboxModal && galleryItems.length > 0) {
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('.gallery-img');
+      if (img) {
+        lightboxImg.src = img.src;
+        lightboxModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  const closeLightbox = () => {
+    lightboxModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    setTimeout(() => { lightboxImg.src = ''; }, 400); // Clear image after transition
+  };
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+  
+  lightboxModal.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+}
+
+// ─── GALLERY RANDOMIZER ──────────────────────────────────────────────────────
+// Randomizes the order of images in the gallery grid on every page load
+const galleryGrid = document.getElementById('galleryGrid');
+if (galleryGrid) {
+  const items = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+  if (items.length > 0) {
+    // Fisher-Yates shuffle algorithm
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    // Re-append items in random order
+    items.forEach(item => galleryGrid.appendChild(item));
+  }
+}
