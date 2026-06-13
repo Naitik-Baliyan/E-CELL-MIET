@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | E-Cell MIET</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- 1. HEADER / NAVIGATION -->
+  <header>
+    <a href="index.html#home" class="logo">
+      <img src="logo.jpg" alt="E-Cell MIET Logo" class="logo-img">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#collaborations">Collaborations</a></li>
+        <li><a href="index.html#spotlights">Spotlights</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+      </ul>
+    </nav>
+    <button data-modal="modal-connect" class="join-btn" style="border:none; cursor:pointer;">Connect with us</button>
+  </header>
+
+  <main>
+    <!-- 2. GALLERY HERO SECTION -->
+    <section class="gallery-hero">
+      <div class="gallery-hero-content">
+        <h1 class="gallery-moments-heading">E-CELL MOMENTS</h1>
+        <p class="gallery-moments-tagline">Explore memorable moments from our annual E-Summit event, where aspiring entrepreneurs, industry experts, and innovators come together to inspire and learn.</p>
+      </div>
+    </section>
+
+    <!-- 3. GALLERY CONTROLS & FILTER -->
+    <section class="gallery-section">
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All Photos</button>
+        <button class="filter-btn" data-filter="workshops">Workshops</button>
+        <button class="filter-btn" data-filter="sessions">Speaker Sessions</button>
+        <button class="filter-btn" data-filter="hackathons">Hackathons</button>
+      </div>
+
+      <!-- 4. GALLERY GRID -->
+      <div class="gallery-grid" id="galleryGrid">
+        
+        <!-- Spotlight 1 -->
+        <div class="gallery-item" data-category="workshops">
+          <div class="gallery-item-inner">
+            <img src="spotlight1.jpg" alt="Orientation Ceremony 2023" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Workshop</span>
+              <h3 class="gallery-item-title">Orientation Ceremony</h3>
+              <p class="gallery-item-desc">Welcoming the new batch of creative minds and future entrepreneurs to E-Cell.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Sept 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 2 -->
+        <div class="gallery-item" data-category="sessions">
+          <div class="gallery-item-inner">
+            <img src="spotlight2.jpg" alt="E-Summit '24 Keynote" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Speaker Session</span>
+              <h3 class="gallery-item-title">E-Summit '24 Keynote</h3>
+              <p class="gallery-item-desc">Industry leaders sharing insights on emerging tech trends and startup ecosystems.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Mar 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 3 -->
+        <div class="gallery-item" data-category="hackathons">
+          <div class="gallery-item-inner">
+            <img src="spotlight3.jpg" alt="Innovate Meerut Hackathon" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Hackathon</span>
+              <h3 class="gallery-item-title">Innovate Meerut</h3>
+              <p class="gallery-item-desc">A 36-hour intense coding and product design sprint for solving local problems.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Dec 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 4 -->
+        <div class="gallery-item" data-category="workshops">
+          <div class="gallery-item-inner">
+            <img src="spotlight4.jpg" alt="Bootcamp: Pitching 101" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Workshop</span>
+              <h3 class="gallery-item-title">Bootcamp: Pitching 101</h3>
+              <p class="gallery-item-desc">Interactive workshop teaching students how to craft compelling elevator pitches.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Oct 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 5 -->
+        <div class="gallery-item" data-category="sessions">
+          <div class="gallery-item-inner">
+            <img src="spotlight5.jpg" alt="Founder's Talk Series" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Speaker Session</span>
+              <h3 class="gallery-item-title">Founder's Talk Series</h3>
+              <p class="gallery-item-desc">Alumni startup founders sharing their journey from college project to funding.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Nov 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 6 -->
+        <div class="gallery-item" data-category="hackathons">
+          <div class="gallery-item-inner">
+            <img src="spotlight6.jpg" alt="Smart India Hackathon Internal" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Hackathon</span>
+              <h3 class="gallery-item-title">SIH Internal Hackathon</h3>
+              <p class="gallery-item-desc">Selecting the best teams to represent MIET at the national grand finale.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Sept 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 7 -->
+        <div class="gallery-item" data-category="workshops">
+          <div class="gallery-item-inner">
+            <img src="spotlight7.jpg" alt="Design Thinking Workshop" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Workshop</span>
+              <h3 class="gallery-item-title">Design Thinking</h3>
+              <p class="gallery-item-desc">Hands-on session on prototype designing, wireframing, and user testing.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Jan 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spotlight 8 -->
+        <div class="gallery-item" data-category="workshops">
+          <div class="gallery-item-inner">
+            <img src="spotlight8.jpg" alt="Ideation Bootcamp" class="gallery-img">
+            <div class="gallery-overlay">
+              <span class="gallery-item-tag">Workshop</span>
+              <h3 class="gallery-item-title">Ideation Bootcamp</h3>
+              <p class="gallery-item-desc">Guiding young students to refine raw ideas into viable business models.</p>
+              <span class="gallery-item-date"><i class="fa-regular fa-calendar"></i> Feb 2024</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- CONNECT MODAL -->
+  <div class="modal-overlay" id="modal-connect">
+    <div class="modal-content modal-connect-content">
+      <button class="modal-close">&times;</button>
+      <div class="modal-header">
+        <h3 style="margin-top: 0;">Let's Connect</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Reach out to us on our socials or
+          drop a message directly!</p>
+      </div>
+      <div class="modal-body connect-modal-body">
+        <div class="connect-socials">
+          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer"
+            class="connect-social-card">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
+            rel="noopener noreferrer" class="connect-social-card">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer"
+            class="connect-social-card">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span>X (Twitter)</span>
+          </a>
+          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer" class="connect-social-card">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="connect-form-section">
+          <button class="toggle-form-btn" id="toggleFormBtn">
+            <span>Message Us Directly</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="contact-form-wrapper" id="contactFormWrapper">
+            <form id="contactForm" class="custom-contact-form">
+              <div class="form-group">
+                <label for="c-name">Name</label>
+                <input type="text" id="c-name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="c-email">Email</label>
+                <input type="email" id="c-email" name="email" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="c-year">Year</label>
+                  <select id="c-year" name="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="c-course">Course</label>
+                  <input type="text" id="c-course" name="course" placeholder="e.g. B.Tech CSE" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-message">Feedback / Message</label>
+                <textarea id="c-message" name="message" rows="4" placeholder="How can we help you?"
+                  required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FOOTER -->
+  <footer id="contact">
+    <div class="footer-accent"></div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <img src="logo.jpg" alt="E-Cell MIET Logo" class="footer-logo-img">
+          <div class="footer-logo-text">
+            <span class="footer-logo-name">E-Cell MIET</span>
+            <span class="footer-logo-sub">Entrepreneurship Cell of MIET</span>
+          </div>
+        </div>
+        <p class="footer-tagline">Igniting the entrepreneurial spark<br>at Meerut Institute of Engineering<br>& Technology.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer"
+            class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
+            rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer"
+            class="footer-social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer" class="footer-social-btn"
+            aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <a href="index.html#home">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#collaborations">Collaborations</a>
+          <a href="index.html#spotlights">Spotlights</a>
+          <a href="gallery.html" class="active">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h5>Follow Us</h5>
+          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
+            rel="noopener noreferrer">Instagram</a>
+          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank"
+            rel="noopener noreferrer">Twitter / X</a>
+          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="mailto:ecell.miet@miet.ac.in">ecell.miet@miet.ac.in</a>
+          <a href="#">MIET Campus, Meerut</a>
+          <a href="#">UP — 250005</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 E-Cell MIET &mdash; All rights reserved.</p>
+      <p>Engineered for Innovation.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="gallery.js"></script>
+</body>
+
+</html>
