@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-Cell MIET</title>
-  <!-- We will link our CSS here later -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -17,7 +17,7 @@
 
 <body>
 
-  <!-- 1. HEADER / NAVIGATION -->
+
   <header>
     <a href="#home" class="logo">
       <img src="logo.jpg" alt="E-Cell MIET Logo" class="logo-img">
@@ -25,44 +25,64 @@
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#collaborations">Collaborations</a></li>
+        <li><a href="#spotlights">Spotlights</a></li>
         <li><a href="gallery.html">Gallery</a></li>
       </ul>
     </nav>
-    <button data-modal="modal-connect" class="join-btn" style="border:none; cursor:pointer;">Connect with us</button>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <button data-modal="modal-connect" class="join-btn">Connect with us</button>
   </header>
 
-  <main>
-    <!-- 2. HERO SECTION (First impression) -->
-    <section id="home">
-      <!-- Animated Wave Canvas -->
-      <canvas id="wave-canvas"></canvas>
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav-panel">
+    <button class="mobile-nav-close">&times;</button>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="#collaborations">Collaborations</a></li>
+      <li><a href="#spotlights">Spotlights</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <button data-modal="modal-connect" class="join-btn">Connect with us</button>
+  </div>
 
-      <!-- Two-Column Hero Overlay -->
+  <main>
+    
+    <section id="home">
+      
+
+
+      
       <div class="hero-content">
 
-        <!-- LEFT: Giant Brand Name -->
-        <div class="hero-left">
+        
+        <div class="hero-left parallax" data-depth="0.1">
           <p class="hero-since">Est. 2022</p>
-          <h1 class="hero-brand"><span class="brand-solid">E-CELL</span><span class="brand-outline">MIET</span></h1>
+          <h1 class="hero-brand"><span class="brand-solid">E-CELL</span><span class="brand-accent">MIET</span></h1>
         </div>
 
-        <!-- RIGHT: Tagline + CTA -->
-        <div class="hero-right">
+        
+        <div class="hero-right parallax" data-depth="0.08">
           <p class="hero-tag">ENTREPRENEURSHIP CELL</p>
           <h2 class="hero-tagline"><span class="tagline-intro">Igniting the</span><br><span
               class="tagline-serif">Entrepreneurial</span><br><span class="tagline-accent">Spark.</span></h2>
           <div class="hero-stats">
 
-            <a href="#join" class="hero-cta-btn">Know More &rarr;</a>
+          <a href="#join" class="hero-cta-btn">Know More &rarr;</a>
           </div>
 
         </div>
     </section>
 
-    <!-- 3. ABOUT SECTION -->
-    <section id="about">
-      <div class="about-grid">
+    
+    <section id="about" class="reveal">
+      <div class="about-grid parallax" data-depth="0.06">
         <div class="about-left">
           <h2 class="section-heading">What's <span class="text-red">E-Cell ?</span></h2>
         </div>
@@ -76,9 +96,9 @@
       </div>
     </section>
 
-    <!-- 4. STATS BAR -->
-    <div class="stats-bar">
-      <div class="stats-bar-inner">
+    
+    <div class="stats-bar reveal">
+      <div class="stats-bar-inner parallax" data-depth="0.04">
         <div class="stats-bar-item">
           <span class="stats-bar-num"><span class="counter" data-target="200">0</span><sup>+</sup></span>
           <span class="stats-bar-label">Active Members</span>
@@ -96,14 +116,14 @@
       </div>
     </div>
 
-    <!-- 5. COLLABORATIONS -->
-    <section id="collaborations">
+    
+    <section id="collaborations" class="reveal">
       <p class="section-label">Partnerships</p>
       <h2 class="section-heading">Our <span class="text-red">Collaborations</span></h2>
-      <div class="collab-grid">
+      <div class="collab-grid reveal-stagger parallax" data-depth="0.07">
         <article class="collab-card">
           <div class="collab-img-wrapper">
-            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img">
+            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img" loading="lazy">
           </div>
           <h3>MIET Incubation Forum</h3>
           <p>Fostering entrepreneurship by providing incubation support, mentorship, and vital resources to transform
@@ -120,13 +140,13 @@
       </div>
     </section>
 
-    <!-- MODALS -->
+    
     <div class="modal-overlay" id="modal-mif">
       <div class="modal-content">
         <button class="modal-close">&times;</button>
         <div class="modal-header">
           <div class="collab-img-wrapper">
-            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img">
+            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" loading="lazy" class="collab-logo-img">
           </div>
           <h3>MIET Incubation Forum (MIF)</h3>
         </div>
@@ -232,33 +252,33 @@
       </div>
     </div>
 
-    <!-- 6. SPOTLIGHTS -->
-    <section id="spotlights">
-      <div class="spotlights-header">
+    
+    <section id="spotlights" class="reveal">
+      <div class="spotlights-header parallax" data-depth="0.06">
         <p class="section-label">Wall of Fame</p>
         <h2 class="section-heading">Our <span class="text-red">Spotlights</span></h2>
       </div>
 
-      <!-- Single scrolling track with all 8 images -->
+      
       <div class="marquee-track">
         <div class="marquee-inner marquee-left">
-          <img src="spotlight1.jpg" alt="" class="marquee-img">
-          <img src="spotlight2.jpg" alt="" class="marquee-img">
-          <img src="spotlight3.jpg" alt="" class="marquee-img">
-          <img src="spotlight4.jpg" alt="" class="marquee-img">
-          <img src="spotlight5.jpg" alt="" class="marquee-img">
-          <img src="spotlight6.jpg" alt="" class="marquee-img">
-          <img src="spotlight7.jpg" alt="" class="marquee-img">
-          <img src="spotlight8.jpg" alt="" class="marquee-img">
-          <!-- Duplicate for seamless loop -->
-          <img src="spotlight1.jpg" alt="" class="marquee-img">
-          <img src="spotlight2.jpg" alt="" class="marquee-img">
-          <img src="spotlight3.jpg" alt="" class="marquee-img">
-          <img src="spotlight4.jpg" alt="" class="marquee-img">
-          <img src="spotlight5.jpg" alt="" class="marquee-img">
-          <img src="spotlight6.jpg" alt="" class="marquee-img">
-          <img src="spotlight7.jpg" alt="" class="marquee-img">
-          <img src="spotlight8.jpg" alt="" class="marquee-img">
+          <img src="spotlight1.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight2.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight3.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight4.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight5.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight6.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight7.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight8.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          
+          <img src="spotlight1.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight2.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight3.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight4.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight5.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight6.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight7.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
+          <img src="spotlight8.jpg" alt="" class="marquee-img lazy-blur" loading="lazy">
         </div>
       </div>
 
@@ -266,18 +286,14 @@
 
   </main>
 
-  <!-- 7. FOOTER -->
+  
   <footer id="contact">
-
-    <!-- Top accent bar -->
-    <div class="footer-accent"></div>
-
     <div class="footer-main">
 
-      <!-- Brand column -->
+      
       <div class="footer-brand">
         <div class="footer-logo-row">
-          <img src="logo.jpg" alt="E-Cell MIET Logo" class="footer-logo-img">
+          <img src="logo.jpg" alt="E-Cell MIET Logo" loading="lazy" class="footer-logo-img">
           <div class="footer-logo-text">
             <span class="footer-logo-name">E-Cell MIET</span>
             <span class="footer-logo-sub">Entrepreneurship Cell of MIET</span>
@@ -298,14 +314,14 @@
         </div>
       </div>
 
-      <!-- Links columns -->
+      
       <div class="footer-links">
         <div class="footer-col">
           <h5>Navigate</h5>
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#collaborations">Collaborations</a>
-          <a href="#spotlights">Spotlights</a>
+          <a href="index.html#home">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="index.html#collaborations">Collaborations</a>
+          <a href="index.html#spotlights">Spotlights</a>
           <a href="gallery.html">Gallery</a>
         </div>
         <div class="footer-col">
@@ -328,7 +344,7 @@
 
     </div>
 
-    <!-- Bottom bar -->
+    
     <div class="footer-bottom">
       <p>&copy; 2026 E-Cell MIET &mdash; All rights reserved.</p>
       <p>Engineered for Innovation.</p>
@@ -336,7 +352,10 @@
 
   </footer>
 
+  <div class="page-transition" id="pageTransition"></div>
   <script src="main.js"></script>
 </body>
 
 </html>
+
+

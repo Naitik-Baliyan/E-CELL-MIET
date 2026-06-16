@@ -1,66 +1,3 @@
-// ─── WAVE CANVAS ANIMATION ───────────────────────────────────────────────────
-(function () {
-  const canvas = document.getElementById('wave-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  // Resize canvas to fill viewport
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  // Wave configuration — E-Cell brand palette
-  // Red, crimson, orange-red, rose — all cohesive with the brand primary #f41f48
-  const waves = [
-    { color: '#f41f48', amplitude: 160, frequency: 0.006, speed: 0.012, offsetY: 0.52, lines: 30, spread: 3.5 },   // Brand red
-    { color: '#ff6030', amplitude: 130, frequency: 0.007, speed: 0.009, offsetY: 0.48, lines: 25, spread: 3.2 },   // Orange-red
-    { color: '#c0143c', amplitude: 180, frequency: 0.005, speed: 0.015, offsetY: 0.55, lines: 28, spread: 4.0 },   // Deep crimson
-    { color: '#ff2d6b', amplitude: 110, frequency: 0.008, speed: 0.010, offsetY: 0.45, lines: 20, spread: 2.8 },   // Rose-red
-  ];
-
-  let tick = 0;
-
-  function drawWave(wave) {
-    const { color, amplitude, frequency, speed, offsetY, lines, spread } = wave;
-
-    for (let i = 0; i < lines; i++) {
-      const alpha = (1 - i / lines) * 0.55 + 0.05;  // Fade towards edges
-      ctx.beginPath();
-      ctx.strokeStyle = color;
-      ctx.globalAlpha = alpha;
-      ctx.lineWidth = 0.8;
-
-      const yBase = canvas.height * offsetY + (i - lines / 2) * spread;
-      const phaseShift = i * 0.12;
-
-      for (let x = 0; x <= canvas.width; x += 2) {
-        const y = yBase + Math.sin((x * frequency) + tick * speed + phaseShift) * amplitude
-                        + Math.sin((x * frequency * 0.5) + tick * speed * 0.7 + phaseShift) * (amplitude * 0.4);
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-
-      ctx.stroke();
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.globalAlpha = 1;
-
-    waves.forEach(drawWave);
-
-    ctx.globalAlpha = 1;
-    tick++;
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-})();
-
 // ─── HEADER SCROLL ───────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
@@ -252,7 +189,7 @@ if (lightboxModal && galleryItems.length > 0) {
 // ─── GALLERY RANDOMIZER ──────────────────────────────────────────────────────
 // Randomizes the order of images in the gallery grid on every page load
 const galleryGrid = document.getElementById('galleryGrid');
-if (galleryGrid) {
+  if (galleryGrid) {
   const items = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
   if (items.length > 0) {
     // Fisher-Yates shuffle algorithm
@@ -264,3 +201,184 @@ if (galleryGrid) {
     items.forEach(item => galleryGrid.appendChild(item));
   }
 }
+
+// ─── MOBILE NAV TOGGLE ──────────────────────────────────────────────────────
+(function() {
+  const hamburger = document.querySelector('.hamburger');
+  const overlay = document.querySelector('.mobile-nav-overlay');
+  const panel = document.querySelector('.mobile-nav-panel');
+  const closeBtn = document.querySelector('.mobile-nav-close');
+  if (!hamburger || !overlay || !panel) return;
+
+  const open = () => {
+    hamburger.classList.add('active');
+    overlay.classList.add('open');
+    panel.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    hamburger.classList.remove('active');
+    overlay.classList.remove('open');
+    panel.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  hamburger.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', close);
+
+  // Close on link click inside panel
+  panel.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', close);
+  });
+})();
+
+// ─── SMOOTH PAGE TRANSITIONS ────────────────────────────────────────────────
+(function() {
+  const overlay = document.getElementById('pageTransition');
+  if (!overlay) return;
+
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
+
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      overlay.classList.add('active');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 350);
+    });
+  });
+
+  window.addEventListener('pageshow', () => {
+    overlay.classList.remove('active');
+  });
+})();
+
+// ─── SCROLL REVEAL ──────────────────────────────────────────────────────────
+(function() {
+  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach(el => obs.observe(el));
+})();
+
+// ─── LAZY BLUR IMAGES ──────────────────────────────────────────────────────
+document.querySelectorAll('.lazy-blur').forEach(img => {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => img.classList.add('loaded'));
+  }
+});
+
+// ─── 3D TILT CARDS ─────────────────────────────────────────────────────────
+(function () {
+  document.querySelectorAll('.collab-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / centerY * -8;
+      const rotateY = (x - centerX) / centerX * 8;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      card.style.setProperty('--glow-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--glow-y', `${(y / rect.height) * 100}%`);
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  });
+})();
+
+// ─── HERO 3D DEPTH TILT ───────────────────────────────────────────────────────
+(function () {
+  const hero = document.getElementById('home');
+  if (!hero) return;
+  const content = hero.querySelector('.hero-content');
+  if (!content) return;
+
+  hero.addEventListener('mousemove', e => {
+    content.style.transition = 'none';
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const rotateX = (y - 0.5) * -3;
+    const rotateY = (x - 0.5) * 3;
+    content.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    content.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    content.style.transform = 'rotateX(0) rotateY(0)';
+  });
+})();
+
+// ─── SITE-WIDE MOUSE PARALLAX ──────────────────────────────────────────────────
+(function () {
+  const els = document.querySelectorAll('.parallax');
+  if (!els.length) return;
+
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+    els.forEach(el => {
+      const depth = parseFloat(el.dataset.depth) || 0.1;
+      el.style.transform = `translateX(${x * depth * 30}px) translateY(${y * depth * 30}px)`;
+    });
+  });
+})();
+
+// ─── LIGHTBOX NAVIGATION ───────────────────────────────────────────────────
+(function () {
+  const lightbox = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+  if (!lightbox || !lightboxImg) return;
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  const items = document.querySelectorAll('.gallery-item .gallery-img');
+  let currentIndex = -1;
+
+  function openAtIndex(index) {
+    if (index < 0 || index >= items.length) return;
+    currentIndex = index;
+    lightboxImg.src = items[currentIndex].src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.querySelectorAll('.gallery-item').forEach((item, i) => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('.gallery-img');
+      if (img) {
+        currentIndex = Array.from(items).indexOf(img);
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); if (currentIndex > 0) openAtIndex(currentIndex - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); if (currentIndex < items.length - 1) openAtIndex(currentIndex + 1); });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft' && currentIndex > 0) openAtIndex(currentIndex - 1);
+    if (e.key === 'ArrowRight' && currentIndex < items.length - 1) openAtIndex(currentIndex + 1);
+  });
+})();

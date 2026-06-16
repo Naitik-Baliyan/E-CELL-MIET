@@ -16,7 +16,7 @@
 
 <body>
 
-  <!-- 1. HEADER / NAVIGATION -->
+
   <header>
     <a href="index.html#home" class="logo">
       <img src="logo.jpg" alt="E-Cell MIET Logo" class="logo-img">
@@ -24,187 +24,214 @@
     <nav>
       <ul>
         <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="index.html#collaborations">Collaborations</a></li>
+        <li><a href="index.html#spotlights">Spotlights</a></li>
         <li><a href="gallery.html" class="active">Gallery</a></li>
       </ul>
     </nav>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <button data-modal="modal-connect" class="join-btn">Connect with us</button>
   </header>
 
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav-panel">
+    <button class="mobile-nav-close">&times;</button>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="index.html#collaborations">Collaborations</a></li>
+      <li><a href="index.html#spotlights">Spotlights</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <button data-modal="modal-connect" class="join-btn">Connect with us</button>
+  </div>
+
   <main>
-    <!-- 2. GALLERY HERO SECTION -->
-    <section class="gallery-hero">
-      <div class="gallery-hero-content">
+    
+    <section class="gallery-hero reveal">
+      <div class="gallery-hero-content parallax" data-depth="0.08">
         <h1 class="gallery-moments-heading">E-CELL MOMENTS</h1>
         <p class="gallery-moments-tagline">Explore memorable moments from our events, where aspiring entrepreneurs,
           industry experts, and innovators come together to inspire and learn.</p>
       </div>
     </section>
 
-    <!-- 3. GALLERY GRID -->
-    <section class="gallery-section">
-      <div class="gallery-grid" id="galleryGrid">
+    
+    <section class="gallery-section reveal">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="workshops">Workshops</button>
+        <button class="filter-btn" data-filter="celebrations">Celebrations</button>
+      </div>
+      <div class="gallery-grid parallax" id="galleryGrid" data-depth="0.05">
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event42.jpg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event42.jpg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="workshops">
           <div class="gallery-item-inner">
-            <img src="assets/events/event_39.jpg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event_39.jpg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="workshops">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-40.jpg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-40.jpg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="workshops">
           <div class="gallery-item-inner">
-            <img src="assets/events/Event_38.jpg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/Event_38.jpg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event41.jpg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event41.jpg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-4.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-4.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="celebrations">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-34.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-34.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-1.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-1.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-28.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-28.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-30.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-30.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-2.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-2.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="celebrations">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-17.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-17.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="workshops">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-24.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-24.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-13.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-13.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-22.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-22.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-18.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-18.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-35.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-35.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="workshops">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-25.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-25.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="celebrations">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-37.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-37.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-7.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-7.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item" data-category="events">
           <div class="gallery-item-inner">
-            <img src="assets/events/event-20.jpeg" alt="E-Cell Event Moment" class="gallery-img">
+            <img src="assets/events/event-20.jpeg" alt="E-Cell Event Moment" class="gallery-img lazy-blur" loading="lazy">
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- 4. CELEBRATING SUCCESS SECTION -->
-    <section class="success-section" id="success">
+    
+    <section class="success-section reveal" id="success">
       <div class="success-header">
         <h2 class="gallery-moments-heading">Celebrating Success</h2>
         <p class="gallery-moments-tagline">Meet the past winners of E-Cell Miet competitions and get inspired by their
           entrepreneurial and innovative way of thinking</p>
       </div>
 
-      <!-- Moving track with Hall images (reusing the marquee styles from home page spotlights) -->
+      
       <div class="marquee-track">
         <div class="marquee-inner marquee-left">
-          <img src="assets/events/Hall_1.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_2.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_3.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_4.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_5.jpg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_6.jpg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_7.jpg" alt="E-Cell Success Hall" class="marquee-img">
-          <!-- Repeat for smooth loop on wide screens -->
-          <img src="assets/events/Hall_1.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_2.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_3.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_4.jpeg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_5.jpg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_6.jpg" alt="E-Cell Success Hall" class="marquee-img">
-          <img src="assets/events/hall_7.jpg" alt="E-Cell Success Hall" class="marquee-img">
+          <img src="assets/events/Hall_1.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_2.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_3.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_4.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_5.jpg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_6.jpg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_7.jpg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          
+          <img src="assets/events/Hall_1.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_2.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_3.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_4.jpeg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_5.jpg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_6.jpg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
+          <img src="assets/events/hall_7.jpg" loading="lazy" alt="E-Cell Success Hall" class="marquee-img lazy-blur">
         </div>
       </div>
     </section>
   </main>
 
-  <!-- CONNECT MODAL -->
+  
   <div class="modal-overlay" id="modal-connect">
     <div class="modal-content modal-connect-content">
       <button class="modal-close">&times;</button>
@@ -281,13 +308,12 @@
     </div>
   </div>
 
-  <!-- 4. FOOTER -->
+  
   <footer id="contact">
-    <div class="footer-accent"></div>
     <div class="footer-main">
       <div class="footer-brand">
         <div class="footer-logo-row">
-          <img src="logo.jpg" alt="E-Cell MIET Logo" class="footer-logo-img">
+          <img src="logo.jpg" alt="E-Cell MIET Logo" loading="lazy" class="footer-logo-img">
           <div class="footer-logo-text">
             <span class="footer-logo-name">E-Cell MIET</span>
             <span class="footer-logo-sub">Entrepreneurship Cell of MIET</span>
@@ -342,15 +368,17 @@
     </div>
   </footer>
 
-  <!-- LIGHTBOX MODAL -->
+  
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lightbox-content">
       <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <button class="lightbox-arrow prev" id="lightboxPrev"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="lightbox-arrow next" id="lightboxNext"><i class="fa-solid fa-chevron-right"></i></button>
       <img src="" alt="Fullscreen Image" class="lightbox-img" id="lightboxImg">
     </div>
   </div>
 
-  <!-- FLOATING SOCIALS -->
+  
   <div class="floating-socials">
     <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
     <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -358,7 +386,12 @@
     <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 
+  <div class="page-transition" id="pageTransition"></div>
   <script src="main.js"></script>
+  <script src="gallery.js"></script>
 </body>
 
 </html>
+
+
+
