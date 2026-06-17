@@ -1464,7 +1464,15 @@ footer {
     display: flex;
   }
 
+  nav {
+    display: none;
+  }
+
   header .join-btn {
+    display: none;
+  }
+
+  .floating-socials {
     display: none;
   }
 }
@@ -1688,42 +1696,33 @@ footer {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 250px;
-  grid-auto-flow: dense;
-  gap: 1.5rem;
-  width: 100%;
+  grid-auto-rows: 260px;
+  gap: 1.25rem;
 }
 
 .gallery-item {
   position: relative;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(19, 19, 30, 0.4);
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Bento Grid Spans Pattern (7-item perfect loop) */
-.gallery-item:nth-child(7n + 1) {
+/* Bento Grid Spans */
+.gallery-item:nth-child(7n+1),
+.gallery-item:nth-child(7n+6) {
   grid-column: span 2;
   grid-row: span 2;
 }
 
-.gallery-item:nth-child(7n + 4) {
+.gallery-item:nth-child(7n+4) {
   grid-column: span 2;
 }
 
-.gallery-item:nth-child(7n + 5) {
-  grid-row: span 2;
-}
-
-.gallery-item:nth-child(7n + 6) {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.gallery-item:nth-child(7n + 7) {
+.gallery-item:nth-child(7n+5),
+.gallery-item:nth-child(7n+7) {
   grid-row: span 2;
 }
 
@@ -1739,31 +1738,68 @@ footer {
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center 20%;
-  /* Focuses slightly below the very top edge to keep faces properly framed */
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hover overlay & icon */
+/* Category Badge */
+.gallery-item-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.35rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  pointer-events: none;
+}
+
+.gallery-item:hover .gallery-item-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover overlay */
 .gallery-item::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    transparent 70%
+  );
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
+  z-index: 1;
   pointer-events: none;
 }
 
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* Expand icon on hover */
 .gallery-item::before {
-  content: '+';
+  content: '\f065';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.5);
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 300;
-  font-size: 3.5rem;
+  font-size: 1.4rem;
   color: white;
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1771,21 +1807,17 @@ footer {
   pointer-events: none;
 }
 
+.gallery-item:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 /* Hover effects */
 .gallery-item:hover {
   border-color: rgba(244, 31, 72, 0.3);
-  box-shadow: 0 10px 40px rgba(244, 31, 72, 0.1);
-  transform: translateY(-3px);
+  box-shadow: 0 15px 50px rgba(244, 31, 72, 0.12);
+  transform: translateY(-4px);
   z-index: 10;
-}
-
-.gallery-item:hover::after,
-.gallery-item:hover::before {
-  opacity: 1;
-}
-
-.gallery-item:hover::before {
-  transform: translate(-50%, -50%) scale(1);
 }
 
 .gallery-item:hover .gallery-img {
@@ -1803,20 +1835,20 @@ nav a.active {
 @media (max-width: 1024px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 200px;
-    gap: 1.5rem;
+    grid-auto-rows: 220px;
+    gap: 1rem;
   }
 
-  .gallery-item:nth-child(7n + 1) {
+  .gallery-item:nth-child(7n+1),
+  .gallery-item:nth-child(7n+6) {
     grid-column: span 2;
     grid-row: span 2;
   }
 
-  .gallery-item:nth-child(7n + 4) {
+  .gallery-item:nth-child(7n+4),
+  .gallery-item:nth-child(7n+5),
+  .gallery-item:nth-child(7n+7) {
     grid-column: span 1;
-  }
-
-  .gallery-item:nth-child(7n + 5) {
     grid-row: span 1;
   }
 }
@@ -1824,13 +1856,19 @@ nav a.active {
 @media (max-width: 600px) {
   .gallery-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 250px;
-    gap: 1.5rem;
+    grid-auto-rows: 260px;
+    gap: 1rem;
   }
 
   .gallery-item {
     grid-column: span 1 !important;
     grid-row: span 1 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .gallery-grid {
+    grid-auto-rows: 220px;
   }
 }
 
@@ -2412,6 +2450,27 @@ nav a.active {
     font-size: 0.9rem;
   }
 
+  /* Hide floating socials on mobile to avoid overlapping navbar */
+  .floating-socials {
+    display: none;
+  }
+
+  /* Bigger, more visible hamburger on mobile */
+  .hamburger {
+    width: 42px;
+    height: 42px;
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .hamburger:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .hamburger span {
+    width: 20px;
+  }
+
   /* --- FOOTER --- */
   footer {
     padding: 3rem 5% 2rem !important;
@@ -2575,7 +2634,7 @@ nav a.active {
   /* Gallery grid — 2 columns on mobile, full-width on tiny */
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    grid-auto-rows: 180px !important;
+    grid-auto-rows: 200px !important;
     gap: 0.75rem !important;
   }
 
@@ -2596,8 +2655,143 @@ nav a.active {
   /* Single column on tiny phones */
   .gallery-grid {
     grid-template-columns: 1fr !important;
-    grid-auto-rows: 220px !important;
+    grid-auto-rows: 240px !important;
   }
 }
+
+/* =============================================
+   GLIMPSE INTO OUR GALLERY — SECTION
+   ============================================= */
+#gallery-preview {
+  padding: 5rem 6%;
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.glimpse-header {
+  margin-bottom: 3rem;
+}
+
+.glimpse-header .section-heading {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.glimpse-sub {
+  color: rgba(255,255,255,0.55);
+  font-size: 1rem;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* --- 5 Tilted Gradient-Border Cards Row --- */
+.glimpse-cards {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0 2.5rem;
+  overflow: visible;
+}
+
+/* Each card uses a CSS var for its gradient and rotation */
+.glimpse-photo-card {
+  flex: 0 0 200px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  background: #111;
+  /* Gradient border via box-shadow */
+  padding: 3px;
+  background: var(--gc);
+  transform: rotate(var(--rot));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.glimpse-photo-card:hover {
+  transform: rotate(0deg) translateY(-12px) scale(1.05);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.8);
+  z-index: 5;
+}
+
+/* The inner wrapper clips the image inside the gradient border */
+.glimpse-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px; /* slightly less than card for border to show */
+}
+
+/* CTA pill button */
+.glimpse-cta {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.glimpse-view-btn {
+  display: inline-block;
+  padding: 0.85rem 3rem;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(135deg, #f472b6, #a855f7) border-box;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.glimpse-view-btn:hover {
+  background:
+    linear-gradient(135deg, #f472b6, #a855f7) padding-box,
+    linear-gradient(135deg, #f472b6, #a855f7) border-box;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  #gallery-preview {
+    padding: 4rem 5% !important;
+  }
+
+  .glimpse-cards {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+  }
+
+  .glimpse-photo-card {
+    flex: 0 0 calc(50% - 0.375rem);
+    height: 180px;
+    /* Flatten rotations on mobile */
+    transform: rotate(0deg) !important;
+  }
+
+  .glimpse-photo-card:hover {
+    transform: translateY(-6px) scale(1.03) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .glimpse-photo-card {
+    flex: 0 0 100% !important;
+    height: 220px;
+  }
+}
+
+
+
 
 

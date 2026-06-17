@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const galleryItems = document.querySelectorAll('.gallery-item');
 
+  // Populate badge text from data-category
+  galleryItems.forEach(item => {
+    const badge = item.querySelector('.gallery-item-badge');
+    if (badge) {
+      const cat = item.getAttribute('data-category');
+      badge.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+    }
+  });
+
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       // 1. Remove active state from other buttons

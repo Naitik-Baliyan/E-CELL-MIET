@@ -105,16 +105,29 @@
     </section>
 
     <section id="gallery-preview" class="reveal">
-      <div class="gallery-preview-header">
-        <h2 class="section-heading">📸 Glimpse into Our Creative Gallery</h2>
-        <p>Explore snapshots from our past events, projects, and artistic work. Click to view the full gallery!</p>
+      <div class="glimpse-header">
+        <h2 class="section-heading">📷 Glimpse into Our Creative Gallery</h2>
+        <p class="glimpse-sub">Explore snapshots from our past events, projects, and artistic work. Click to view the full gallery!</p>
       </div>
-      <div class="gallery-fan">
-        <a href="gallery.html"><img src="assets/events/event-4.jpeg" class="fan-img" style="--r: -20deg; border-color: #ff3366;" alt="Gallery"></a>
-        <a href="gallery.html"><img src="assets/events/event-7.jpeg" class="fan-img" style="--r: -10deg; border-color: #33ccff;" alt="Gallery"></a>
-        <a href="gallery.html"><img src="assets/events/event-13.jpeg" class="fan-img" style="--r: 0deg; border-color: #ffffff;" alt="Gallery"></a>
-        <a href="gallery.html"><img src="assets/events/event-20.jpeg" class="fan-img" style="--r: 10deg; border-color: #ffcc00;" alt="Gallery"></a>
-        <a href="gallery.html"><img src="assets/events/event-22.jpeg" class="fan-img" style="--r: 20deg; border-color: #cc33ff;" alt="Gallery"></a>
+      <div class="glimpse-cards">
+        <a href="gallery.html" class="glimpse-photo-card" style="--gc: linear-gradient(135deg, #f472b6, #3b82f6); --rot: -6deg;">
+          <img src="assets/events/event-4.jpeg" alt="E-Cell Event" loading="lazy">
+        </a>
+        <a href="gallery.html" class="glimpse-photo-card" style="--gc: linear-gradient(135deg, #3b82f6, #06b6d4); --rot: -3deg;">
+          <img src="assets/events/event-7.jpeg" alt="E-Cell Event" loading="lazy">
+        </a>
+        <a href="gallery.html" class="glimpse-photo-card" style="--gc: linear-gradient(135deg, #f472b6, #a855f7); --rot: 0deg;">
+          <img src="assets/events/event-13.jpeg" alt="E-Cell Event" loading="lazy">
+        </a>
+        <a href="gallery.html" class="glimpse-photo-card" style="--gc: linear-gradient(135deg, #06b6d4, #3b82f6); --rot: 3deg;">
+          <img src="assets/events/event-20.jpeg" alt="E-Cell Event" loading="lazy">
+        </a>
+        <a href="gallery.html" class="glimpse-photo-card" style="--gc: linear-gradient(135deg, #a855f7, #f472b6); --rot: 6deg;">
+          <img src="assets/events/event-22.jpeg" alt="E-Cell Event" loading="lazy">
+        </a>
+      </div>
+      <div class="glimpse-cta">
+        <a href="gallery.html" class="glimpse-view-btn">View Gallery</a>
       </div>
     </section>
 
@@ -139,63 +152,7 @@
     </div>
 
     
-    <section id="collaborations" class="reveal">
-      <p class="section-label">Partnerships</p>
-      <h2 class="section-heading">Our <span class="text-red">Collaborations</span></h2>
-      <div class="collab-grid reveal-stagger parallax" data-depth="0.07">
-        <article class="collab-card">
-          <div class="collab-img-wrapper">
-            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" class="collab-logo-img" loading="lazy">
-          </div>
-          <h3>MIET Incubation Forum</h3>
-          <p>Fostering entrepreneurship by providing incubation support, mentorship, and vital resources to transform
-            innovative ideas into viable startups.</p>
-          <button class="collab-cta" data-modal="modal-mif">Know More &rarr;</button>
-        </article>
-        <article class="collab-card">
-          <div class="collab-logo">IIC</div>
-          <h3>Institution's Innovation Council</h3>
-          <p>An initiative by the Ministry of Education to systematically foster the culture of innovation and encourage
-            creative problem solving among students.</p>
-          <button class="collab-cta" data-modal="modal-iic">Know More &rarr;</button>
-        </article>
-      </div>
-    </section>
 
-    
-    <div class="modal-overlay" id="modal-mif">
-      <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <div class="modal-header">
-          <div class="collab-img-wrapper">
-            <img src="mif-logo.jpg" alt="MIET Incubation Forum Logo" loading="lazy" class="collab-logo-img">
-          </div>
-          <h3>MIET Incubation Forum (MIF)</h3>
-        </div>
-        <div class="modal-body">
-          <p>The MIET Incubation Forum provides a comprehensive ecosystem for student entrepreneurs. It offers
-            state-of-the-art workspace, mentorship from seasoned professionals, and access to seed funding networks.</p>
-          <p>By connecting students with industry experts and alumni founders, MIF acts as a catalyst for transforming
-            raw ideas into market-ready businesses.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-iic">
-      <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <div class="modal-header">
-          <div class="collab-logo">IIC</div>
-          <h3>Institution's Innovation Council (IIC)</h3>
-        </div>
-        <div class="modal-body">
-          <p>IIC is an initiative of the Ministry of Education (MoE) designed to systematically foster the culture of
-            innovation in all Higher Education Institutions (HEIs).</p>
-          <p>The council organizes periodic workshops, seminars, and interactions with entrepreneurs to create a vibrant
-            innovation ecosystem on campus.</p>
-        </div>
-      </div>
-    </div>
 
     <div class="modal-overlay" id="modal-connect">
       <div class="modal-content modal-connect-content">
