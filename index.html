@@ -55,44 +55,66 @@
   <main>
     
     <section id="home">
+      <!-- Cinematic Full-Width Background Video -->
+      <video class="hero-video-bg" autoplay loop muted playsinline>
+        <source src="hero-bg.mp4" type="video/mp4">
+      </video>
       
+      <div class="video-overlay"></div>
 
-
-      
-      <div class="hero-content">
-
-        
-        <div class="hero-left parallax" data-depth="0.1">
+      <div class="hero-content centered-hero">
+        <div class="hero-main parallax" data-depth="0.1">
           <p class="hero-since">Est. 2022</p>
           <h1 class="hero-brand"><span class="brand-solid">E-CELL</span><span class="brand-accent">MIET</span></h1>
-        </div>
-
-        
-        <div class="hero-right parallax" data-depth="0.08">
-          <p class="hero-tag">ENTREPRENEURSHIP CELL</p>
-          <h2 class="hero-tagline"><span class="tagline-intro">Igniting the</span><br><span
-              class="tagline-serif">Entrepreneurial</span><br><span class="tagline-accent">Spark.</span></h2>
-          <div class="hero-stats">
-
+          <h2 class="hero-tagline"><span class="tagline-intro">Igniting the</span> <span class="tagline-serif">Entrepreneurial</span> <span class="tagline-accent">Spark.</span></h2>
           <a href="#join" class="hero-cta-btn">Know More &rarr;</a>
-          </div>
-
         </div>
+      </div>
     </section>
 
     
-    <section id="about" class="reveal">
-      <div class="about-grid parallax" data-depth="0.06">
-        <div class="about-left">
-          <h2 class="section-heading">What's <span class="text-red">E-Cell ?</span></h2>
+    <section id="vision" class="reveal">
+      <div class="vision-container">
+        <div class="vision-left">
+          <h2 class="vision-heading">Driven by Vision<br><span class="text-red">Defined by Impact</span></h2>
+          <p class="vision-text">
+            The <strong>E-Cell (Entrepreneurship Cell) of MIET</strong> is a remarkable group of students who are passionate about fostering an entrepreneurial spirit amongst their peers. In a world where startups are increasingly important for driving innovation and solving problems,
+            <br><br>
+            E-Cell is working towards providing exposure, insights and awareness related to entrepreneurship. With our events, workshops, informative content, and exciting initiatives, E-Cell is creating a vibrant and dynamic startup ecosystem within MIET. The team's dedication is evident in their remarkable impact over the years.
+          </p>
+          <a href="about.html" class="outline-gradient-btn">Learn More</a>
         </div>
-        <div class="about-right">
-          <p class="about-body">E-Cell MIET helps the hustling startups and young professionals via dynamic workshops,
-            thought-provoking speaker sessions, high-stakes business plan competitions, and numerous other game-changing
-            initiatives throughout the year to create a crucible for innovation. We stand as pillars of support for
-            budding entrepreneurs, providing them with personalized guidance from experienced mentors, crucial funding
-            opportunities, and a robust network that can change the course of their journey forever!</p>
+        <div class="vision-right">
+          <img src="assets/events/event-1.jpeg" class="vision-img img-back" alt="E-Cell Event">
+          <img src="assets/events/event-2.jpeg" class="vision-img img-front" alt="E-Cell Event">
         </div>
+      </div>
+    </section>
+
+    <section id="team-preview" class="reveal">
+      <div class="team-card">
+        <div class="team-card-left">
+          <h2 class="team-card-heading">Meet Our Team</h2>
+          <p class="team-card-text">Discover the passionate minds behind E-Cell MIET's dreamers, builders, leaders. They're not just running a club; they're shaping an ecosystem.</p>
+          <a href="#" class="outline-gradient-btn">View Team</a>
+        </div>
+        <div class="team-card-right">
+          <img src="logo.jpg" alt="Team Logo" class="team-art">
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery-preview" class="reveal">
+      <div class="gallery-preview-header">
+        <h2 class="section-heading">📸 Glimpse into Our Creative Gallery</h2>
+        <p>Explore snapshots from our past events, projects, and artistic work. Click to view the full gallery!</p>
+      </div>
+      <div class="gallery-fan">
+        <a href="gallery.html"><img src="assets/events/event-4.jpeg" class="fan-img" style="--r: -20deg; border-color: #ff3366;" alt="Gallery"></a>
+        <a href="gallery.html"><img src="assets/events/event-7.jpeg" class="fan-img" style="--r: -10deg; border-color: #33ccff;" alt="Gallery"></a>
+        <a href="gallery.html"><img src="assets/events/event-13.jpeg" class="fan-img" style="--r: 0deg; border-color: #ffffff;" alt="Gallery"></a>
+        <a href="gallery.html"><img src="assets/events/event-20.jpeg" class="fan-img" style="--r: 10deg; border-color: #ffcc00;" alt="Gallery"></a>
+        <a href="gallery.html"><img src="assets/events/event-22.jpeg" class="fan-img" style="--r: 20deg; border-color: #cc33ff;" alt="Gallery"></a>
       </div>
     </section>
 
@@ -315,7 +337,7 @@
       </div>
 
       
-      <div class="footer-links">
+      <div class="footer-links" style="grid-template-columns: repeat(2, 1fr); justify-content: start;">
         <div class="footer-col">
           <h5>Navigate</h5>
           <a href="index.html#home">Home</a>
@@ -323,16 +345,6 @@
           <a href="index.html#collaborations">Collaborations</a>
           <a href="index.html#spotlights">Spotlights</a>
           <a href="gallery.html">Gallery</a>
-        </div>
-        <div class="footer-col">
-          <h5>Follow Us</h5>
-          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
-            rel="noopener noreferrer">Instagram</a>
-          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank"
-            rel="noopener noreferrer">Twitter / X</a>
-          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank"
-            rel="noopener noreferrer">WhatsApp</a>
         </div>
         <div class="footer-col">
           <h5>Contact</h5>
