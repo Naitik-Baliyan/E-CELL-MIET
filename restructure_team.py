@@ -1,70 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+import re
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meet the Team | E-Cell MIET</title>
-  <meta name="description" content="Meet the passionate minds behind E-Cell MIET. Discover our leaders, builders, and dreamers shaping the entrepreneurial ecosystem at MIET.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-
-<body>
-
-  <!-- ==========================================
-       HEADER / NAVBAR
-       ========================================== -->
-  <header>
-    <a href="index.html#home" class="logo">
-      <img src="logo.jpg" alt="E-Cell MIET Logo" class="logo-img">
-    </a>
-    <nav>
-      <ul>
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="team.html" class="active">Team</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-      </ul>
-    </nav>
-    <button class="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <button data-modal="modal-connect" class="join-btn">Connect with us</button>
-  </header>
-
-  <div class="mobile-nav-overlay"></div>
-  <div class="mobile-nav-panel">
-    <button class="mobile-nav-close">&times;</button>
-    <ul>
-      <li><a href="index.html#home">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-    </ul>
-    <button data-modal="modal-connect" class="join-btn">Connect with us</button>
-  </div>
-
-  <main>
-    <!-- HERO SECTION -->
-    <section class="team-page-hero reveal">
-      <div class="team-page-hero-content parallax" data-depth="0.08">
-        <h1 class="team-page-heading">MEET THE <span class="text-red">TEAM</span></h1>
-        <p class="team-page-tagline">Discover the passionate minds behind E-Cell MIET's dreamers, builders, and leaders. They're not just running a club; they're shaping an ecosystem.</p>
-      </div>
-    </section>
-
-    <!-- TEAM GRID SECTION -->
-    <section class="team-section reveal">
-      <div class="team-page-grid" id="teamGrid">
-        
+html_content = """        
         <div class="team-tier tier-1">
           <!-- Member 1: Yuvraj -->
           <div class="team-member-card">
@@ -115,7 +51,9 @@
               <p class="member-motive">"Aspiring Engineer and B.Tech student with a focus on AI and Full-Stack Web Development. Proven interest in building real-world tech solutions through technical innovation and strategic execution. Committed to continuous learning, I aim to translate high-level concepts into impactful experiences."</p>
             </div>
           </div>
+        </div>
 
+        <div class="team-tier tier-3">
           <!-- Member 2: Shishir -->
           <div class="team-member-card">
             <div class="member-img-wrap">
@@ -223,85 +161,26 @@
             </div>
             <div class="member-info">
               <h3 class="member-name">Pratibha</h3>
-              <p class="member-role">Jr. Social Media Head</p>
+              <p class="member-role">Team Member</p>
               <p class="member-motive">"Dedicated to continuous learning and contributing to the success of our entrepreneurial initiatives at E-Cell MIET."</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </div>"""
 
-  </main>
+with open('c:/Users/ASUS/Desktop/E CELL MIET/E CELL MIET/team.html', 'r', encoding='utf-8') as f:
+    text = f.read()
 
-  <!-- ==========================================
-       FOOTER
-       ========================================== -->
-  <footer id="contact">
-    <div class="footer-main">
+# Replace the inner content of <div class="team-page-grid" id="teamGrid">
+# We can use regex to find <div class="team-page-grid" id="teamGrid"> ... </div>
+import re
+new_text = re.sub(
+    r'(<div class="team-page-grid" id="teamGrid">).*?(</section>)',
+    r'\1\n' + html_content + r'\n      </div>\n    \2',
+    text,
+    flags=re.DOTALL
+)
 
-      <!-- Left: Logo & Tagline -->
-      <div class="footer-brand">
-        <div class="footer-logo-row">
-          <img src="logo.jpg" alt="E-Cell MIET Logo" loading="lazy" class="footer-logo-img">
-          <div class="footer-logo-text">
-            <span class="footer-logo-name">E-Cell MIET</span>
-            <span class="footer-logo-sub">Entrepreneurship Cell of MIET</span>
-          </div>
-        </div>
-        <p class="footer-tagline">Igniting the entrepreneurial spark<br>at Meerut Institute of Engineering<br>&
-          Technology.</p>
-        <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer"
-            class="footer-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank"
-            rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram"><i
-              class="fa-brands fa-instagram"></i></a>
-          <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer"
-            class="footer-social-btn" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer"
-            class="footer-social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-      </div>
+with open('c:/Users/ASUS/Desktop/E CELL MIET/E CELL MIET/team.html', 'w', encoding='utf-8') as f:
+    f.write(new_text)
 
-      <!-- Center & Right: Links -->
-      <div class="footer-links" style="grid-template-columns: repeat(2, 1fr); justify-content: start;">
-        <div class="footer-col">
-          <h5>Navigate</h5>
-          <a href="index.html#home">Home</a>
-          <a href="index.html#about">About</a>
-          <a href="team.html" class="active">Team</a>
-          <a href="index.html#collaborations">Collaborations</a>
-          <a href="index.html#spotlights">Spotlights</a>
-          <a href="gallery.html">Gallery</a>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <a href="mailto:ecell.miet@miet.ac.in">ecell.miet@miet.ac.in</a>
-          <a href="#">MIET Campus, Meerut</a>
-          <a href="#">UP — 250005</a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Copyright -->
-    <div class="footer-bottom">
-      <p>&copy; 2026 E-Cell MIET &mdash; All rights reserved.</p>
-      <p>Engineered for Innovation.</p>
-    </div>
-
-  </footer>
-
-  <!-- Floating Social Links (from about/gallery page style) -->
-  <div class="floating-socials">
-    <a href="https://www.linkedin.com/in/e-cellmiet/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="https://www.instagram.com/ecell__miet?igsh=YWFjMjU1ZTI2bWJx" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://x.com/EcellMiet?t=5SBXmqnHTjrkcrXMe-9YeA&s=08" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://chat.whatsapp.com/JbWB0teiFtv2NYLyl0QQbc" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-  </div>
-
-  <div class="page-transition" id="pageTransition"></div>
-  <script src="main.js"></script>
-</body>
-
-</html>
+print("HTML rewritten successfully!")

@@ -2203,9 +2203,10 @@ nav a.active {
   justify-content: center;
 }
 .team-art {
-  width: 100%;
-  max-width: 250px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
+  object-fit: cover;
   border: 2px solid rgba(255,255,255,0.1);
   filter: drop-shadow(0 15px 30px rgba(244, 31, 72, 0.2));
 }
@@ -2862,21 +2863,42 @@ nav a.active {
 }
 
 .team-page-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.team-tier {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.tier-1 .team-member-card {
+  max-width: 260px;
+}
+.tier-2 .team-member-card {
+  max-width: 220px;
+}
+.tier-3 .team-member-card {
+  max-width: 200px;
 }
 
 .team-member-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   transition: var(--transition);
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .team-member-card:hover {
@@ -2887,7 +2909,7 @@ nav a.active {
 
 .member-img-wrap {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/5;
   overflow: hidden;
   position: relative;
 }
@@ -2914,8 +2936,8 @@ nav a.active {
   background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  padding: 2.5rem 0 1.5rem;
+  gap: 0.6rem;
+  padding: 1.8rem 0 1rem;
   opacity: 0;
   transform: translateY(20px);
   transition: var(--transition);
@@ -2929,8 +2951,9 @@ nav a.active {
 .member-socials a {
   color: white;
   background: rgba(255, 255, 255, 0.1);
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2946,7 +2969,7 @@ nav a.active {
 }
 
 .member-info {
-  padding: 1.5rem;
+  padding: 0.8rem 1rem;
   text-align: center;
   background: var(--bg-card);
   position: relative;
@@ -2955,14 +2978,14 @@ nav a.active {
 }
 
 .member-name {
-  font-size: 1.35rem;
+  font-size: 1rem;
   color: white;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
   font-family: 'Space Grotesk', sans-serif;
 }
 
 .member-role {
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   color: var(--primary);
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -2970,13 +2993,13 @@ nav a.active {
 }
 
 .member-motive {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-top: 0.8rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
   font-style: italic;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: left;
@@ -2992,14 +3015,20 @@ nav a.active {
   .team-page-tagline {
     font-size: 0.95rem;
   }
-  .team-page-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
+  .team-tier {
+    gap: 1rem;
+  }
+  .tier-1 .team-member-card,
+  .tier-2 .team-member-card,
+  .tier-3 .team-member-card {
+    max-width: 160px;
   }
 }
 
 @media (max-width: 420px) {
-  .team-page-grid {
-    grid-template-columns: 1fr;
+  .tier-1 .team-member-card,
+  .tier-2 .team-member-card,
+  .tier-3 .team-member-card {
+    max-width: 100%;
   }
 }
