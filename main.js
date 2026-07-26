@@ -1,13 +1,32 @@
+// ─── LENIS INERTIAL SMOOTH SCROLL ENGINE ─────────────────────────────────────
+let lenis = null;
+if (typeof Lenis !== 'undefined') {
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    smoothTouch: false
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+
 // ─── HEADER SCROLL ───────────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
   if (!header) return;
   if (window.scrollY > 60) {
-    header.style.background = 'rgba(10, 10, 10, 0.98)';
+    header.style.background = 'rgba(10, 11, 16, 0.96)';
+    header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
   } else {
     header.style.background = 'var(--bg-glass)';
+    header.style.boxShadow = 'none';
   }
-});
+}, { passive: true });
 
 // ─── STATS COUNTER ANIMATION ──────────────────────────────────────────────────
 const counters = document.querySelectorAll('.counter');
@@ -381,4 +400,48 @@ document.querySelectorAll('.lazy-blur').forEach(img => {
     if (e.key === 'ArrowLeft' && currentIndex > 0) openAtIndex(currentIndex - 1);
     if (e.key === 'ArrowRight' && currentIndex < items.length - 1) openAtIndex(currentIndex + 1);
   });
+})();
+
+// ─── MAGNETIC BUTTON PHYSICS ───────────────────────────────────────────────
+(function() {
+  const magneticBtns = document.querySelectorAll('.join-btn, .primary-btn, .secondary-btn, .hero-cta-btn, .collab-cta, .outline-gradient-btn, .submit-btn');
+  magneticBtns.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate3d(${x * 0.2}px, ${y * 0.2}px, 0) scale(1.02)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate3d(0, 0, 0) scale(1)';
+    });
+  });
+})();
+
+// ─── HERO SCROLL SCALE-DOWN PARALLAX ────────────────────────────────────────
+(function() {
+  const heroVideo = document.querySelector('.hero-video-bg');
+  const heroContent = document.querySelector('.hero-content');
+  if (!heroVideo && !heroContent) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrolled = window.scrollY;
+        if (scrolled < 1000) {
+          const rate = scrolled * 0.05;
+          if (heroVideo) {
+            heroVideo.style.transform = `scale(${1 + rate * 0.0004}) translate3d(0, ${rate * 0.3}px, 0)`;
+          }
+          if (heroContent) {
+            heroContent.style.opacity = `${Math.max(0, 1 - scrolled / 550)}`;
+            heroContent.style.transform = `translate3d(0, ${rate * 0.5}px, 0) scale(${Math.max(0.94, 1 - scrolled / 3500)})`;
+          }
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
 })();
