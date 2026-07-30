@@ -544,6 +544,10 @@ section>p {
   color: var(--primary);
 }
 
+.text-center {
+  text-align: center;
+}
+
 /* ─── ABOUT ─────────────────────────────────────────────────── */
 #about {
   padding: 8rem 6%;
@@ -2211,39 +2215,39 @@ nav a.active {
 .vision-right {
   flex: 1;
   position: relative;
-  min-height: 400px;
+  min-height: 430px;
 }
 .vision-img {
   position: absolute;
-  border-radius: 12px;
+  border-radius: 16px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-  transition: transform 0.4s ease;
+  object-position: center 18%;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .vision-img.img-back {
-  width: 75%;
+  width: 70%;
   height: 320px;
   top: 0;
   left: 0;
   z-index: 1;
 }
 .vision-img.img-front {
-  width: 75%;
+  width: 70%;
   height: 320px;
-  bottom: 0;
+  top: 80px;
   right: 0;
   z-index: 2;
-  transform: translateY(20%);
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.12);
 }
 .vision-right:hover .img-back { transform: translate(-10px, -10px); }
-.vision-right:hover .img-front { transform: translate(10px, 20%) scale(1.02); }
+.vision-right:hover .img-front { transform: translate(10px, 10px) scale(1.02); }
 
 @media (max-width: 768px) {
   .vision-container { flex-direction: column; }
-  .vision-right { width: 100%; min-height: 350px; margin-top: 2rem; }
-  .vision-img.img-front { transform: translateY(15%); }
-  .vision-right:hover .img-front { transform: translateY(15%) scale(1.02); }
+  .vision-right { width: 100%; min-height: 380px; margin-top: 2rem; }
+  .vision-img.img-front { top: 60px; }
+  .vision-right:hover .img-front { transform: translate(5px, 5px) scale(1.02); }
 }
 
 /* --- TEAM PREVIEW CARD --- */
@@ -2457,22 +2461,22 @@ nav a.active {
 
   .vision-right {
     width: 100%;
-    min-height: 280px;
+    min-height: 320px;
     margin-top: 1rem;
   }
 
   .vision-img.img-back,
   .vision-img.img-front {
     width: 70%;
-    height: 220px;
+    height: 240px;
   }
 
   .vision-img.img-front {
-    transform: translateY(15%);
+    top: 60px;
   }
 
   .vision-right:hover .img-front {
-    transform: translateY(15%) scale(1.02);
+    transform: translate(5px, 5px) scale(1.02);
   }
 
   /* --- TEAM PREVIEW CARD --- */
