@@ -1021,22 +1021,7 @@ section>p {
   opacity: 0.9;
 }
 
-/* ─── SPOTLIGHTS ──────────────────────────────────────────────── */
-#spotlights {
-  padding: 8rem 6%;
-  max-width: 1400px;
-  margin: 0 auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.025);
-}
 
-.spotlights-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.spotlights-header .section-label {
-  margin-bottom: 1.5rem;
-}
 
 /* ── Marquee Keyframes ── */
 @keyframes marquee-left {

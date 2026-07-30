@@ -28,41 +28,7 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// ─── STATS COUNTER ANIMATION ──────────────────────────────────────────────────
-const counters = document.querySelectorAll('.counter');
-const animationSpeed = 40; // The higher the number, the slower the animation
 
-const countObserver = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = +counter.getAttribute('data-target');
-        
-        const updateCount = () => {
-          const count = +counter.innerText;
-          // Calculate increment based on target size to ensure they all finish around the same time
-          const inc = target / animationSpeed;
-
-          if (count < target) {
-            counter.innerText = Math.ceil(count + inc);
-            setTimeout(updateCount, 25);
-          } else {
-            counter.innerText = target;
-          }
-        };
-
-        updateCount();
-        observer.unobserve(counter); // Only run once
-      }
-    });
-  },
-  { threshold: 0.5 } // Trigger when 50% visible
-);
-
-counters.forEach(counter => {
-  countObserver.observe(counter);
-});
 
 // ─── MODAL LOGIC ──────────────────────────────────────────────────────────────
 const modalBtns = document.querySelectorAll('[data-modal]');
